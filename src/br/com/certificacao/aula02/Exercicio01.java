@@ -1,4 +1,6 @@
 
+//1 - Declarar e inicializar variáveis
+
 package br.com.certificacao.aula02;
 
 

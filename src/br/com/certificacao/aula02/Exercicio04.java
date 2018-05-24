@@ -1,3 +1,5 @@
+
+//4 - O ciclo de vida de um objeto
 package br.com.certificacao.aula02;
 
 //import br.com.certificacao.aula02.Exercicio03;//opcional
@@ -35,7 +37,7 @@ public class Exercicio04 {
 		if( 15 > 10) {
 			//dentro dos blocos são acessiveis, fora será inacessivel;
 			Exercicio03 e2 = new Exercicio03();
-			e2.ano = 2015
+			e2.ano = 2015;
 		}
 		
 		//agora 3 objetos são inacessiveis

@@ -1,3 +1,6 @@
+
+//3 - Lendo ou escrevendo campos de objetos
+
 package br.com.certificacao.aula02;
 
 public class Exercicio03 {

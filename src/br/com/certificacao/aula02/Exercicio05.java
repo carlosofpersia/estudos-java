@@ -1,3 +1,5 @@
+
+//5 - Chamadas de métodos nos objetos
 package br.com.certificacao.aula02;
 
 
@@ -10,7 +12,7 @@ class Calculadora {
 		 * somente um tipo, 
 		 * deve ser o último parametro do método
 		 * 
-		 * um varargs é um array, mas o array não é um varargs
+		 * um varargs é um array, mas o array não  é um varargs
 		 */
 
 		int soma = 0;
