@@ -1,5 +1,10 @@
 
-//1 - Declarar e inicializar variáveis
+/**
+ *
+ * 1 - Declarar e inicializar variáveis
+ * https://help.github.com/articles/adding-a-remote/
+ * 
+ */
 
 package br.com.certificacao.aula02;
 
