@@ -16,6 +16,8 @@
 </head>
 <body bgcolor="white">
 
+<!-- http://localhost:8080/curso-java-um/pages/eventos/listarEventos.jsp -->
+
 <table border="0" align="center" cellpadding="0" cellspacing="0" width="500px">
 <caption>Tabela Listar Eventos</caption>
 <thead>
