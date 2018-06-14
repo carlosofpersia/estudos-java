@@ -4,7 +4,7 @@ public class Exercicio02
 {
 	public Exercicio02()
 	{
-		System.out.println("Arrays Exercicios 2");
+		System.out.println("2 - Declare, instancie, inicialize e use um array uni-dimensional - Array de referências");
 	}
 	
 	public static void main (String[] args) {

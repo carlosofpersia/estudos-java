@@ -8,9 +8,7 @@ public class Exercicio01
 
 		System.out.println("4 - Certificação Java SE 7 Programmer I - Criando e usando Arrays");
 		
-		System.out.println("br.com.certificacao.aula03");
-		
-		
+		System.out.println("1 - Declare, instancie, inicialize e use um array uni-dimensional");
 
 	}
 		
