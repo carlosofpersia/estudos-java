@@ -1,5 +1,20 @@
 package br.com.certificacao.aula06;
 
+import java.util.Random;
+
+class Param {
+
+	String getNumero(int a) throws RuntimeException {
+		Random rand = new Random();
+		if( rand.nextBoolean()) {
+			System.out.println("verdadeiro");
+			return "Verdadeiro";
+		}
+		System.out.println("getNumero.falso: ");
+		throw new RuntimeException("Jogando a Exception resolve o problema!");
+	}
+}
+
 public class Exercicio01 {
 
 	public Exercicio01() {
@@ -11,6 +26,8 @@ public class Exercicio01 {
 		
 		
 		
+		Param param = new Param();
+		param.getNumero(2);
 		
 		
 		
