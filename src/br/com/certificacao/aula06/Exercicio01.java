@@ -16,6 +16,8 @@ class Param {
 }
 
 public class Exercicio01 {
+	
+	String nome = "Carlos";//atividade da aula 06 exercicio 06 -> mesmo pacote
 
 	public Exercicio01() {
 		System.out.println("6 - Certificação Java SE 7 Programmer I - Métodos e encapsulamento");

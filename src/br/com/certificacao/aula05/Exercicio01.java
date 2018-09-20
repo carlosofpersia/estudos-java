@@ -2,13 +2,18 @@ package br.com.certificacao.aula05;
 
 public class Exercicio01 {
 
+	/*
+	 * atividade da aula 06 exercicio 06 -> outro pacote
+	 * uso do protected
+	 */
+	protected String nome = "Eduardo";
+
 	public Exercicio01() {
 		System.out.println("5 - Certificação Java SE 7 Programmer I - Laços");
-		
 		System.out.println("1 - Crie e use laços do tipo while");
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public static void main (String[] args)
 	{
 
