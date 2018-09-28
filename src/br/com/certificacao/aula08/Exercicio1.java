@@ -25,8 +25,8 @@ public class Exercicio1 {
 				- Todas as classes IRMÃS DE RuntimeException são CHECKED, O COMPILADOR OBRIGA A FAZER UM TRATAMENTO.
 
 				OBS: Exception
-				- Checked (Exception - Não é fácil evitar, are the exceptions that are checked at compile time.)
-				- Unchecked (FILHOS DE Error, RuntimeException  - Erros mais simples de serem evitados, com tipos de checagem. )
+				- Checked (Exception - Não é fácil evitar, are the exceptions that are checked at compile time, Checked exceptions são utilizadas para erros recuperáveis .)
+				- Unchecked (FILHOS DE Error, RuntimeException  - Erros mais simples de serem evitados, com tipos de checagem. Não é obrigatório o tratamento da mesma, Unchecked exceptions são utilizadas para erros irrecuperáveis )
 
 		*/
 	
@@ -35,3 +35,33 @@ public class Exercicio1 {
 		System.out.println("Aula08.Exercicio1");
 	}	
 }
+
+
+/*
+
+//Listagem 2: Exemplo real de um Checked Exception
+private void criaArquivo(String pathAlternativo) {
+        File arquivo = null;
+        try {
+             
+            SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+             
+            if (pathAlternativo.equals(""))
+                arquivo = new File("/home/admin/Documentos/arquivo_" + fmt.format(new Date()) );
+            else
+                arquivo = new File(pathAlternativo+"arquivo_" + fmt.format(new Date()) );
+             
+            BufferedWriter writer = new BufferedWriter(new FileWriter(arquivo));
+            writer.write("Linha 001");
+            writer.close();
+        } catch (IOException e ) {
+            if (arquivo != null){
+                if (arquivo.exists()){
+                    arquivo.delete();
+                    criaArquivo("/home/admin/PathAlternativo/");
+                }
+            }
+        }
+    }
+
+*/
