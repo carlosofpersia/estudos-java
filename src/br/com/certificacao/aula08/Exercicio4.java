@@ -1,6 +1,5 @@
 package br.com.certificacao.aula08;
 
-
 class AcessoAoArquivo {
 	
 	//da pau aqui pq FileInputStream precisa da IOException do tipo "CHECKED";

@@ -3,6 +3,7 @@ package br.com.certificacao.aula08;
 import java.util.*;
 
 class BlocoEstatico {
+	
 	static {
 		//bloco estatico
 		//quando chamar a classa em qualquer momento, esse bloco será carragado
