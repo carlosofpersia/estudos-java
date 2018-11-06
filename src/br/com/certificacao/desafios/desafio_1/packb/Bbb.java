@@ -1,4 +1,4 @@
-package br.com.certificacao.desafios.packb;
+package br.com.certificacao.desafios.desafio_1.packb;
 
 import br.com.certificacao.desafios.packa.Aaa;
 
