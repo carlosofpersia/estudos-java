@@ -1,26 +1,6 @@
 
 * Certificação JAVA *
 
-Dia:
-01-2018-09-20 - 3 Vídeos - Aula06 -> 4,5 e 6   - ok
-02-2018-09-21 - 2 Vídeos - Aula06 -> 7 e 8     - ok
-03-2018-09-24 - 2 Vídeos - Aula07 -> 1 e 2     - ok
-04-2018-09-25 - 2 Vídeos - Aula07 -> 3 e 4     - ok
-05-2018-09-26 - 2 Vídeos - Aula07 -> 5 e 6     - ok
-06-2018-09-27 - 3 Vídeos - Aula08 -> 1, 2 e 3  - ok
-07-2018-09-28 - 2 Vídeos - Aula08 -> 4 e 5     - ok
-08-2018-10-01 - 2 Vídeos - Aula09 -> 1         - ok
-09-2018-10-02 - 2 Vídeos - Aula09 -> 2         - ok
-10-2018-10-18 - 5 Vídeos - Aula09 -> 3         - xx---
-11-2018-10-04 - 1 Vídeo  - Aula09 -> 4         - ok
-12-2018-10-17 - 1 Vídeo  - Aula09 -> 5         - ok
-
----METAS---
-* Manhã
-			Estudar 3 Vídeos
-* Noite
-			Questões
-
 /*****************************************/
 
 //$~/Documents/Carloss/Desenvolvimento/estudos-java/src:
@@ -84,3 +64,11 @@ botaoSair.addActionListener( new ActionListener() {
 		System.exit(0);
 	}
 });
+
+/***************************************/
+
+
+//Convertendo String para primitivos: int i = Integer.parseInt("140");
+//Convertendo de wrappers para primitivos: double j = (new Long("123")).doubleValue();
+//Convertendo String diretamente para um wrapper: Long j = Long.valueOf("235555"); 
+//Convertendo String para Wrapper e Wrapper para primitivo diretamente: double h = Double.valueOf("27").floatValue();
