@@ -1,0 +1,86 @@
+
+* Certificação JAVA *
+
+Dia:
+01-2018-09-20 - 3 Vídeos - Aula06 -> 4,5 e 6   - ok
+02-2018-09-21 - 2 Vídeos - Aula06 -> 7 e 8     - ok
+03-2018-09-24 - 2 Vídeos - Aula07 -> 1 e 2     - ok
+04-2018-09-25 - 2 Vídeos - Aula07 -> 3 e 4     - ok
+05-2018-09-26 - 2 Vídeos - Aula07 -> 5 e 6     - ok
+06-2018-09-27 - 3 Vídeos - Aula08 -> 1, 2 e 3  - ok
+07-2018-09-28 - 2 Vídeos - Aula08 -> 4 e 5     - ok
+08-2018-10-01 - 2 Vídeos - Aula09 -> 1         - ok
+09-2018-10-02 - 2 Vídeos - Aula09 -> 2         - ok
+10-2018-10-18 - 5 Vídeos - Aula09 -> 3         - xx---
+11-2018-10-04 - 1 Vídeo  - Aula09 -> 4         - ok
+12-2018-10-17 - 1 Vídeo  - Aula09 -> 5         - ok
+
+---METAS---
+* Manhã
+			Estudar 3 Vídeos
+* Noite
+			Questões
+
+/*****************************************/
+
+//$~/Documents/Carloss/Desenvolvimento/estudos-java/src:
+//javac br/com/certificacao/aula06/Exercicio7.java
+//java -classpath . br.com.certificacao.aula06.Exercicio7
+
+/******************************************/
+
+• Interfaces Funcionais
+https://www.ibm.com/developerworks/br/library/j-java8idioms7/index.html
+filter usa Predicate<T> e forEach usa Consumer<T>.
+-Uma interface funcional tem apenas um método abstrato.
+-Um método abstrato que também for um método público na classe Object não será contado como esse método.
+-Uma interface funcional pode ter métodos padrão e métodos estáticos.
+
+/******************************************/
+
+Throws X TryCatch.
+Throws seu metodo declara que pode lançar o erro e se este ocorrer o metodo que o chamou deve tratar ou declarar novamente ate chegar ao inicio da pilha. Try catch - o erro se ocorrer sera capturado pelo bloco catch correspondente e tratará a excessão de acordo com a sua implementação para este bloco e a excessão não será lançada ao metodo chamador
+
+/******************************************/
+
+When overloading method we must change the argument list, also we can change the return type.
+
+interface A{
+	default boolean equals(Object obj){}
+}
+You cannot use default methods to override any of the non-final methods in the java.lang.Object class. 
+For example, you cannot override the equals method, it will cause a compile time error. 
+So in above code, trying to override equals method at line 5, causes a compile time error. So option C is correct.
+
+/***************************************/
+
+* Buscar texto em arquivo ou o próprio arquivo.
+grep -ir 'Exercicio4' ./br/com/certificacao/
+$ grep -ir 'Exercicio4' .
+https://explainshell.com/
+
+/***************************************/
+
+F3 -> ir no código da função;
+CTRL+ALT+H -> rastrear a hierarquia da função selecionada
+
+/***************************************/
+
+Instanciar Classes Anônimas.
+
+JButton botaoSair = new JButton("Sair");
+ActionListener sairListener = new ActionListener() {
+	public void actionPerformed(ActionEvent e) {
+		System.exit(0);
+	}
+};
+botaoSair.addActionListener(sairListener);
+
+-----------ou
+
+JButton botaoSair = new JButton("Sair");
+botaoSair.addActionListener( new ActionListener() {
+	public void actionPerformed(ActionEvent e) {
+		System.exit(0);
+	}
+});
