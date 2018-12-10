@@ -67,6 +67,14 @@ botaoSair.addActionListener( new ActionListener() {
 
 /***************************************/
 
+Legal JAVA Access Modifiers:
+Abstract, Final, Native;
+Private, Protected, Public;
+Static, Synchronized, Transient;
+Volatile, StrictFP;
+
+/***************************************/
+
 
 //Convertendo String para primitivos: int i = Integer.parseInt("140");
 //Convertendo de wrappers para primitivos: double j = (new Long("123")).doubleValue();

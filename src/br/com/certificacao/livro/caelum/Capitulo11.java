@@ -1,1 +1,280 @@
-pag 422
+package br.com.certificacao.livro.caelum;
+
+import java.time.*;
+import java.time.temporal.ChronoField;
+import java.time.temporal.ChronoUnit;
+
+public class Capitulo11 {
+	
+	
+	public static void main ( String[] args ) {
+		
+		//CAPÍTULO 11 JAVA 8 ─ TRABALHANDO COM ALGUMAS CLASSES DA JAVA API
+
+		//11.1 CRIE E MANIPULE DADOS DE CALENDÁRIOS
+		
+		//Página 422.
+
+		LocalTime currentTime = LocalTime.now(); // 09:05:03.244
+		LocalDate today = LocalDate.now();       // 2014-12-10
+		LocalDateTime now = LocalDateTime.now(); // 2014-12-10-09-05-03.244
+
+		/****************/
+		
+		//Fuso Horário: ZoneId
+		LocalTime time         = LocalTime.now(ZoneId.of("America/Chicago"));
+		LocalDate date         = LocalDate.now(ZoneId.of("America/Sao_Paulo"));
+		LocalDateTime dateTime = LocalDateTime.now(ZoneId.of("America/Los_Angeles"));
+
+		/****************/
+		
+		//.of
+		LocalTime noon = LocalTime.of(12, 0);
+		LocalDate christmas2014_2 = LocalDate.of(2014, 12, 25);
+		LocalDate christmas2015_2 = LocalDate.of(2015, Month.DECEMBER, 25);
+		MonthDay someChristmas  = MonthDay.of(Month.DECEMBER, 31);
+		
+		/****************/
+		
+		LocalDateTime someDate = LocalDateTime.of(2017, Month.JANUARY, 25, 13, 45);
+		LocalDate christmas2014 = LocalDate.of(2014, 12, 25);
+		LocalDateTime christmasAtNoon = LocalDateTime.of(christmas2014, noon);
+		//Passar um valor inválido para qualquer um dos campos (mês 13, por exemplo) lançará um DateTimeException .
+
+		/****************/
+		
+		/*
+		 * get : obtém o valor de algo; TemporalField , geralmente ChronoField , e retorna um inteiro.
+		 * is : verifica se algo é verdadeiro;
+		 * with : lembra um setter, mas retorna um novo objeto com o valor alterado;
+		 * plus : soma alguma unidade ao objeto, retorna um novo objeto com o valor alterado;
+		 * minus : subtrai alguma unidade do objeto, retorna um novo objeto com o valor alterado;
+		 * to : converte um objeto de um tipo para outro;
+		 * at : combina um objeto com outro.
+		*/
+		
+
+		LocalDateTime testeData_a = LocalDateTime.of(2014,12,15,13,0);
+		System.out.println(testeData_a.getDayOfMonth()); // 15
+		System.out.println(testeData_a.getDayOfYear()); // 349
+		System.out.println(testeData_a.getHour()); // 13
+		System.out.println(testeData_a.getMinute()); // 0
+		System.out.println(testeData_a.getYear()); // 2014
+		System.out.println(testeData_a.getDayOfWeek()); // MONDAY
+		System.out.println(testeData_a.getMonthValue()); // 12
+		System.out.println(testeData_a.getMonth()); // DECEMBER
+		
+		/****************/
+		
+		//ChronoField
+		LocalDateTime testeData_b = LocalDateTime.of(2014,12,15,13,0);// 15
+		System.out.println(testeData_b.get(ChronoField.DAY_OF_MONTH));// 349
+		System.out.println(testeData_b.get(ChronoField.DAY_OF_YEAR));// 13
+		System.out.println(testeData_b.get(ChronoField.HOUR_OF_DAY));// 0
+		System.out.println(testeData_b.get(ChronoField.MINUTE_OF_HOUR));// 2014
+		System.out.println(testeData_b.get(ChronoField.YEAR));// 1 (MONDAY)
+		System.out.println(testeData_b.get(ChronoField.DAY_OF_WEEK));// 12
+		System.out.println(testeData_b.get(ChronoField.MONTH_OF_YEAR));
+		
+		/****************/
+		
+		/* 
+		 * //compile error, method not found.
+		LocalDate d = LocalDate.now();
+		d.getHour(); //compile error, method not found.
+		*/
+		
+		MonthDay day1 = MonthDay.of(1, 1); //01/jan
+		MonthDay day2 = MonthDay.of(1, 2); //02/jan
+		System.out.println(day1.isAfter(day2)); //false
+		System.out.println(day1.isBefore(day2)); //true
+		
+		/****************/
+		
+		LocalDate aprilFools = LocalDate.of(2015, 4, 1);
+		LocalDate foolsDay = LocalDate.of(2015, 4, 1);// are equals
+		System.out.println(aprilFools.isEqual(foolsDay)); //true 
+		// does this object support days?
+		System.out.println(aprilFools.isSupported( ChronoField.DAY_OF_MONTH)); //true 
+		// does this object supports hours?
+		System.out.println(aprilFools.isSupported( ChronoField.HOUR_OF_DAY)); //false
+		// Can I make operations with days?
+		System.out.println(aprilFools.isSupported(ChronoUnit.DAYS));//true
+		// Can I make operations with hours?
+		System.out.println(aprilFools.isSupported(ChronoUnit.HOURS));//false
+		
+		
+		/****************/
+		
+		LocalDate d = LocalDate.of(2015, 4, 1); //2015-04-01
+		d = d.withDayOfMonth(15).withMonth(3); //chaining
+		System.out.println(d); //2015-03-15
+		
+		
+		/****************/
+		//
+		LocalDate d2 = LocalDate.of(2013, 9, 7);
+		System.out.println(d2); // 2013-09-07
+		d2.withMonth(12);
+		System.out.println(d2); // 2013-09-07
+		
+		/****************/
+		
+		/*
+		 * LocalTime does not have a day of month field.
+		LocalTime d = LocalTime.now();
+		d.withDayOfMonth(15); // compile error
+		*/
+		
+		
+		//plus e minus
+		LocalDate d4 = LocalDate.of(2013, 9, 7);
+		d4 = d4.plusDays(1).plusMonths(3).minusYears(2);
+		System.out.println(d4); // 2011-12-08
+		
+		/****************/
+		
+		//ChronoUnit.WEEKS -> para usar dias uso ChronoUnit.DAYS
+		LocalDate d5 = LocalDate.of(2013, 9, 7);
+		d5 = d5.plusWeeks(3).minus(3, ChronoUnit.WEEKS);
+		System.out.println(d5); // 2013-09-07
+		
+		/****************/
+		
+		/*
+		 * UnsupportedTemporalTypeException :
+			LocalDate d = LocalDate.of(2013, 9, 7);
+			// UnsupportedTemporalTypeException
+			//LocalDate does not support hours!
+			d = d.plus(3, ChronoUnit.HOURS);
+			System.out.println(d);
+		 */
+		 
+		
+		
+		//Convertendo entre os diversos tipos de datas
+		LocalDateTime now = LocalDateTime.now();
+		LocalDate dateNow = now.toLocalDate(); // from datetime to date
+		LocalTime timeNow = now.toLocalTime(); // from datetime to time
+		
+		/****************/
+		
+		LocalDateTime now = LocalDateTime.now();
+		LocalDate dateNow = now.toLocalDate(); // from datetime to date
+		LocalTime timeNow = now.toLocalTime(); // from datetime to time
+		// from date to datetime
+		LocalDateTime nowAtTime1 = dateNow.atTime(timeNow);
+		// from time to datetime
+		LocalDateTime nowAtTime2 = timeNow.atDate(dateNow);
+		
+		
+		/****************/
+		
+		//Antiga API.
+		// converter uma java.util.Date em LocalDateTime , usando a timezone padrão do sistema:
+		Date d = new Date();
+		Instant i = d.toInstant();
+		LocalDateTime ldt1 = LocalDateTime.ofInstant(i, ZoneId.systemDefault());
+		
+		
+		// converter uma java.util.Calendar em LocalDateTime , usando a timezone padrão do sistema:
+		Calendar c = Calendar.getInstance();
+		Instant i = c.toInstant();
+		LocalDateTime ldt2 = LocalDateTime.ofInstant(i,
+		ZoneId.systemDefault());
+		
+		// converter uma java.time.* em java.util.Date:
+		
+		Date d = new Date();
+		Instant i = d.toInstant();
+		LocalDateTime ldt1 =
+		LocalDateTime.ofInstant(i, ZoneId.systemDefault());
+		Instant instant = ldt1.toInstant(ZoneOffset.UTC);
+		Date date = Date.from(instant);
+		
+		/****************/
+		
+		
+		//Cálculos de intervalo de tempo com datas	
+		
+		//Calculo envolvendo duas data:
+		//Duration, Period e o método between da classe ChronoUnit:
+		
+		//O exemplo a seguir soma 10 segundos ao instante atual:
+		Instant now = Instant.now(); // now
+		Duration tenSeconds = Duration.ofSeconds(10); // 10 seconds
+		Instant t = now.plus(tenSeconds); // now after 10 seconds
+		
+		
+		//O exemplo mostra como pegar o intervalo em segundos entre dois instantes:
+		Instant t1 = Instant.EPOCH; // 01/01/1970 00:00:00
+		Instant t2 = Instant.now();
+		long secondsSinceEpoch = Duration.between(t1, t2).getSeconds();
+		
+		
+		
+		
+		//ChronoUnit é uma das classes mais versáteis, pois permite ver a diferença entre duas datas em várias unidades de tempo:
+		LocalDate birthday = LocalDate.of(1983, 7, 22);
+		LocalDate base = LocalDate.of(2014, 12, 25);
+		// 31 years total
+		System.out.println(ChronoUnit.YEARS.between(birthday, base));
+		// 377 months total
+		System.out.println(ChronoUnit.MONTHS.between(birthday, base));
+		// 11479 days total
+		System.out.println(ChronoUnit.DAYS.between(birthday, base));
+		
+		
+		//Classe Period pode ser usada para fazer cálculos de intervalos, quebrando as unidades de tempo do maior para o menor.
+		LocalDate birthday = LocalDate.of(1983, 7, 22);
+		LocalDate base = LocalDate.of(2014, 12, 25);
+		Period lifeTime = Period.between(birthday, base);
+		System.out.println(lifeTime.getYears()); // 31 years
+		System.out.println(lifeTime.getMonths()); // 5 months
+		System.out.println(lifeTime.getDays()); // 3 days
+		
+		/****************/
+		
+		//Formatando e convertendo em texto
+		//DateTimeFormatter , do pacote java.time.format
+		
+		
+		//formatter.format
+		LocalDate birthday = LocalDate.of(1983, 7, 22);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
+		System.out.println(formatter.format(birthday)); // 1983 07 22
+			
+		
+		
+		//birthday.format
+		LocalDate birthday = LocalDate.of(1983, 7, 22);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
+		System.out.println(birthday.format(formatter)); // 1983 07 22
+		
+		
+		//DateTimeFormater
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		LocalDate d = LocalDate.parse("23/04/1986",formatter);
+		System.out.println(formatter.format(d)); // 23/04/1986
+		
+		
+		
+		/*
+		 * DateTimeParseException
+		 
+			DateTimeFormatter formatter =
+			DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			LocalDate d =
+			LocalDate.parse("23/15/1986",formatter);
+			// throws DateTimeParseException
+			System.out.println(formatter.format(d)); // 23/04/1986
+
+		*/
+		
+		
+		//11.2 EXPRESSÃO LAMBDA SIMPLES QUE CONSUME UMA LAMBDA PREDICATE		
+		//Página 436.
+		
+		System.out.println("OK");
+	}
+}
