@@ -1,8 +1,37 @@
 package br.com.certificacao.desafios.desafio_4;
 
+import java.util.*;
+
 public class  Desafio4 {
 
+    public Integer aMethod( Integer a ) {
+        a = a + 2;
+        return a;
+    }
+
     public static void main (String[] args) {
+
+
+
+
+List<String> lista =Arrays.asList("a", "b", "c", "d");
+for (String l : lista) {
+    System.out.println(l);
+}
+//lambda
+lista.forEach(l -> System.out.println(l));
+
+
+
+
+
+Desafio4 desafio = new Desafio4();
+
+Integer a = 10;
+desafio.aMethod(a);
+System.out.println(a);
+System.out.println("----------------");
+
 
 /*
         Integer i = 10;

@@ -81,3 +81,18 @@ Volatile, StrictFP;
 //Convertendo de wrappers para primitivos: double j = (new Long("123")).doubleValue();
 
 //Convertendo String para Wrapper e Wrapper para primitivo diretamente: double h = Double.valueOf("27").floatValue();
+
+/***************************************/
+
+Variáveis ou métodos protegidas não serão acessadas por subclasses dos parentes em pacotes diferentes.
+
+/***************************************/
+//Lambda
+Predicate Interface: java.util.function;
+
+List<String> lista =Arrays.asList("a", "b", "c", "d");
+for (String l : lista) {
+    System.out.println(l);
+}
+//lambda
+lista.forEach(l -> System.out.println(l));
