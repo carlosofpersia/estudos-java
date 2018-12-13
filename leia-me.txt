@@ -12,6 +12,8 @@
 • Interfaces Funcionais
 https://www.ibm.com/developerworks/br/library/j-java8idioms7/index.html
 
+Predicate Interface: 
+----------import java.util.function.*;----------ou
 ----------import java.util.function.Predicate----------
 ----------import java.util.function.Consumer----------
 
@@ -19,13 +21,12 @@ https://www.ibm.com/developerworks/br/library/j-java8idioms7/index.html
 * filter usa Predicate<T> e forEach usa Consumer<T>. *
 -Uma interface funcional tem apenas um método abstrato.
 -Um método abstrato que também for um método público na classe Object não será contado como esse método.
--Uma interface funcional pode ter métodos padrão e métodos estáticos.
--para conferir podems usar a annotation @FunctionalInterface -> se não for funcional, o código não compila.
+-Uma interface funcional pode ter métodos "default" e métodos estáticos.
+-para conferir se é interface funcional basta usar a annotation @FunctionalInterface -> se não for funcional, o código não compila.
 
 //Lambda
-import java.util.function.*;
-Predicate Interface: java.util.function.Predicate;
-List<String> lista =Arrays.asList("a", "b", "c", "d");
+
+List<String> lista =Arrays.asList("a", "b", "c", "d");//asList traz um array com tamanho fixo só pode alterar os valores.
 for (String l : lista) {
     System.out.println(l);
 }
@@ -35,7 +36,8 @@ lista.forEach(l -> System.out.println(l));
 /******************************************/
 
 Throws X TryCatch.
-Throws seu metodo declara que pode lançar o erro e se este ocorrer o metodo que o chamou deve tratar ou declarar novamente ate chegar ao inicio da pilha. Try catch - o erro se ocorrer sera capturado pelo bloco catch correspondente e tratará a excessão de acordo com a sua implementação para este bloco e a excessão não será lançada ao metodo chamador
+Throws seu metodo declara que pode lançar o erro e se este ocorrer o metodo que o chamou deve tratar ou declarar novamente ate chegar ao inicio da pilha. 
+Try catch - o erro se ocorrer sera capturado pelo bloco catch correspondente e tratará a excessão de acordo com a sua implementação para este bloco e a excessão não será lançada ao metodo chamador
 
 /******************************************/
 
@@ -46,19 +48,8 @@ interface A{
 }
 You cannot use default methods to override any of the non-final methods in the java.lang.Object class.
 For example, you cannot override the equals method, it will cause a compile time error.
-So in above code, trying to override equals method at line 5, causes a compile time error. So option C is correct.
+So in above code, trying to override equals method at line 5, causes a compile time error. 
 
-/***************************************/
-
-* Buscar texto em arquivo ou o próprio arquivo.
-grep -ir 'Exercicio4' ./br/com/certificacao/
-$ grep -ir 'Exercicio4' .
-https://explainshell.com/
-
-/***************************************/
-
-F3 -> ir no código da função;
-CTRL+ALT+H -> rastrear a hierarquia da função selecionada
 
 /***************************************/
 
