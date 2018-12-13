@@ -11,10 +11,26 @@
 
 • Interfaces Funcionais
 https://www.ibm.com/developerworks/br/library/j-java8idioms7/index.html
-filter usa Predicate<T> e forEach usa Consumer<T>.
+
+----------import java.util.function.Predicate----------
+----------import java.util.function.Consumer----------
+
+//Lambda Sintaxe básica: ( parameters ) -> { code }
+* filter usa Predicate<T> e forEach usa Consumer<T>. *
 -Uma interface funcional tem apenas um método abstrato.
 -Um método abstrato que também for um método público na classe Object não será contado como esse método.
 -Uma interface funcional pode ter métodos padrão e métodos estáticos.
+-para conferir podems usar a annotation @FunctionalInterface -> se não for funcional, o código não compila.
+
+//Lambda
+import java.util.function.*;
+Predicate Interface: java.util.function.Predicate;
+List<String> lista =Arrays.asList("a", "b", "c", "d");
+for (String l : lista) {
+    System.out.println(l);
+}
+//lambda
+lista.forEach(l -> System.out.println(l));
 
 /******************************************/
 
@@ -87,12 +103,3 @@ Volatile, StrictFP;
 Variáveis ou métodos protegidas não serão acessadas por subclasses dos parentes em pacotes diferentes.
 
 /***************************************/
-//Lambda
-Predicate Interface: java.util.function;
-
-List<String> lista =Arrays.asList("a", "b", "c", "d");
-for (String l : lista) {
-    System.out.println(l);
-}
-//lambda
-lista.forEach(l -> System.out.println(l));

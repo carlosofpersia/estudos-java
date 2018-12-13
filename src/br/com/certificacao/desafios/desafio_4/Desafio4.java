@@ -1,6 +1,7 @@
 package br.com.certificacao.desafios.desafio_4;
 
 import java.util.*;
+import java.util.function.Predicate;
 
 public class  Desafio4 {
 
@@ -9,12 +10,33 @@ public class  Desafio4 {
         return a;
     }
 
+	public void bMethod( int a ) {
+		a = a++;
+	}
+	private void cMethod(int a) {
+		/*
+		Predicate<Integer> d = a -> a > 0; // A //problema com variavel local e parametro lambda
+		if(d.test(a)){ // B
+			System.out.println(a);
+		}
+		*/
+	}
+	
     public static void main (String[] args) {
 
+	new Desafio4().cMethod(1);
 
+	/******************************/
 
+	System.out.println(true ^ true);//XOR -> dois iguais retorno é falso
+	boolean b3 = true ^ false;//XOR -> dois diferentes retorno é igual
+	System.out.println(b3);
 
-List<String> lista =Arrays.asList("a", "b", "c", "d");
+	/******************************/
+
+List<String> lista =Arrays.asList("a", "b", "c", "d");//cria um array fixo, só posso alterar o existente.
+lista.set(2, "x");
+System.out.println(lista.get(2));
 for (String l : lista) {
     System.out.println(l);
 }
@@ -23,7 +45,7 @@ lista.forEach(l -> System.out.println(l));
 
 
 
-
+System.exit(0);
 
 Desafio4 desafio = new Desafio4();
 
@@ -39,7 +61,6 @@ System.out.println("----------------");
         System.out.println(i);
         }
         */
-
 
 int i = Integer.parseInt("10");
 i++;

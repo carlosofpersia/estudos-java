@@ -256,9 +256,7 @@ public class Capitulo11 {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		LocalDate d = LocalDate.parse("23/04/1986",formatter);
 		System.out.println(formatter.format(d)); // 23/04/1986
-		
-		
-		
+
 		/*
 		 * DateTimeParseException
 		 
@@ -270,10 +268,48 @@ public class Capitulo11 {
 			System.out.println(formatter.format(d)); // 23/04/1986
 
 		*/
-		
-		
+
 		//11.2 EXPRESSÃO LAMBDA SIMPLES QUE CONSUME UMA LAMBDA PREDICATE		
 		//Página 436.
+		/*
+		regras para se escrever um lambda.
+		
+		* Lambdas podem ter vários argumentos, como um método. Basta separá-los por , .
+		
+		* O tipo dos parâmetros pode ser inferido e, assim, omitido da declaração.
+		
+		* Se não houver nenhum parâmetro, é necessário incluir parênteses vazios, como em:
+		Runnable r = () -> System.out.println("a runnable object!");
+		
+		* Se houver apenas um parâmetro, podemos omitir os parênteses, como em:
+		Predicate<Person> matcher = p -> p.getAge() >= 18;
+		
+		* O corpo do lambda pode conter várias instruções, assim como um método.
+		
+		* Se houver apenas uma instrução, podemos omitir as chaves, como em:
+		Predicate<Person> matcher = p -> p.getAge() >= 18;
+		
+		* Se houver mais de uma instrução, é necessário delimitar o corpo do lambda com chaves, como em:
+		Runnable r = () -> { int a = 10; int b = 20; System.out.println(a + b); }
+
+		Lambdas só podem interagir com variáveis locais caso estas estejam marcadas como final (uma referência imutável), ou que sejam efetivamente final
+		
+		* O parametro de uma lambda não pode ser o mesmo de uma váriavel LOCAL:
+		int a = 0;
+		Predicate<String> lam1 = (a) -> a > 10;
+		
+		*/
+
+		int a = 0;
+		Predicate<Integer> d = a -> a > 0; // problema ao usar parametro lambda e variavel local igual.
+		if(d.test(a)){ // B
+			System.out.println(a);
+		}
+
+		
+		
+		
+		
 		
 		System.out.println("OK");
 	}
