@@ -94,3 +94,10 @@ Volatile, StrictFP;
 Variáveis ou métodos protegidas não serão acessadas por subclasses dos parentes em pacotes diferentes.
 
 /***************************************/
+
+Um contrutor não pode ter um retorno, nem mesmo void.
+Um contrutor não pode ser final, static ou abstract
+
+/***************************************/
+
+para lancar uma IOException basta throw new FileNotFoundException();
