@@ -5,14 +5,13 @@ import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 
 public class Capitulo11 {
-	
-	
+
 	public static void main ( String[] args ) {
-		
+
 		//CAPÍTULO 11 JAVA 8 ─ TRABALHANDO COM ALGUMAS CLASSES DA JAVA API
 
 		//11.1 CRIE E MANIPULE DADOS DE CALENDÁRIOS
-		
+
 		//Página 422.
 
 		LocalTime currentTime = LocalTime.now(); // 09:05:03.244
@@ -42,7 +41,7 @@ public class Capitulo11 {
 		//Passar um valor inválido para qualquer um dos campos (mês 13, por exemplo) lançará um DateTimeException .
 
 		/****************/
-		
+
 		/*
 		 * get : obtém o valor de algo; TemporalField , geralmente ChronoField , e retorna um inteiro.
 		 * is : verifica se algo é verdadeiro;
@@ -52,7 +51,6 @@ public class Capitulo11 {
 		 * to : converte um objeto de um tipo para outro;
 		 * at : combina um objeto com outro.
 		*/
-		
 
 		LocalDateTime testeData_a = LocalDateTime.of(2014,12,15,13,0);
 		System.out.println(testeData_a.getDayOfMonth()); // 15
@@ -63,9 +61,9 @@ public class Capitulo11 {
 		System.out.println(testeData_a.getDayOfWeek()); // MONDAY
 		System.out.println(testeData_a.getMonthValue()); // 12
 		System.out.println(testeData_a.getMonth()); // DECEMBER
-		
+
 		/****************/
-		
+
 		//ChronoField
 		LocalDateTime testeData_b = LocalDateTime.of(2014,12,15,13,0);// 15
 		System.out.println(testeData_b.get(ChronoField.DAY_OF_MONTH));// 349

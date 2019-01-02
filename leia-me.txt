@@ -17,21 +17,21 @@ Predicate Interface:
 ----------import java.util.function.Predicate----------
 ----------import java.util.function.Consumer----------
 
-//Lambda Sintaxe básica: ( parameters ) -> { code }
+//Lambda - Lambda Sintaxe básica: ( parameters ) -> { code }
 * filter usa Predicate<T> e forEach usa Consumer<T>. *
+List<String> lista =Arrays.asList("a", "b", "c", "d");//asList traz um array com tamanho fixo só pode alterar os valores.
+for (String l : lista) {
+    System.out.println(l);
+}
+lista.forEach(l -> System.out.println(l));
+
+//interface funcional
 -Uma interface funcional tem apenas um método abstrato.
 -Um método abstrato que também for um método público na classe Object não será contado como esse método.
 -Uma interface funcional pode ter métodos "default" e métodos estáticos.
 -para conferir se é interface funcional basta usar a annotation @FunctionalInterface -> se não for funcional, o código não compila.
 
-//Lambda
 
-List<String> lista =Arrays.asList("a", "b", "c", "d");//asList traz um array com tamanho fixo só pode alterar os valores.
-for (String l : lista) {
-    System.out.println(l);
-}
-//lambda
-lista.forEach(l -> System.out.println(l));
 
 /******************************************/
 
@@ -82,7 +82,6 @@ Volatile, StrictFP;
 
 /***************************************/
 
-
 //Convertendo String para primitivos: int i = Integer.parseInt("140");
 //Convertendo String diretamente para um wrapper: Long j = Long.valueOf("235555");
 //Convertendo de wrappers para primitivos: double j = (new Long("123")).doubleValue();
@@ -101,3 +100,9 @@ Um contrutor não pode ser final, static ou abstract
 /***************************************/
 
 para lancar uma IOException basta throw new FileNotFoundException();
+
+
+
+/***************************************/
+
+

@@ -62,13 +62,16 @@ System.out.println("----------------");
         }
         */
 
+//String para primitivo
 int i = Integer.parseInt("10");
 i++;
 System.out.println(i);
 
+//String ou Primitivo ou Wrapper para Wrapper
 Integer j = Integer.valueOf(i);
 System.out.println(j);
 
+//Wrapper para primitivo
 double k = j.doubleValue();
 System.out.println(k);
 
