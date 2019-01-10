@@ -1,6 +1,7 @@
 /*página 396*/
 package br.com.certificacao.livro.caelum;
 
+import java.time.LocalDate;
 import java.util.Locale;
 
 public class Capitulo09 {
@@ -21,6 +22,30 @@ public class Capitulo09 {
 	
 	public static void main (String[] args) {
 
+
+		String s1 = "1Z0-808";
+		StringBuilder sb1 = new StringBuilder("1Z0");
+		s1.replaceAll("-", "");
+		System.out.println(s1.equals(sb1.toString()));
+		System.out.println(sb1);
+		System.out.println(s1);
+		
+		
+	
+
+		StringBuilder sb = new StringBuilder();//define capacity para 12
+		sb.append("Carlos");
+		System.out.println(sb);//define 
+		System.out.println(sb.length());
+		System.out.println(sb.capacity());
+			for(int xy = 0; xy<10; System.out.print(xy)) {
+				xy++;//12345678910
+				//xy++;//246810
+			}
+		System.out.println();
+		
+	
+	
 		/*
 		 * Encapsulamento
 		 * Deixar os métodos públicos e atributos privados.

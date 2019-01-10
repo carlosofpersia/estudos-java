@@ -65,14 +65,14 @@ public class Capitulo11 {
 		/****************/
 
 		//ChronoField
-		LocalDateTime testeData_b = LocalDateTime.of(2014,12,15,13,0);// 15
-		System.out.println(testeData_b.get(ChronoField.DAY_OF_MONTH));// 349
-		System.out.println(testeData_b.get(ChronoField.DAY_OF_YEAR));// 13
-		System.out.println(testeData_b.get(ChronoField.HOUR_OF_DAY));// 0
-		System.out.println(testeData_b.get(ChronoField.MINUTE_OF_HOUR));// 2014
-		System.out.println(testeData_b.get(ChronoField.YEAR));// 1 (MONDAY)
-		System.out.println(testeData_b.get(ChronoField.DAY_OF_WEEK));// 12
-		System.out.println(testeData_b.get(ChronoField.MONTH_OF_YEAR));
+		LocalDateTime testeData_b = LocalDateTime.of(2014,12,15,13,56);// 15/12/2014 13:56
+		System.out.println(testeData_b.get(ChronoField.DAY_OF_MONTH));// 15
+		System.out.println(testeData_b.get(ChronoField.DAY_OF_YEAR));// 349
+		System.out.println(testeData_b.get(ChronoField.HOUR_OF_DAY));// 13
+		System.out.println(testeData_b.get(ChronoField.MINUTE_OF_HOUR));//56
+		System.out.println(testeData_b.get(ChronoField.YEAR));// 2014
+		System.out.println(testeData_b.get(ChronoField.DAY_OF_WEEK));//(MONDAY)
+		System.out.println(testeData_b.get(ChronoField.MONTH_OF_YEAR));// 12
 		
 		/****************/
 		
@@ -109,11 +109,11 @@ public class Capitulo11 {
 		System.out.println(d); //2015-03-15
 		
 		
-		/****************/
+		//-------//---------//
 		//
 		LocalDate d2 = LocalDate.of(2013, 9, 7);
 		System.out.println(d2); // 2013-09-07
-		d2.withMonth(12);
+		d2.withMonth(12);//tem que setar para funcionar * exemplo acima.
 		System.out.println(d2); // 2013-09-07
 		
 		/****************/
@@ -178,15 +178,13 @@ public class Capitulo11 {
 		// converter uma java.util.Calendar em LocalDateTime , usando a timezone padrão do sistema:
 		Calendar c = Calendar.getInstance();
 		Instant i = c.toInstant();
-		LocalDateTime ldt2 = LocalDateTime.ofInstant(i,
-		ZoneId.systemDefault());
+		LocalDateTime ldt2 = LocalDateTime.ofInstant(i, ZoneId.systemDefault());
 		
 		// converter uma java.time.* em java.util.Date:
 		
 		Date d = new Date();
 		Instant i = d.toInstant();
-		LocalDateTime ldt1 =
-		LocalDateTime.ofInstant(i, ZoneId.systemDefault());
+		LocalDateTime ldt1 = LocalDateTime.ofInstant(i, ZoneId.systemDefault());
 		Instant instant = ldt1.toInstant(ZoneOffset.UTC);
 		Date date = Date.from(instant);
 		
