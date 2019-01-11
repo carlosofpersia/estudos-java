@@ -2,19 +2,43 @@ package br.com.certificacao.days;
 
 import java.util.Arrays;
 import java.util.List;
+import java.io.*;
+
+
+class Vehicle {
+	protected void turnon() throws IOException {}
+}
+class Car extends Vehicle {
+	public void turnon() throws FileNotFoundException {}
+}
 
 class A {
-	protected int y = 15;
+	protected int x = 15;
+	private int y = 15;
+
+	public void method(long l) {
+		System.out.println(x+y);
+	}
 }
 
 class B extends A {
-	
+	private int x = 10;
+	protected int y = 10;
+	protected void method(int i) {
+		System.out.println(x+y);
+	}	
 }
 
 public class DayOne {
 
 	public static void main (String[] args ) {
 
+
+	B teste = new B();
+	teste.method(10);
+	
+	
+	
 		/********************************/
 		
 		List<String> list1 = Arrays.asList("B", "C");
