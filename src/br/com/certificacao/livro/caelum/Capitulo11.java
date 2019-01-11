@@ -1,6 +1,10 @@
 package br.com.certificacao.livro.caelum;
 
+import java.util.*;
+import java.util.function.Predicate;
+
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 
@@ -8,9 +12,9 @@ public class Capitulo11 {
 
 	public static void main ( String[] args ) {
 
-		//CAPÍTULO 11 JAVA 8 ─ TRABALHANDO COM ALGUMAS CLASSES DA JAVA API
+		//CAPITULO 11 JAVA 8 ─ TRABALHANDO COM ALGUMAS CLASSES DA JAVA API
 
-		//11.1 CRIE E MANIPULE DADOS DE CALENDÁRIOS
+		//11.1 CRIE E MANIPULE DADOS DE CALENDARIOS
 
 		//Página 422.
 
@@ -104,17 +108,17 @@ public class Capitulo11 {
 		
 		/****************/
 		
-		LocalDate d = LocalDate.of(2015, 4, 1); //2015-04-01
-		d = d.withDayOfMonth(15).withMonth(3); //chaining
-		System.out.println(d); //2015-03-15
+		LocalDate d0 = LocalDate.of(2015, 4, 1); //2015-04-01
+		d0 = d0.withDayOfMonth(15).withMonth(3); //chaining
+		System.out.println(d0); //2015-03-15
 		
 		
 		//-------//---------//
 		//
-		LocalDate d2 = LocalDate.of(2013, 9, 7);
-		System.out.println(d2); // 2013-09-07
-		d2.withMonth(12);//tem que setar para funcionar * exemplo acima.
-		System.out.println(d2); // 2013-09-07
+		LocalDate d6 = LocalDate.of(2013, 9, 7);
+		System.out.println(d6); // 2013-09-07
+		d6.withMonth(12);//tem que setar para funcionar * exemplo acima.
+		System.out.println(d6); // 2013-09-07
 		
 		/****************/
 		
@@ -126,9 +130,9 @@ public class Capitulo11 {
 		
 		
 		//plus e minus
-		LocalDate d4 = LocalDate.of(2013, 9, 7);
-		d4 = d4.plusDays(1).plusMonths(3).minusYears(2);
-		System.out.println(d4); // 2011-12-08
+		LocalDate d7 = LocalDate.of(2013, 9, 7);
+		d7 = d7.plusDays(1).plusMonths(3).minusYears(2);
+		System.out.println(d7); // 2011-12-08
 		
 		/****************/
 		
@@ -151,19 +155,19 @@ public class Capitulo11 {
 		
 		
 		//Convertendo entre os diversos tipos de datas
-		LocalDateTime now = LocalDateTime.now();
-		LocalDate dateNow = now.toLocalDate(); // from datetime to date
-		LocalTime timeNow = now.toLocalTime(); // from datetime to time
+		LocalDateTime now2 = LocalDateTime.now();
+		LocalDate dateNow = now2.toLocalDate(); // from datetime to date
+		LocalTime timeNow = now2.toLocalTime(); // from datetime to time
 		
 		/****************/
 		
-		LocalDateTime now = LocalDateTime.now();
-		LocalDate dateNow = now.toLocalDate(); // from datetime to date
-		LocalTime timeNow = now.toLocalTime(); // from datetime to time
+		LocalDateTime now3 = LocalDateTime.now();
+		LocalDate dateNow2 = now3.toLocalDate(); // from datetime to date
+		LocalTime timeNow2 = now3.toLocalTime(); // from datetime to time
 		// from date to datetime
-		LocalDateTime nowAtTime1 = dateNow.atTime(timeNow);
+		LocalDateTime nowAtTime1 = dateNow2.atTime(timeNow2);
 		// from time to datetime
-		LocalDateTime nowAtTime2 = timeNow.atDate(dateNow);
+		LocalDateTime nowAtTime2 = timeNow2.atDate(dateNow2);
 		
 		
 		/****************/
@@ -172,21 +176,21 @@ public class Capitulo11 {
 		// converter uma java.util.Date em LocalDateTime , usando a timezone padrão do sistema:
 		Date d = new Date();
 		Instant i = d.toInstant();
-		LocalDateTime ldt1 = LocalDateTime.ofInstant(i, ZoneId.systemDefault());
+		LocalDateTime ldt0 = LocalDateTime.ofInstant(i, ZoneId.systemDefault());
 		
 		
 		// converter uma java.util.Calendar em LocalDateTime , usando a timezone padrão do sistema:
 		Calendar c = Calendar.getInstance();
-		Instant i = c.toInstant();
-		LocalDateTime ldt2 = LocalDateTime.ofInstant(i, ZoneId.systemDefault());
+		Instant i1 = c.toInstant();
+		LocalDateTime ldt2 = LocalDateTime.ofInstant(i1, ZoneId.systemDefault());
 		
 		// converter uma java.time.* em java.util.Date:
 		
-		Date d = new Date();
-		Instant i = d.toInstant();
-		LocalDateTime ldt1 = LocalDateTime.ofInstant(i, ZoneId.systemDefault());
+		Date d2 = new Date();
+		Instant i2 = d2.toInstant();
+		LocalDateTime ldt1 = LocalDateTime.ofInstant(i2, ZoneId.systemDefault());
 		Instant instant = ldt1.toInstant(ZoneOffset.UTC);
-		Date date = Date.from(instant);
+		Date date2 = Date.from(instant);
 		
 		/****************/
 		
@@ -197,9 +201,9 @@ public class Capitulo11 {
 		//Duration, Period e o método between da classe ChronoUnit:
 		
 		//O exemplo a seguir soma 10 segundos ao instante atual:
-		Instant now = Instant.now(); // now
+		Instant now7 = Instant.now(); // now
 		Duration tenSeconds = Duration.ofSeconds(10); // 10 seconds
-		Instant t = now.plus(tenSeconds); // now after 10 seconds
+		Instant t = now7.plus(tenSeconds); // now after 10 seconds
 		
 		
 		//O exemplo mostra como pegar o intervalo em segundos entre dois instantes:
@@ -211,20 +215,20 @@ public class Capitulo11 {
 		
 		
 		//ChronoUnit é uma das classes mais versáteis, pois permite ver a diferença entre duas datas em várias unidades de tempo:
-		LocalDate birthday = LocalDate.of(1983, 7, 22);
+		LocalDate birthday5 = LocalDate.of(1983, 7, 22);
 		LocalDate base = LocalDate.of(2014, 12, 25);
 		// 31 years total
-		System.out.println(ChronoUnit.YEARS.between(birthday, base));
+		System.out.println(ChronoUnit.YEARS.between(birthday5, base));
 		// 377 months total
-		System.out.println(ChronoUnit.MONTHS.between(birthday, base));
+		System.out.println(ChronoUnit.MONTHS.between(birthday5, base));
 		// 11479 days total
-		System.out.println(ChronoUnit.DAYS.between(birthday, base));
+		System.out.println(ChronoUnit.DAYS.between(birthday5, base));
 		
 		
 		//Classe Period pode ser usada para fazer cálculos de intervalos, quebrando as unidades de tempo do maior para o menor.
-		LocalDate birthday = LocalDate.of(1983, 7, 22);
-		LocalDate base = LocalDate.of(2014, 12, 25);
-		Period lifeTime = Period.between(birthday, base);
+		LocalDate birthday2 = LocalDate.of(1983, 7, 22);
+		LocalDate base1 = LocalDate.of(2014, 12, 25);
+		Period lifeTime = Period.between(birthday2, base1);
 		System.out.println(lifeTime.getYears()); // 31 years
 		System.out.println(lifeTime.getMonths()); // 5 months
 		System.out.println(lifeTime.getDays()); // 3 days
@@ -236,22 +240,22 @@ public class Capitulo11 {
 		
 		
 		//formatter.format
-		LocalDate birthday = LocalDate.of(1983, 7, 22);
+		LocalDate birthday3 = LocalDate.of(1983, 7, 22);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
-		System.out.println(formatter.format(birthday)); // 1983 07 22
+		System.out.println(formatter.format(birthday3)); // 1983 07 22
 			
 		
 		
 		//birthday.format
-		LocalDate birthday = LocalDate.of(1983, 7, 22);
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
-		System.out.println(birthday.format(formatter)); // 1983 07 22
+		LocalDate birthday4 = LocalDate.of(1983, 7, 22);
+		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy MM dd");
+		System.out.println(birthday4.format(formatter1)); // 1983 07 22
 		
 		
 		//DateTimeFormater
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		LocalDate d = LocalDate.parse("23/04/1986",formatter);
-		System.out.println(formatter.format(d)); // 23/04/1986
+		DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		LocalDate d3 = LocalDate.parse("23/04/1986",formatter2);
+		System.out.println(formatter2.format(d3)); // 23/04/1986
 
 		/*
 		 * DateTimeParseException
@@ -296,10 +300,10 @@ public class Capitulo11 {
 		
 		*/
 
-		int a = 0;
-		Predicate<Integer> d = a -> a > 0; // problema ao usar parametro lambda e variavel local igual.
-		if(d.test(a)){ // B
-			System.out.println(a);
+		int a1 = 0;
+		Predicate<Integer> d4 = a -> a > 0; // problema ao usar parametro lambda e variavel local igual.
+		if(d4.test(a1)){ // B
+			System.out.println(a1);
 		}
 
 		

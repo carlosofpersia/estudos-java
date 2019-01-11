@@ -9,6 +9,26 @@
 
 /******************************************/
 
+* Padrão de Interface Simples
+Interface methods are implicitly public, abstract (except for static and default methods), so above given interface is implicitly public. 
+When we override methods, we have to use less restrictive or same level access modifier for overriding method. So option A is incorrect.
+
+--//--
+public interface A{
+    void print();
+}
+-- Override interface method A:
+public void print(){ System.out.println("A implemented"); }
+--//--
+
+interface A {
+	//somente constantes ou assinatura de métodos.
+    public static final int TAMANHO_SENHA = 8; //constante
+    public abstract void autentica(String login, String senha); //assinatura do método
+}
+
+-----------------//-----------------------
+
 • Interfaces Funcionais
 https://www.ibm.com/developerworks/br/library/j-java8idioms7/index.html
 
@@ -30,6 +50,7 @@ lista.forEach(l -> System.out.println(l));
 -Um método abstrato que também for um método público na classe Object não será contado como esse método.
 -Uma interface funcional pode ter métodos "default" e métodos estáticos.
 -para conferir se é interface funcional basta usar a annotation @FunctionalInterface -> se não for funcional, o código não compila.
+
 
 
 
@@ -105,4 +126,22 @@ para lancar uma IOException basta throw new FileNotFoundException();
 
 /***************************************/
 
+Valores baixos é possível que o resultado seja true, mesmo usando 2 objetos diferentes.
+Todos Boolean e Byte ;
+Short e Integer de -128 até 127;
+Caracter ASCII, como letras, números etc.
 
+Integer i1 = 123;
+Integer i2 = 123;
+System.out.println(i1 == i2); //true
+System.out.println(i1.equals(i2)); //true
+
+---------------------//-----------------------
+
+Integer i1 = 1234;
+Integer i2 = 1234;
+System.out.println(i1 == i2); //false
+System.out.println(i1.equals(i2)); //true
+
+
+/***************************************/
