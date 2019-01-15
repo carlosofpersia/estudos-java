@@ -23,7 +23,12 @@ public class  Desafio4 {
 	}
 	
     public static void main (String[] args) {
-
+	
+		List<String> sts = Arrays.asList("B", "C");
+        //sts.add("A");//UnsupportedOperationException 
+        System.out.print(sts);
+	
+	
 	new Desafio4().cMethod(1);
 
 	/******************************/

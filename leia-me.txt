@@ -11,7 +11,7 @@
 
 * Padrão de Interface Simples
 Interface methods are implicitly public, abstract (except for static and default methods), so above given interface is implicitly public. 
-When we override methods, we have to use less restrictive or same level access modifier for overriding method. So option A is incorrect.
+When we override methods, we have to use less restrictive or same level access modifier for overriding method. 
 
 --//--
 public interface A{
@@ -120,6 +120,12 @@ Um contrutor não pode ser final, static ou abstract
 
 /***************************************/
 
+An object is eligible for GC when there is no live thread can reach it.
+Object Class has a finalize() method.
+
+
+/***************************************/
+
 para lancar uma IOException basta throw new FileNotFoundException();
 
 
@@ -144,4 +150,14 @@ System.out.println(i1 == i2); //false
 System.out.println(i1.equals(i2)); //true
 
 
+/***************************************/
+
+Switch:
+The variable used in a switch statement can only be integers, convertable integers (byte, short, char), strings and enums.
+The value for a case must be the same data type as the variable in the switch and it must be a constant or a literal.
+
+/***************************************/
+
+		Collection col = new ArrayList(Arrays.asList(sts));
+		
 /***************************************/

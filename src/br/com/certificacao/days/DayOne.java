@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.io.*;
 
-
 class Vehicle {
 	protected void turnon() throws IOException {}
 }
+
 class Car extends Vehicle {
 	public void turnon() throws FileNotFoundException {}
 }
