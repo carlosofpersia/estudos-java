@@ -260,10 +260,8 @@ public class Capitulo11 {
 		/*
 		 * DateTimeParseException
 		 
-			DateTimeFormatter formatter =
-			DateTimeFormatter.ofPattern("dd/MM/yyyy");
-			LocalDate d =
-			LocalDate.parse("23/15/1986",formatter);
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			LocalDate d = LocalDate.parse("23/15/1986",formatter);
 			// throws DateTimeParseException
 			System.out.println(formatter.format(d)); // 23/04/1986
 
@@ -296,14 +294,20 @@ public class Capitulo11 {
 		
 		* O parametro de uma lambda não pode ser o mesmo de uma váriavel LOCAL:
 		int a = 0;
-		Predicate<String> lam1 = (a) -> a > 10;
+		Predicate<String> lam1 = (a) -> a > 10;//error -> variable a1 is already defined in method main
 		
 		*/
 
-		int a1 = 0;
-		Predicate<Integer> d4 = a -> a > 0; // problema ao usar parametro lambda e variavel local igual.
-		if(d4.test(a1)){ // B
-			System.out.println(a1);
+		Random random1 = new Random();
+		
+	   int[]arrayInt= new int[]{1,2,3,4,5,6,7,8,9,10};
+	   //System.out.println(arrayInt[random1.nextInt(arrayInt.length)]);
+		int resultadoArrayIntRandom = arrayInt[random1.nextInt(arrayInt.length)];
+		Predicate<Integer> d4 = a -> a > 5; // problema ao usar parametro lambda e variavel local igual.
+		if(d4.test(resultadoArrayIntRandom)){ // B
+			System.out.println("Resultado Lambdas: " + resultadoArrayIntRandom);
+		} else {
+			System.out.println("Resultado Lambdas: Não Passou");
 		}
 
 		
