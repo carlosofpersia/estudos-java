@@ -158,6 +158,32 @@ The value for a case must be the same data type as the variable in the switch an
 
 /***************************************/
 
-		Collection col = new ArrayList(Arrays.asList(sts));
+Collection col = new ArrayList(Arrays.asList(sts));
 		
 /***************************************/
+
+* checked exception
+ClassNotFoundException is a checked exception
+
+* unchecked exception
+NullPointerException, NumberFormatException, ClassCastException 
+
+
+/***************************************/
+
+* Defaults values:
+Data    Default Value (for fields)
+byte	0
+short	0
+int	    0
+long	0L
+float	0.0f
+double	0.0d
+char	'u0000'
+boolean	false
+
+
+
+
+
+
