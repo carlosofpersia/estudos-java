@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import static java.lang.Math.*;
 
 public class DayThree {
-	
+
 	static Integer countI;
 	double radio;
 
@@ -23,6 +23,8 @@ public class DayThree {
 	
 	public static void main (String... args )
 	{
+		Integer num = Integer.parseInt(args[1]);
+		System.out.println("Number is: " + num);
 		
 		
 		int y=0;
