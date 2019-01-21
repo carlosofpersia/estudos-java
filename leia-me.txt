@@ -166,7 +166,13 @@ Collection col = new ArrayList(Arrays.asList(sts));
 ClassNotFoundException is a checked exception
 
 * unchecked exception
-NullPointerException, NumberFormatException, ClassCastException 
+RuntimeException
+NullPointerException, 
+NumberFormatException, 
+ClassCastException, 
+NoClassDefFoundError, 
+ExceptionInInitializerError,
+IllegalArgumentException
 
 
 /***************************************/
@@ -183,7 +189,23 @@ char	'u0000'
 boolean	false
 
 
+/***************************************/
 
 
+Which of following represents a correct interface?
+abstract interface I{ default void print(){ } }
+
+Option C is correct as interfaces a 100% abstract so they can be marked with the abstract keyword but it is optional and from Java SE 8 we are allowed to add non abstract default methods to interfaces.
 
 
+/***************************************/
+
+
+The down casting can't be occurred implicitly.
+
+/***************************************/
+
+Consider following three statements about non local variables.
+
+Reference variables default value is null.
+String variables are examples of reference variables.

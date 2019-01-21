@@ -23,6 +23,24 @@ public class DayThree {
 	
 	public static void main (String... args )
 	{
+		
+           boolean f = true;
+		   
+           if(f = false) {
+               System.out.println("iffalse" + f);
+           } else if (f) {
+			System.out.println("elseiftrue" + f);   
+		   } else {
+			   System.out.println("nada consta: " + f +" !");
+		   }
+			   
+		   
+
+		   
+           
+
+		
+		
 		Integer num = Integer.parseInt(args[1]);
 		System.out.println("Number is: " + num);
 		
