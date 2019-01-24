@@ -133,7 +133,7 @@ para lancar uma IOException basta throw new FileNotFoundException();
 /***************************************/
 
 Valores baixos é possível que o resultado seja true, mesmo usando 2 objetos diferentes.
-Todos Boolean e Byte ;
+Todos Boolean e Byte;
 Short e Integer de -128 até 127;
 Caracter ASCII, como letras, números etc.
 
@@ -165,6 +165,8 @@ Collection col = new ArrayList(Arrays.asList(sts));
 * checked exception
 ClassNotFoundException is a checked exception
 
+
+
 * unchecked exception
 RuntimeException
 NullPointerException, 
@@ -191,21 +193,48 @@ boolean	false
 
 /***************************************/
 
-
 Which of following represents a correct interface?
 abstract interface I{ default void print(){ } }
 
-Option C is correct as interfaces a 100% abstract so they can be marked with the abstract keyword but it is optional and from Java SE 8 we are allowed to add non abstract default methods to interfaces.
-
+as interfaces a 100% abstract so they can be marked with the abstract keyword 
+but it is optional and from Java SE 8 we are allowed to add non abstract default methods to interfaces.
 
 /***************************************/
-
 
 The down casting can't be occurred implicitly.
 
 /***************************************/
 
-Consider following three statements about non local variables.
-
+* Consider following statements about non local variables.
 Reference variables default value is null.
 String variables are examples of reference variables.
+
+/***************************************/
+
+A final method cannot be overridden (sobrescrito)
+A method declared static cannot override.(sobrepor)
+
+/***************************************/
+
+default size of the internal array is 10
+
+/***************************************/
+
+The access modifier private can't be used with top level class.
+
+/***************************************/
+
+postfix --------------- expr++ expr--
+unary ----------------- ++expr --expr +expr -expr ~ !
+multiplicative -------- * / %
+additive -------------- + -
+shift ----------------- << >> >>>
+relational ------------ < > <= >= instanceof
+equality -------------- == !=
+bitwise --------------- AND	&
+bitwise exclusive OR -- ^
+bitwise inclusive OR -- |
+logical AND ----------- &&
+logical OR ------------ ||
+ternary --------------- ? :
+assignment ------------ = += -= *= /= %= &= ^= |= <<= >>= >>>=
