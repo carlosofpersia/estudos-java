@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="CURSO-JAVA-UM" 
+	version="3.0" 
+	metadata-complete="true">
+
+	<display-name>Curso de Hibernate - cadastro-java-um</display-name>
+
+<!-- 1 -->
+	<servlet>
+		<servlet-name>primeiraServletName</servlet-name>
+		<servlet-class>br.com.servlets.PrimeiraServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>primeiraServletName</servlet-name>
+		<url-pattern>/primeiraServletUrl</url-pattern>
+	</servlet-mapping>
+
+<!-- 2 -->
+	<servlet>
+		<servlet-name>gravarEvento</servlet-name>
+		<servlet-class>br.com.servlets.GravarEvento</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>gravarEvento</servlet-name>
+		<url-pattern>/GravarEvento</url-pattern>
+	</servlet-mapping>
+
+<!-- 3 -->
+	<servlet>
+		<servlet-name>listarEventosServlet</servlet-name>
+		<servlet-class>br.com.servlets.EventosServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>listarEventosServlet</servlet-name>
+		<url-pattern>/EventosServlet</url-pattern>
+	</servlet-mapping>
+
+<!-- 4 -->
+	<servlet>
+		<servlet-name>gravarEventoByForm</servlet-name>
+		<servlet-class>br.com.servlets.GravarEvento</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>gravarEventoByForm</servlet-name>
+		<url-pattern>/pages/eventos/gravarEvento</url-pattern>
+	</servlet-mapping>
+
+	<description>Curso de Hibernate - Treinaweb</description>
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>pages/index.jsp</welcome-file>	
+	</welcome-file-list>
+</web-app>
