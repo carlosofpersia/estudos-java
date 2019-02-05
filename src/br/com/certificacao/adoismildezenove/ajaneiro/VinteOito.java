@@ -5,8 +5,8 @@ public class VinteOito {
 	int y;
 	Integer a;
 	int b;
-	
-	VinteOito(int x, int y) {
+
+	VinteOito( int x, int y ) {
 		this.a = x = x;
 		this.b = y = y;
 
@@ -17,7 +17,7 @@ public class VinteOito {
 	}
 
 	protected static void main (String args) {
-		System.out.println("main2.protected");
+		System.out.println("main2.protected - " + args);
 	}
 	
 	final private static void main (int args) {
@@ -30,6 +30,8 @@ public class VinteOito {
 		
 		//VinteOito vinteOito = new VinteOito();//não pode ser aplicado, pois o default foi sobrescrito
 		VinteOito vinteOito = new VinteOito(10, 20);
+		vinteOito.main("Carlos Eduardo dos Santos");
+		
 		System.out.println(vinteOito.x +" - "+ vinteOito.y);
 		System.out.println(vinteOito.a +" - "+ vinteOito.b);
 		System.out.println(vinteOito.a + vinteOito.b);

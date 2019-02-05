@@ -10,8 +10,8 @@
 /******************************************/
 
 * Padrão de Interface Simples
-Interface methods are implicitly public, abstract (except for static and default methods), so above given interface is implicitly public. 
-When we override methods, we have to use less restrictive or same level access modifier for overriding method. 
+Interface methods are implicitly public, abstract (except for static and default methods);
+When we override (sobrepor) methods, we have to use less restrictive or same level access modifier for overriding method. 
 
 --//--
 public interface A{
@@ -69,7 +69,7 @@ interface A{
 }
 You cannot use default methods to override any of the non-final methods in the java.lang.Object class.
 For example, you cannot override the equals method, it will cause a compile time error.
-So in above code, trying to override equals method at line 5, causes a compile time error. 
+So in above code, trying to override equals method, causes a compile time error. 
 
 
 /***************************************/
