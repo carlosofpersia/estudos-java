@@ -8,17 +8,24 @@ public class VinteUm {
 		
 			Runnable run = () -> { System.out.println("Run"); };
 
+			System.out.println("*****************************");
+			
 			StringBuilder sb = new StringBuilder();
 			sb.append("world");
 			sb.insert(0, "Hello ");
 			System.out.println(sb);
 		
+			System.out.println("*****************************");
+		
 			ArrayList<Integer> list = new ArrayList<>(1);
 			list.add(1001);
 			list.add(1002);
-			//System.out.println(list.size());
-			System.out.println(list.get(list.size()-1));
-		
+			System.out.println(list.size());
+			//System.out.println(list.get(list.size());//IndexOutOfBoundsException 
+			System.out.println(list.get(list.size()-1));//list.size()-1 = Obrigatório
+
+			System.out.println("*****************************");
+
 			int [] x = {6,7,8};
 			for(int i : x) {
 				System.out.print(i + "");

@@ -1,26 +1,25 @@
 package br.com.certificacao.adoismildezenove.bfevereiro;
 
-public class Dezenove {
+class Caller {
 	
-		private void init() {
-			System.out.print("init ");
+		protected void init() {
+			System.out.println("init ");
 		}
 
 		public void start() {
 			init();
-			System.out.print("start ");
+			System.out.println("start ");
 		}
-		
+}
+
+public class Dezenove {
+
 		public static void main (String [] args) {
-			
-			Dezenove dezenove = new Dezenove();
-			dezenove.start();
-			dezenove.init();
-			
-			
-			
-			
+
+			Caller call = new Caller();
+			call.start();
+			call.init();
+
 			System.out.println("Dezenove - OK");
-		}
-	
+		}	
 }

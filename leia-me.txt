@@ -39,7 +39,7 @@ Predicate Interface:
 
 //Lambda - Lambda Sintaxe básica: ( parameters ) -> { code }
 * filter usa Predicate<T> e forEach usa Consumer<T>. *
-List<String> lista =Arrays.asList("a", "b", "c", "d");//asList traz um array com tamanho fixo só pode alterar os valores.
+List<String> lista = Arrays.asList("a", "b", "c", "d");//asList traz um array com tamanho fixo só pode alterar os valores.
 for (String l : lista) {
     System.out.println(l);
 }
@@ -103,9 +103,9 @@ Volatile, StrictFP;
 
 /***************************************/
 
-//Convertendo String para primitivos: int i = Integer.parseInt("140");
+//Convertendo String para primitivos:             int i = Integer.parseInt("140");
 //Convertendo String diretamente para um wrapper: Long j = Long.valueOf("235555");
-//Convertendo de wrappers para primitivos: double j = (new Long("123")).doubleValue();
+//Convertendo de wrappers para primitivos:        double j = (new Long("123")).doubleValue();
 
 //Convertendo String para Wrapper e Wrapper para primitivo diretamente: double h = Double.valueOf("27").floatValue();
 
@@ -132,11 +132,13 @@ para lancar uma IOException basta throw new FileNotFoundException();
 
 /***************************************/
 
-Valores baixos é possível que o resultado seja true, mesmo usando 2 objetos diferentes.
+
+* funcionam com "=="
 Todos Boolean e Byte;
 Short e Integer de -128 até 127;
 Caracter ASCII, como letras, números etc.
 
+Valores baixos é possível que o resultado seja true, mesmo usando 2 objetos diferentes.
 Integer i1 = 123;
 Integer i2 = 123;
 System.out.println(i1 == i2); //true
@@ -153,8 +155,15 @@ System.out.println(i1.equals(i2)); //true
 /***************************************/
 
 Switch:
-The variable used in a switch statement can only be integers, convertable integers (byte, short, char), strings and enums.
-The value for a case must be the same data type as the variable in the switch and it must be a constant or a literal.
+byte, short, char, and int primitive data types
+strings and enums.
+Character, Byte, Short, and Integer
+
+* The variable used in a switch statement can only be integers, 
+convertable integers (byte, short, char), strings and enums.
+
+The value for a case must be the same data type as the variable in 
+the switch and it must be a constant or a literal.
 
 /***************************************/
 
@@ -162,19 +171,46 @@ Collection col = new ArrayList(Arrays.asList(sts));
 		
 /***************************************/
 
-* checked exception
-ClassNotFoundException is a checked exception
 
 
 
-* unchecked exception
-RuntimeException
-NullPointerException, 
-NumberFormatException, 
+* checked exception (
+- represent invalid conditions in areas outside the immediate control of the program  
+				(invalid user input, database problems, network outages, absent files)
+- are subclasses of Exception
+- * a method is obliged to establish a policy for all checked exceptions thrown by its implementation 
+				(either pass the checked exception further up the stack, or handle it somehow)
+
+IOError,
+IOException,
+SQLException,
+FileNotFoundException,
+ClassNotFoundException,
+
+
+* unchecked exception:
+- represent defects in the program (bugs) - often invalid arguments passed to a non-private method. 
+- are subclasses of RuntimeException
+- method is not obliged to establish a policy for the unchecked exceptions thrown by its implementation (and they almost always do not do so)
+
+AssertionError, 
+RuntimeException,
 ClassCastException, 
+ArithmeticException,
 NoClassDefFoundError, 
-ExceptionInInitializerError,
+NullPointerException, 
+IllegalStateException,
+NumberFormatException, 
 IllegalArgumentException
+ExceptionInInitializerError,
+ArrayIndexOutOfBoundsException, 
+
+
+
+
+
+
+
 
 
 /***************************************/
