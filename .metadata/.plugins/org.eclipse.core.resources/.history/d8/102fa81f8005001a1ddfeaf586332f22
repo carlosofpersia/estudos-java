@@ -1,0 +1,139 @@
+package br.com.caelum.jdbc.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.caelum.jdbc.modelo.Categorias;
+import br.com.caelum.jdbc.modelo.Produtos;
+
+/*
+ * DataAccessObject - DAO
+ */
+public class ProdutosDAO {
+
+	private final Connection conn;
+
+	public ProdutosDAO(Connection conn) {
+
+		this.conn = conn;
+	}
+
+	public void salva(Produtos produto) throws SQLException {
+
+		String sql = "insert into Produto (nome, descricao) values(?, ?)";
+
+		try (PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+			statement.setString(1, produto.getNome());
+			statement.setString(2, produto.getDescricao());
+
+			statement.execute();
+			try (ResultSet rs = statement.getGeneratedKeys()) {
+				if (rs.next()) {
+					int id = rs.getInt("id");
+					produto.setId(id);
+				}
+			}
+
+		}
+
+	}
+
+	public List<Produtos> lista() throws SQLException {
+		List<Produtos> produtos = new ArrayList<>();
+		String sql = "select * from Produto";
+		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.execute();
+			this.transformaResultadoEmProdutos(stmt, produtos);
+		}
+		return produtos;
+	}
+
+	public List<Produtos> buscaN1(Categorias categoria) throws SQLException {
+		List<Produtos> produtos = new ArrayList<>();
+
+		String sql = "select * from Produto where categoria_id = ?";
+
+		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setInt(1, categoria.getId());
+			stmt.execute();
+			this.transformaResultadoEmProdutos(stmt, produtos);
+		}
+
+		return produtos;
+	}
+
+	private void transformaResultadoEmProdutos(PreparedStatement stmt, List<Produtos> produtos) throws SQLException {
+
+		try (ResultSet resultSet = stmt.getResultSet()) {
+			while (resultSet.next()) {
+				int id = resultSet.getInt("id");
+				String nome = resultSet.getString("nome");
+				String descricao = resultSet.getString("descricao");
+
+				Produtos produto = new Produtos(nome, descricao);
+				produto.setId(id);
+
+				produtos.add(produto);
+			}
+		}
+	}
+
+}
+
+/*
+ * O DAO é um padrão de design que utilizamos para isolar o código SQL (ou
+ * qualquer outro código de acesso à um repositório de dados). Ao adotá-lo,
+ * sabemos que existe um único grupo de classes que trabalha com um sistema
+ * externo de dados, e podemos nos preocupar somente com essas classes quando
+ * trabalharmos nessa área.
+ * 
+ * 
+ * Quais as vantagens de se usar classes com o padrão DAO? A vantagem está
+ * ligada com a capacidade de isolar todo o código que acessa seu repositório de
+ * dados em um único lugar. Qualquer desenvolvedor sabe que quando for
+ * necessário trabalhar com tal camada, existe um único lugar para olhar: seus
+ * DAOs.
+ * 
+ * 
+ * 
+ * Os DAOs que criamos recebem a conexão no construtor. Imagine que ao invés
+ * disso pegamos uma nova conexão automaticamente em um construtor sem
+ * argumentos como no código a seguir:
+ * 
+ * public class ProdutosDAO { private final Connection con; ProdutosDAO() { con
+ * = Database.getConnection(); } // resto do DAO aqui }
+ * 
+ * 
+ * O que acontece caso uma tarefa tenha que acessar dois dados, como o
+ * ProdutosDAO e CategoriasDAO? Qual a desvantagem desta abordagem? Opinião do
+ * instrutor
+ * 
+ * Opinião do instrutor
+ * 
+ * Um problema grave ocorre quando tentarmos utilizar transações. Como cada um
+ * dos DAOs possui uma conexão distinta, eles não estarão envolvidos na mesma
+ * transação e ficamos incapazes de utilizar tal recurso.
+ * 
+ * Outro problema é que abrimos um número grande de conexões para a execução de
+ * cada tarefa: se ela precisa de 2 daos, serão 2 conexões.
+ * 
+ * 
+ * public List<Produtos> buscaN1(Categorias categoria) throws SQLException {
+ * 
+ * Mas quantas queries executamos? Uma? Duas? Quatro. Note que executamos uma
+ * primeira query para trazer todas as categorias. Depois disso executamos uma
+ * query para cada categoria, isto é: mais 3 queries. Se nosso sistema possui
+ * 1000 categorias, executaríamos 1001 queries. Estamos executando N+1 queries,
+ * onde N é o número de elementos retornados pela primeira pesquisa. Isto é
+ * muito ruim, uma vez que cada pesquisa tem que ir e voltar de um sistema
+ * remoto, serializando dados etc.
+ * 
+ * 
+ * 
+ * 
+ */

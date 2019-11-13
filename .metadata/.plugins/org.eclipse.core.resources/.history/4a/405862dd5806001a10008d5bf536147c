@@ -1,0 +1,70 @@
+package br.com.caelum.financas.jpql;
+
+import java.math.BigDecimal;
+import java.util.Calendar;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import br.com.caelum.financas.modelo.Categoria;
+import br.com.caelum.financas.modelo.Movimentacao;
+import br.com.caelum.financas.modelo.TipoMovimentacao;
+import br.com.caelum.financas.util.JPAUtil;
+
+public class TesteQuatroPopulaMovimentacoesComCategoria {
+
+	public static void main(String[] args) {
+
+		Movimentacao movimentacao1 = new Movimentacao();
+		Movimentacao movimentacao2 = new Movimentacao();
+
+		movimentacao1.setData(Calendar.getInstance());
+		movimentacao1.setDescricao("Conta de luz - ABRIL/2012");
+		movimentacao1.setValor(new BigDecimal("135"));
+		movimentacao1.setTipoMovimentacao(TipoMovimentacao.SAIDA);
+		
+		
+		movimentacao1.setConta(conta1);
+
+		manager.persist(movimentacao1);
+
+		Calendar amanha = Calendar.getInstance();
+		amanha.add(Calendar.DAY_OF_MONTH, 1);
+
+		movimentacao2.setData(amanha); // amanha
+		movimentacao2.setDescricao("Almoco no Restaurante - AGOSTO/2012");
+		movimentacao2.setValor(new BigDecimal("175.80"));
+		movimentacao2.setTipoMovimentacao(TipoMovimentacao.SAIDA);
+		
+		
+		movimentacao2.setConta(conta1);
+
+		manager.persist(movimentacao2);
+
+		EntityManager em = new JPAUtil().getEntityManager();
+		em.getTransaction().begin();
+
+		Categoria categoria = new Categoria();
+		categoria.setId(1);
+
+		String jpql = "select m from Movimentacao m join m.categorias c where c = :pCategoria";
+
+		Query query = em.createQuery(jpql);
+		query.setParameter("pCategoria", categoria);
+
+		List<Movimentacao> resultados = query.getResultList();
+		for (Movimentacao movimentacao : resultados) {
+			System.out.println("Descricao: " + movimentacao.getDescricao());
+			System.out.println("Conta.id: " + movimentacao.getConta().getId());
+
+			for (Categoria cat : movimentacao.getCategorias()) {
+
+				System.out.println("categoria.nome: " + cat.getNome());
+			}
+
+			System.out.println("----------------------------------------------------");
+		}
+
+	}
+}

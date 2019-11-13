@@ -1,0 +1,8 @@
+package br.com.caelum.jdbc;
+
+import java.sql.ResultSet;
+
+public interface Connection {
+	  ResultSet executeQuery(String sql);
+
+}

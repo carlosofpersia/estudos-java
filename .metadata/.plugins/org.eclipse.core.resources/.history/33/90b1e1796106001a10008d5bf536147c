@@ -1,0 +1,80 @@
+package br.com.caelum.financas.dao;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+
+import br.com.caelum.financas.modelo.Conta;
+import br.com.caelum.financas.modelo.Movimentacao;
+import br.com.caelum.financas.modelo.TipoMovimentacao;
+
+public class MovimentacaoDao {
+
+	// refatoracao da classe TesteSeisTypedQuery
+
+	private EntityManager em;
+
+	public MovimentacaoDao(EntityManager em) {
+		this.em = em;
+	}
+
+	public List<Movimentacao> getMovimentacoesPorConta(TipoMovimentacao saida, Conta conta) {
+
+		String jpql = "select m from Movimentacao m where m.conta = :pConta" + " and m.tipoMovimentacao = :pTipo"
+				+ " order by m.valor desc";
+
+		Query query = em.createQuery(jpql);
+		query.setParameter("pConta", conta);
+		query.setParameter("pTipo", saida);
+
+		List<Movimentacao> resultados = query.getResultList();
+
+		return resultados;
+
+	}
+
+	/***********
+	 * Medias agrupadas por dias
+	 *******************************************/
+	public List<Double> getMediasPorDiaETipo(TipoMovimentacao saida, Conta conta) {
+
+		String jpql = "select avg(m.valor) from Movimentacao m where m.conta = :pConta"
+				+ " and m.tipoMovimentacao = :pTipo " + " group by day(m.data), month(m.data), year(m.data)";
+
+		// TypedQuery e obrigatorio passar o tipo do retorno na createQuery dai tenho
+		// certeza do retorno
+		TypedQuery<Double> queryMedias = em.createQuery(jpql, Double.class);
+
+		queryMedias.setParameter("pConta", conta);
+		queryMedias.setParameter("pTipo", TipoMovimentacao.SAIDA);
+
+		// Ao trabalhar com a função avg() precisamos usar Double ao invés de
+		// BigDecimal.
+
+		List<Double> medias = (List<Double>) queryMedias.getResultList();
+		return medias;
+
+	}
+
+	public BigDecimal somaValoresMovimentacao(TipoMovimentacao saida, Conta conta) {
+
+		/**************
+		 * SOMA sum dos valores das movimentacoes
+		 *******************************************/
+
+		String jpql = "select sum(m.valor) from Movimentacao m where m.conta = :pConta"
+				+ " and m.tipoMovimentacao = :pTipo" + " order by m.valor desc";
+
+		Query query = em.createQuery(jpql);
+		query.setParameter("pConta", conta);
+		query.setParameter("pTipo", TipoMovimentacao.SAIDA);
+
+		BigDecimal soma = (BigDecimal) query.getSingleResult();
+
+		return soma;
+	}
+
+}

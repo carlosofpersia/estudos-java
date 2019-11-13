@@ -1,0 +1,28 @@
+package br.com.caelum.financas.jpql;
+
+import java.util.List;
+
+import br.com.caelum.financas.dto.ContaComNumeroEAgencia;
+
+public class TesteTresComDTO {
+
+	
+	public static void main(String[] args) {
+
+		System.out.println("**********************************");
+
+		
+		
+		
+		List<ContaComNumeroEAgencia> contas = em.createQuery(
+				"select new br.com.caelum.financas.dto.ContaComNumeroEAgencia(c.numero, c.agencia) from Conta c",
+				ContaComNumeroEAgencia.class).getResultList();
+
+		for (ContaComNumeroEAgencia con : contas) {
+			System.out.println("Conta.Agencia: " + con.getAgencia());
+			System.out.println("Conta.Numero: " + con.getNumeroConta());
+		}
+		
+		
+	}
+}

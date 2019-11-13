@@ -1,0 +1,23 @@
+package br.com.caelum.financas.jpql;
+
+import javax.persistence.EntityManager;
+
+import br.com.caelum.financas.util.JPAUtil;
+
+public class TesteUmJPQL {
+
+	public static void main(String[] args) {
+
+		EntityManager em = new JPAUtil().getEntityManager();
+		em.getTransaction().begin();
+
+		//String query = "select m from Movimentacao m where conta_id = 2";
+		String query = "select m from Movimentacao m where m.conta.id = 2";
+		
+		System.out.println(query);
+
+		em.getTransaction().commit();
+		em.close();
+
+	}
+}

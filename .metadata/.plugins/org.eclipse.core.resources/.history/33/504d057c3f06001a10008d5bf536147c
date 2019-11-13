@@ -1,0 +1,14 @@
+package br.com.caelum.financas.modelo;
+
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
+@Entity
+public class Usuario {
+
+	@OneToMany
+	private List<Permissao> permissoes;
+
+}

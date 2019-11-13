@@ -1,0 +1,71 @@
+package br.com.caelum.financas.apps;
+
+import javax.persistence.EntityManager;
+
+import br.com.caelum.financas.modelo.Conta;
+import br.com.caelum.financas.util.JPAUtil;
+
+public class PopulaUmaConta {
+
+	public static void main(String[] args) {
+
+		Conta conta = new Conta();
+		conta.setTitular("Antonio Donizildo");
+		conta.setBanco("Caixa");
+		conta.setAgencia("0000");
+		conta.setNumero("54321");
+
+		EntityManager em = new JPAUtil().getEntityManager();
+
+		em.getTransaction().begin();
+
+		em.persist(conta);
+
+		conta.setBanco("Bradesco");
+
+		em.getTransaction().commit();
+
+		em.close();
+		
+
+		
+		
+	}
+}
+
+/*
+ * 
+ * 
+ * Estado Transient Estado Managed Estado Detached
+ * 
+ * Depois chamamos o método persist() para que a conta fosse inserida ao banco
+ * de dados. Sem isto, ela não seria salva e sumiria completamente caso a
+ * aplicação terminasse. Esse estado é chamado Transiente(ou Transient) e a
+ * tarefa do método persist() é justamente alterar esse estado para
+ * Gerenciado(Managed).
+ * 
+ * 
+ * 
+ * 
+ * Ao executar esse código, percebemos na view console do Eclipse que foi gerado
+ * automaticamente um insert e depois um update para a conta. Novamente o JPA
+ * cuidou da entidade e sincronizou todas as suas alterações. É importante
+ * frisar que o estado Managed da entidade dura enquanto o EntityManager estiver
+ * aberto.
+ * 
+ * 
+ * 
+ * estado Detached 
+ * conta.setTitular("Leonardo"); 
+ * em.persist(conta); 
+ * quando o entityManager estiver fechado ocasiona o erro de estado Detached, que ocorre quando o
+ * objeto é retornado do banco mas o entityManager ja foi fechado para resolver esse
+ * problema usa-se o em2.merge(conta);
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */

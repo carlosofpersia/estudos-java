@@ -1,0 +1,66 @@
+package br.com.caelum.jdbc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+import javax.sql.DataSource;
+
+import org.hsqldb.jdbc.JDBCPool;
+
+public class ConnectionPool {
+
+	private DataSource dataSource;
+
+	/*
+	 * o connection POOL e importante para utilizar as conecxoes entre diversos
+	 * clientes
+	 */
+	ConnectionPool() {
+		JDBCPool pool = new JDBCPool();
+		pool.setUrl("jdbc:hsqldb:hsql://localhost/loja-virtual");
+		pool.setUser("SA");
+		pool.setPassword("");
+
+		this.dataSource = pool;
+	}
+
+	/*
+	 * Repare que utilizamos a interface DataSource pois ela só disponibiliza os
+	 * getters, não os setters. Não desejamos alterar os setters após a construção
+	 * de nosso pool, portanto usamos a interface. Tiraremos também a característica
+	 * static de nosso método: é importante criar um Database (e consequentemente o
+	 * pool) antes de invocar o método.
+	 * 
+	 * 
+	 * Alguns servidores na cloud pedem para não usarmos connection pool pois eles
+	 * mesmos já trazem seu connection pool ou lidam com tais situações. Os
+	 * servidores Java EE também já fornecem um connection pool de maneira
+	 * declarativa (configurando em algum arquivo externo a aplicação) e basta
+	 * recebermos o DataSource dentro de nossa aplicação.
+	 * 
+	 * 
+	 * Em um cenário onde diversos clientes podem acessar uma mesma aplicação
+	 * simultaneamente: A prática do pool de conexões consiste em deixar um número
+	 * fixo ou dinâmico de conexões abertas e reciclá-las utilizando em novas
+	 * requisições.
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
+	public Connection getConnection() throws SQLException {
+		Connection connection = dataSource.getConnection();
+		System.out.println("Conexão aberta com pool!");
+		return connection;
+	}
+
+	//modelo sem pool pega uma conexao por vez
+	public Connection getConnectionSemPool() throws SQLException {
+		Connection connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/loja-virtual", "SA", "");
+		System.out.println("Conexão aberta sem pool!");
+		return connection;
+	}
+
+}

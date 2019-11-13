@@ -1,0 +1,177 @@
+package br.com.caelum.jdbc;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class TestaInsercao {
+
+	/*
+	 * 
+	 * metodo execute : statement.execute O método é claro em seu javadoc: se o
+	 * retorno é um ResultSet por conta de um select, ele retorna true. Caso
+	 * contrário ou caso não haja nenhum valor retornado, o método devolve false.
+	 *
+	 * 
+	 * O principal problema de usar statement está ligado com o SQL Injection: os
+	 * usuários podem quebrar nossas queries e atacar nosso sistema caso eles
+	 * escrevam valores específicos em nossos campos e não tratemos eles. Outro
+	 * problema é de performance: um prepared statement permite execução de inserts
+	 * ou updates em batch.
+	 *
+	 *
+	 * 
+	 * 
+	 * PreparedStatement statement = connection.prepareStatement(sql,
+	 * Statement.RETURN_GENERATED_KEYS);
+	 * 
+	 * 
+	 * statement.setString(1, nome); statement.setString(2, descricao);
+	 * 
+	 * 
+	 * boolean resultado = statement.execute();
+	 * 
+	 * 
+	 * 
+	 */
+
+	public void insertDesprotegidoSimples() throws SQLException {
+
+		// uso connection.createStatement
+
+		Connection connection = Database.getConnection();
+		Statement statement = connection.createStatement();
+
+		boolean resultado = statement.execute(
+				"insert into Produto (nome, descricao) values ('Sansumg A80', 'Celular Sansumg A80 com camera externa')",
+				Statement.RETURN_GENERATED_KEYS);
+
+		System.out.println("O resultado foi: " + resultado);
+
+		// Statement.RETURN_GENERATED_KEYS - retorna o ID Gerado.
+		ResultSet resultSet = statement.getGeneratedKeys();
+
+		while (resultSet.next()) {
+			String id = resultSet.getString("id");
+			System.out.println(id + " gerado");
+		}
+
+		statement.close();
+		connection.close();
+	}
+
+	public Connection insertWithSqlInjectionAndPreparedStatement(Connection connection) throws SQLException {
+
+		// Statement statement = connection.createStatement(); não trata, pode vir sql
+		// injection
+
+		// SQL Injection e Prepared Statement
+
+		/*
+		 * Primeiro, o JDBC passa a fazer o escaping de caracteres especiais e não nos
+		 * preocupamos com SQL Injection. Por fim, o JDBC dá a chance ao banco de dados
+		 * de escolher a melhor maneira de executar uma query (definir o plano de ação),
+		 * e podemos executar a mesma query com parâmetros diferentes bastando chamar o
+		 * método setter e o execute novamente.
+		 */
+
+		// para escapar usamos o prepareStetement para proteger de sql injections
+
+		String nome = "Sansumg A80's";// com prepareStetement o jdbc realiza os scape adequados
+		String descricao = "Celular Sansumg A80 com camera externa";
+		// String sql = "insert into Produto (nome, descricao) values ('"+ nome + "',
+		// '"+descricao+"')";
+
+		String sql = "insert into Produto (nome, descricao) values (?, ?)";
+		System.out.println(sql);
+
+		PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+		statement.setString(1, nome);
+		statement.setString(2, descricao);
+
+		boolean resultado = statement.execute();
+
+		System.out.println("O resultado foi: " + resultado);
+
+		// Statement.RETURN_GENERATED_KEYS - retorna o ID Gerado.
+		ResultSet resultSet = statement.getGeneratedKeys();
+
+		while (resultSet.next()) {
+			String id = resultSet.getString("id");
+			System.out.println(id + " gerado");
+		}
+
+		statement.close();
+		return connection;
+	}
+
+	public Connection insertWithCommit(Connection connection) throws SQLException {
+
+		connection.setAutoCommit(false);
+
+
+		try {
+
+			String sql = "insert into Produto (nome, descricao) values (?, ?)";
+			PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+			// commit ou rollback
+			adiciona("Sansumg A10", "Sansumg A10, primeira versao", statement);
+			adiciona("Sansumg A20", "Sansumg A20, segunda versao", statement);
+			adiciona("Sansumg A30", "Sansumg A30, terceira versao", statement);
+			adiciona("Sansumg A50", "Sansumg A50, quinta versao", statement);
+
+			connection.commit();
+			statement.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			connection.rollback();
+		}
+
+		return connection;
+	}
+
+	public static void adiciona(String nome, String descricao, PreparedStatement statement) throws SQLException {
+
+		if (nome.equals("Sansumg A30")) {
+			throw new IllegalArgumentException("Problema ocorrido arrocha um rollback");
+		}
+
+		statement.setString(1, nome);
+		statement.setString(2, descricao);
+
+		boolean resultado = statement.execute();
+
+		System.out.println("O resultado foi: " + resultado);
+
+		// Statement.RETURN_GENERATED_KEYS - retorna o ID Gerado.
+		ResultSet resultSet = statement.getGeneratedKeys();
+
+		while (resultSet.next()) {
+			String id = resultSet.getString("id");
+			System.out.println(id + " gerado");
+		}
+
+	}
+
+	public static void main(String[] args) throws SQLException {
+
+		Connection c = Database.getConnection();
+		TestaInsercao ti = new TestaInsercao();
+
+		// Aula 1
+		// ti.insertDesprotegidoSimples();
+
+		// Aula 2
+		// c = ti.insertWithSqlInjectionAndPreparedStatement(c);
+
+		// Aula 3
+		c = ti.insertWithCommit(c);
+
+		(c).close();
+	}
+
+}

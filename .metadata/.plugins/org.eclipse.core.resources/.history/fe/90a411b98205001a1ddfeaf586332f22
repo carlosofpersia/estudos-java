@@ -1,0 +1,108 @@
+package br.com.caelum.jdbc.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.caelum.jdbc.modelo.Categorias;
+import br.com.caelum.jdbc.modelo.Produtos;
+
+public class CategoriasDAO {
+
+	private final Connection conn;
+
+	public CategoriasDAO(Connection conn) {
+		this.conn = conn;
+	}
+
+	public List<Categorias> lista() throws SQLException {
+
+		List<Categorias> categorias = new ArrayList<>();
+		String sql = "select * from Categoria";
+
+		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.execute();
+
+			try (ResultSet resultSet = stmt.getResultSet()) {
+				while (resultSet.next()) {
+					int id = resultSet.getInt("id");
+					String nome = resultSet.getString("nome");
+
+					Categorias categoria = new Categorias(id, nome);
+
+					categorias.add(categoria);
+				}
+			}
+		}
+		return categorias;
+	}
+
+	public List<Produtos> listaN1NaoNormalizada(Categorias categoria) throws SQLException {
+		List<Produtos> produtos = new ArrayList<>();
+		String sql = "select * from Produto where categoria_id = ?";
+		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setInt(1, categoria.getId());
+			stmt.execute();
+			this.transformaResultadoEmProdutos(stmt, produtos);
+		}
+		return produtos;
+	}
+
+	public List<Categorias> listaComProdutos() throws SQLException {
+		List<Categorias> categorias = new ArrayList<>();
+
+		String sql = "select c.id as c_id, c.nome as c_nome, p.id as p_id, p.nome as p_nome, p.descricao as p_descricao from Categoria as c join Produto as p on p.categoria_id = c.id";
+
+		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.execute();
+			try (ResultSet rs = stmt.getResultSet()) {
+				while (rs.next()) {
+
+					int id = rs.getInt("c_id");
+					String nome = rs.getString("c_nome");
+					Categorias categoria = new Categorias(id, nome);
+					categorias.add(categoria);
+
+				}
+			}
+
+		}
+
+		return categorias;
+	}
+
+	private void transformaResultadoEmProdutos(PreparedStatement stmt, List<Produtos> produtos) throws SQLException {
+
+		try (ResultSet resultSet = stmt.getResultSet()) {
+			while (resultSet.next()) {
+				int id = resultSet.getInt("id");
+				String nome = resultSet.getString("nome");
+				String descricao = resultSet.getString("descricao");
+
+				Produtos produto = new Produtos(nome, descricao);
+				produto.setId(id);
+
+				produtos.add(produto);
+			}
+		}
+	}
+
+}
+
+/*
+ * 
+ * 
+ * listaN1NaoNormalizada = Mas quantas queries executamos? Uma? Duas? Quatro.
+ * Note que executamos uma primeira query para trazer todas as categorias.
+ * Depois disso executamos uma query para cada categoria, isto é: mais 3
+ * queries. Se nosso sistema possui 1000 categorias, executaríamos 1001 queries.
+ * Estamos executando N+1 queries, onde N é o número de elementos retornados
+ * pela primeira pesquisa. Isto é muito ruim, uma vez que cada pesquisa tem que
+ * ir e voltar de um sistema remoto, serializando dados etc.
+ * 
+ * 
+ * 
+ **/

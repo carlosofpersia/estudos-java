@@ -1,0 +1,56 @@
+package br.com.caelum.jdbc;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import javax.sql.DataSource;
+
+import org.hsqldb.jdbc.JDBCPool;
+
+public class ConnectionPool {
+
+	private DataSource dataSource;
+
+	// o connection POOL e importante para utilizar as conecxoes entre diversos
+	// clientes
+	ConnectionPool() {
+		JDBCPool pool = new JDBCPool();
+		pool.setUrl("jdbc:hsqldb:hsql://localhost/loja-virtual");
+		pool.setUser("SA");
+		pool.setPassword("");
+
+		this.dataSource = pool;
+	}
+
+	/*
+	 * 
+	 * 
+	 * Repare que utilizamos a interface DataSource pois ela só disponibiliza os
+	 * getters, não os setters. Não desejamos alterar os setters após a construção
+	 * de nosso pool, portanto usamos a interface. Tiraremos também a característica
+	 * static de nosso método: é importante criar um Database (e consequentemente o
+	 * pool) antes de invocar o método.
+	 * 
+	 */
+	public Connection getConnection() throws SQLException {
+		// Connection connection =
+		// DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/loja-virtual",
+		// "SA", "");
+
+		Connection connection = dataSource.getConnection();
+
+		System.out.println("Conexão aberta!");
+		return connection;
+	}
+
+	/*
+	 * OLD
+	 * 
+	 * public Connection getConnection() throws SQLException { Connection connection
+	 * = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/loja-virtual",
+	 * "SA", "");
+	 * 
+	 * System.out.println("Conexão aberta!"); return connection; }
+	 */
+
+}

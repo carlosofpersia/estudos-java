@@ -1,0 +1,40 @@
+package br.com.caelum.jdbc;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import br.com.caelum.jdbc.modelo.Produto;
+
+public class TesteInsercaoProduto {
+
+	public static void main(String[] args) throws SQLException {
+
+		Produto mesa = new Produto("Mesa Azul", "Mesa com 4 pés");
+
+		try (Connection conn = new ConnectionPool().getConnection()) {
+
+			ProdutosDAO produtosDAO = new ProdutosDAO(conn);
+			produtosDAO.salva(mesa);
+
+			List<Produto> produtos = produtosDAO.lista();
+
+			try (ResultSet resultSet = conn.getResultSet()) {
+
+				while (resultSet.next()) {
+					int id = resultSet.getInt("id");
+					String nome = resultSet.getString("nome");
+					String descricao = resultSet.getString("descricao");
+
+					System.out.println(id + " - " + nome + " - " + descricao);
+				}
+
+			}
+
+		}
+
+		System.out.println(mesa);
+
+	}
+}

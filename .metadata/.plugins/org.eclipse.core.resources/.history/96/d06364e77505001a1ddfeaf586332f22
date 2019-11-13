@@ -1,0 +1,21 @@
+package br.com.caelum.jdbc;
+
+import java.sql.Connection;
+
+import br.com.caelum.jdbc.modelo.Produto;
+
+public class TesteInsercaoProduto {
+
+	public static void main(String[] args) {
+
+		Produto mesa = new Produto("Mesa Azul", "Mesa com 4 pés");
+
+		try (Connection conn = new ConnectionPool().getConnection()) {
+
+			new BancoDeProdutos(conn).salva(mesa);
+		}
+
+		System.out.println(mesa);
+
+	}
+}
