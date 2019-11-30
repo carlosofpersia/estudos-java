@@ -1,0 +1,106 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<!-- Projeto -->
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>br.com.alura.maven</groupId>
+	<artifactId>produtos</artifactId>
+	<packaging>jar</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<name>produtos</name>
+	<url>http://maven.apache.org</url>
+
+	<!-- Dependencias -->
+
+	<dependencies>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.thoughtworks.xstream/xstream -->
+
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.4.11.1</version>
+			<exclusions>
+				<!-- Iremos definir uma exclusão por vez, e no caso deletaremos xmlpull 
+					e manteremos xpp3_mim: -->
+				<exclusion>
+					<groupId>xmlpull</groupId>
+					<artifactId>xmlpull</artifactId>
+				</exclusion>
+			</exclusions>
+
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.4.9.Final</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.6</version>
+		</dependency>
+
+	</dependencies>
+
+	<!-- PLUGINS -->
+
+	<build>
+		<plugins>
+			<plugin>
+				<!-- PMD para cobertura de verificacao de codigo -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>3.12.0</version>
+
+				<!-- devemos especificar quando o plugin deverá ser executado: na fase 
+					de verificação quando executar o comando: mvn pmd:check e funcionara com 
+					mvn verify -->
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+
+			</plugin>
+
+
+			<plugin>
+
+				<!-- JACOCO para cobertura de testes unitarios -->
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.5</version>
+
+				<executions>
+					<execution>
+						<!--phase>default</phase -->
+						<goals>
+							<goal>prepare-agent</goal>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+
+			</plugin>
+
+		</plugins>
+	</build>
+	<!-- ... -->
+
+
+</project>

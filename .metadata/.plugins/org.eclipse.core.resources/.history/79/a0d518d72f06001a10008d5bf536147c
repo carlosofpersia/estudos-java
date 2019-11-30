@@ -1,8 +1,0 @@
-package br.com.caelum.financas.apps;
-
-public class BuscaConta {
-
-	public static void main(String[] args) {
-		
-	}
-}

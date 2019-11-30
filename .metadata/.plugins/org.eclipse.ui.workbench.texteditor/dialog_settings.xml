@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="MediasPorDiaETipo"/>
+		<item key="selection" value=""/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="verificaPrecoComImposto"/>
 			<item value="MediasPorDiaETipo"/>
 			<item value="Titular"/>
 			<item value="paulo"/>
@@ -22,7 +23,6 @@
 			<item value="buscaN1NaoNormalizada"/>
 			<item value="Categorias"/>
 			<item value="catego"/>
-			<item value="busca"/>
 		</list>
 		<list key="replacehistory">
 		</list>

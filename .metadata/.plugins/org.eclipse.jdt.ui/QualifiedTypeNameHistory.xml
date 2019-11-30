@@ -29,7 +29,6 @@
 <fullyQualifiedTypeName name="br.com.caelum.financas.modelo.Categoria"/>
 <fullyQualifiedTypeName name="javax.persistence.FetchType"/>
 <fullyQualifiedTypeName name="java.util.Calendar"/>
-<fullyQualifiedTypeName name="java.lang.Double"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="br.com.caelum.financas.modelo.Movimentacao"/>
 <fullyQualifiedTypeName name="br.com.caelum.financas.dao.MovimentacaoDao"/>
@@ -37,4 +36,12 @@
 <fullyQualifiedTypeName name="java.math.BigDecimal"/>
 <fullyQualifiedTypeName name="javax.persistence.Query"/>
 <fullyQualifiedTypeName name="javax.persistence.NamedQuery"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="java.lang.Double"/>
+<fullyQualifiedTypeName name="org.junit.Test"/>
+<fullyQualifiedTypeName name="br.com.alura.maven.App"/>
+<fullyQualifiedTypeName name="com.thoughtworks.xstream.mapper.Mapper.Null"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
+<fullyQualifiedTypeName name="br.com.caelum.stella.tinytype.CPF"/>
+<fullyQualifiedTypeName name="br.com.alura.maven.Produto"/>
 </qualifiedTypeNameHistroy>

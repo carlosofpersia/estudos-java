@@ -1,9 +1,13 @@
 INDEX VERSION 1.131
+C:\Users\carloss\eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3419390003.index
+\lojaweb\src\main\resources
 C:\Users\carloss\eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1047833988.index
 \treinaWeb\src
 C:\Users\carloss\eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3107854356.index
 \treinaWeb\src
 C:\Users\carloss\eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3271067030.index
 \treinaWeb\src
+C:\Users\carloss\eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2567800595.index
+\lojaweb\src\main\resources
 C:\Users\carloss\eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3997903791.index
 \treinaWeb\src

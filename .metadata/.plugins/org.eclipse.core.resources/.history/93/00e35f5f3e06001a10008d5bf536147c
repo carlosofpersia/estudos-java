@@ -1,9 +1,0 @@
-package br.com.caelum.financas.modelo;
-
-@Entity
-public class Usuario { 
-
-       @OneToMany
-       private List<Permissao> permissoes;
-
-}
