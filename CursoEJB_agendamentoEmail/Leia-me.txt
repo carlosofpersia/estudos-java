@@ -99,6 +99,11 @@ private JMSContext context;
 private Queue queue;
 
 
+* Credentials
+https://mailtrap.io/inboxes/773941/messages
+
+* Problem with sending Email from jBoss
+https://developer.jboss.org/thread/80816
 
 
 ***********************************************************************************************************
