@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="EMAIL_USER"/>
+		<item key="selection" value="Chegou a hora"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="chegou a hora"/>
+			<item value="salvarAgendament"/>
+			<item value="@TransactionAttribute"/>
+			<item value="agendamentoEmail"/>
 			<item value="EMAIL_USER"/>
 			<item value="smtp.mailtrap.io"/>
 			<item value="addeee3ea39a72"/>
@@ -19,10 +23,6 @@
 			<item value="&apos;"/>
 			<item value="itemDTO"/>
 			<item value="totalTipoInsumos"/>
-			<item value="valorUnitario"/>
-			<item value="ComposicaoDTO"/>
-			<item value="=="/>
-			<item value="addI"/>
 		</list>
 		<list key="replacehistory">
 			<item value=", \&quot;"/>

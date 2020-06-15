@@ -4,11 +4,13 @@
 		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.jdt.ui.wizards.JavaProjectWizard"/>
 		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
 			<item value="org.eclipse.ui.Basic"/>
+			<item value="org.eclipse.jdt.ui.java"/>
+			<item value="org.eclipse.jst.j2ee.internal"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog">
 		<item key="ShowStatusLine" value="true"/>
-		<item key="History" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;History&gt;&#x0D;&#x0A;&lt;historyRootNode&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/CursoEJB_agendamentoEmail/src/main/java/br/com/alura/JAXRSConfiguration.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/CursoEJB_agendamentoEmail/src/main/java/br/com/alura/exception/BusinessException.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/CursoEJB_agendamentoEmail/src/main/java/br/com/alura/ConstraintExceptionMapper.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/CursoEJB_agendamentoEmail/src/main/java/br/com/alura/interceptor/LoggerInterceptor.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/CursoEJB_agendamentoEmail/src/main/java/br/com/alura/BusinessExceptionMapper.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;/historyRootNode&gt;&#x0D;&#x0A;&lt;/History&gt;"/>
+		<item key="History" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;History&gt;&#x0D;&#x0A;&lt;historyRootNode&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/CursoEJB_agendamentoEmail/src/main/java/br/com/alura/JAXRSConfiguration.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/CursoEJB_agendamentoEmail/src/main/java/br/com/alura/ConstraintExceptionMapper.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/CursoEJB_agendamentoEmail/src/main/java/br/com/alura/interceptor/LoggerInterceptor.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/CursoEJB_agendamentoEmail/src/main/java/br/com/alura/BusinessExceptionMapper.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/CursoEJB_agendamentoEmail/src/main/java/br/com/alura/timer/AgendamentoEmailTimer.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/CursoEJB_agendamentoEmail/src/main/java/br/com/alura/business/AgendamentoEmailBusiness.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/CursoEJB_agendamentoEmail/src/main/java/br/com/alura/exception/BusinessException.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/CursoEJB_agendamentoEmail/src/main/java/br/com/alura/entity/AgendamentoEmail.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;/historyRootNode&gt;&#x0D;&#x0A;&lt;/History&gt;"/>
 		<item key="ShowDerived" value="false"/>
 		<item key="FilterByLocation" value="false"/>
 		<item key="WorkingSet" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;workingSet workingSetName=&quot;&quot;/&gt;"/>
@@ -34,8 +36,8 @@
 		</list>
 	</section>
 	<section name="CleanDialogSettings">
-		<item key="DIALOG_X_ORIGIN" value="1030"/>
-		<item key="DIALOG_Y_ORIGIN" value="241"/>
+		<item key="DIALOG_X_ORIGIN" value="2206"/>
+		<item key="DIALOG_Y_ORIGIN" value="223"/>
 		<item key="DIALOG_WIDTH" value="500"/>
 		<item key="DIALOG_HEIGHT" value="467"/>
 		<item key="TOGGLE_SELECTED" value="false"/>

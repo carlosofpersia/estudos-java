@@ -3,7 +3,18 @@ package br.com.alura.exception;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BusinessException extends Exception {
+import javax.ejb.ApplicationException;
+
+/*
+ * Qual exception podemos gerar para acionar o rollback via EJB dentro do método salvar?
+ * - RuntimeException é uma unchecked exception e toda unchecked exception causa rollback por padrão, mas cuidado, já que RuntimeException também significa usar uma SystemException.
+ * 
+ * */
+
+//@ApplicationException(rollback=true) + extends Exception -> feito na mao para gerar roolback de uma checked (CHECKED)
+//@ApplicationException(rollback=false) -> para Unchecked RuntimeExcpetion, nao precisa dessa declaracao. mas para nao gerar rollback de uma unchecked deve ser forcado dessa rollback=false:
+@ApplicationException(rollback=false)
+public class BusinessException extends RuntimeException {
 
 	/**
 	 * 
