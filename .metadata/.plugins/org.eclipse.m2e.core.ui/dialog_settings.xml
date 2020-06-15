@@ -8,6 +8,7 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Desenvolvimento\DesafioSoftplan\Exercicio1"/>
 			<item value="C:\Users\carloss\eclipse-workspace\produtos"/>
 		</list>
 		<list key="projectNameTemplate">
@@ -25,6 +26,8 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\carloss\eclipse-workspace\gerador-obervacao-tdd"/>
+			<item value="C:\Users\carloss\eclipse-workspace\gerador-obervacao-tdd_old"/>
 			<item value="C:\Users\carloss\eclipse-workspace\blog-eclipse"/>
 			<item value="C:\Users\carloss\eclipse-workspace\produtos"/>
 		</list>
@@ -38,7 +41,7 @@
 		</list>
 	</section>
 	<section name="MavenProjectWizardArchetypePage">
-		<item key="catalog" value="All Catalogs"/>
+		<item key="catalog" value="http://repo1.maven.org/maven2/archetype-catalog.xml"/>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
 			<item value="[artifactId]-TRUNK"/>
@@ -50,16 +53,31 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
-			<item value="br.com.alura.maven.lojaweb"/>
-			<item value="br.com.alura.maven"/>
 		</list>
 		<list key="groupId">
-			<item value="br.com.alura.maven"/>
-			<item value="blog-eclipse"/>
 		</list>
 		<list key="artifactId">
-			<item value="lojaweb"/>
-			<item value="br.com.alura.maven"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
+	</section>
+	<section name="MavenProjectWizardArtifactPage">
+		<list key="groupId">
+			<item value="br.com.softplan"/>
+		</list>
+		<list key="name">
+		</list>
+		<list key="artifactId">
+			<item value="Exercicio1"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -74,12 +92,14 @@
 			<item value="0.0.1-SNAPSHOT"/>
 		</list>
 	</section>
-	<section name="MavenProjectWizardArtifactPage">
-		<list key="groupId">
+	<section name="org.eclipse.m2e.core.ui.internal.preferences.RemoteArchetypeCatalogDialog">
+		<list key="catalogUrl">
+			<item value="http://repo1.maven.org/maven2/archetype-catalog.xml"/>
 		</list>
-		<list key="name">
-		</list>
-		<list key="artifactId">
+	</section>
+	<section name="MavenModuleWizardParentPage">
+		<list key="moduleName">
+			<item value="GeradorObervacao"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -88,9 +108,6 @@
 			<item value="[groupId].[artifactId]"/>
 			<item value="[groupId].[artifactId]-[version]"/>
 			<item value="[name]"/>
-		</list>
-		<list key="version">
-			<item value="0.0.1-SNAPSHOT"/>
 		</list>
 	</section>
 </section>

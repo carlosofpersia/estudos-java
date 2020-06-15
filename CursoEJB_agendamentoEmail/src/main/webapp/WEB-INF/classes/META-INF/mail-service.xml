@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+  
+<server>  
+ <mbean code="org.jboss.mail.MailService"  
+ name="jboss:service=Mail">  
+  
+ <attribute name="JNDIName">mail/MailSession</attribute>  
+  
+ <!-- mail server login data, not required for JES -->  
+ <attribute name="User">homer</attribute>  
+ <attribute name="Password">simpson</attribute>  
+  
+ <attribute name="Configuration">  
+ <configuration>  
+ <property name="mail.store.protocol" value="pop3"/>  
+ <property name="mail.transport.protocol" value="smtp"/>  
+  
+ <!-- who receives the mail, if no recipient is specified -->  
+ <property name="mail.user" value="nobody"/>  
+  
+ <!-- Change to the mail server -->  
+ <property name="mail.pop3.host" value="localhost"/>  
+  
+ <!-- Change to the SMTP gateway server -->  
+ <property name="mail.smtp.host" value="localhost"/>  
+  
+ <!-- The mail server port -->  
+ <property name="mail.smtp.port" value="25"/>  
+  
+ <!-- who is the sender of the mail, if none is specified -->  
+ <property name="mail.from" value="mailmaster@asdf.de"/>  
+  
+ <!-- Enable debugging output from the javamail classes -->  
+ <property name="mail.debug" value="false"/>  
+ </configuration>  
+  
+ </attribute>  
+ <depends>jboss:service=Naming</depends>  
+ </mbean>  
+  
+</server>  
