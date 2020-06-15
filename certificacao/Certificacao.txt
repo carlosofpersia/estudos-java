@@ -1,0 +1,438 @@
+
+* Certificação JAVA *
+
+/*****************************************/
+
+//$~/Documents/Carloss/Desenvolvimento/estudos-java/src:
+//javac br/com/certificacao/aula06/Exercicio7.java
+//java -classpath . br.com.certificacao.aula06.Exercicio7
+
+
+Email address: carloseduardophp@gmail.com   
+
+Oracle Testing ID: OC1326412 
+
+Testing ID: OC1326412
+Testing ID: OC1326485 - carloseduardooracle@gmail.com
+/******************************************/
+
+Vamos resumir: Injeção de Dependência é apenas uma forma para resolvermos a Inversão de Controle.
+Invertendo o Controle, utilizando a Injeção de Dependência
+/******************************************/
+
+Esta correto o fato de vc ter um DAO na sua camada de infra-estrutura que lida com dados e o Repositório na sua camada de domínio e nessa camada ficam concentradas todas as regras de negócios.
+
+
+
+
+
+/******************************************/
+
+Single Responsability Principle, 
+Open Closed Principle, 
+Liskov Substitution Principle, 
+Interface Segregation Principle e 
+Dependency Inversion Principle, 
+formavam a palavra Solid, que nos remete aos objetivos implícitos dos princípios, isto é, um desenvolvimento mais sólido.
+o S.O.L.I.D, que de forma simples pode ser entendido como um guia que traz diretrizes a serem seguidas para o alcancar os objetivos acoplamento, coesão e encapsulamento
+
+
+/******************************************/
+
+new Thread(new Runnable() {
+  @Override
+  public void run() {
+      //aqui seu codigo para executar em paralelo
+  }
+}).start();
+
+ a quantidade de threads ideal para o número de núcleos de processamento existentes no ambiente no qual está sendo executado o programa
+int nucleos = Runtime.getRuntime().availableProcessors();
+
+
+/******************************************/
+
+
+
+Em Java o programador precisa se preocupar com duas áreas de memória – a área onde os objetos são armazenados (heap), e a área onde vivem as variáveis locais e as chamadas de métodos (pilha).
+Todos os objetos são alocados no heap
+Na stack são armazenados os valores de variáveis primitivas. valores estáticos e referências para objetos.
+
+
+-----------------//-----------------------
+
+Tornando um objeto elegível ao gc por meio da reatribuição de uma referência
+public class TesteColetor {
+  public static void main(String[] args) {
+    StringBuffer sb1 = new StringBuffer("abcd");
+    StringBuffer sb2 = new StringBuffer("xwyz");
+    // Os StringBuffer estão sendo referenciados
+    // e não são elegíveis para coleta de lixo
+    System.out.println(sb1);
+    sb1 = sb2;
+    // Agora o StringBuffer "abcd" deixa de ser referenciado
+    // por sb1 e torna-se candidato à coleta de lixo
+    // O StringBuffer "xwyz" por outro lado, está sendo referenciado
+    // por duas variáveis de referência
+}
+
+
+Os métodos que Java oferece para interagir com o Coletor de Lixo são membros de Runtime
+Runtime.getRuntime();
+gc();
+
+Programa para interagir com o Garbage Collector
+import java.util.Date;
+public class VerificaGC {
+  
+  public static void main(String[] args) {
+    Runtime rt = Runtime.getRuntime();
+    System.out.println("Memória total da JVM: " + rt.totalMemory());
+    System.out.println("Memória antes da criação dos objetos: " + rt.freeMemory());
+    Date d = null;
+    for (int i = 0; i < 100000; i++) {
+      d = new Date();
+      d = null;
+    }
+    System.out.println("Memória depois da criação dos objetos: " + rt.freeMemory());
+    rt.gc();
+    System.out.println("Memória depois executar o gc: " + rt.freeMemory());
+  }
+  Memória total da JVM: 61210624
+Memória antes da criação dos objetos: 60570816
+Memória depois da criação dosobjetos: 58208432
+Memória depois de executar o gc: 60630904
+
+}
+
+-----------------//----------------------
+
+
+ O Coletor de Lixo simplesmente chamando 
+ System.gc().
+ 
+ 
+ -----------------//----------------------
+ 
+
+ A ausência de um gerenciamento adequado de memória pode causar uma exceção do tipo OutOfMemoryException.
+ 
+ /******************************************/
+
+
+
+
+* Padrão de Interface Simples
+Interface methods are implicitly public, abstract (except for static and default methods);
+When we override (sobrepor) methods, we have to use less restrictive or same level access modifier for overriding method. 
+
+--//--
+public interface A{
+    void print();
+}
+-- Override interface method A:
+public void print(){ System.out.println("A implemented"); }
+--//--
+
+interface A {
+	//somente constantes ou assinatura de métodos.
+    public static final int TAMANHO_SENHA = 8; //constante
+    public abstract void autentica(String login, String senha); //assinatura do método
+}
+
+-----------------//-----------------------
+
+• Interfaces Funcionais
+https://www.ibm.com/developerworks/br/library/j-java8idioms7/index.html
+
+Predicate Interface: 
+----------import java.util.function.*;----------ou
+----------import java.util.function.Predicate----------
+----------import java.util.function.Consumer----------
+
+//Lambda - Lambda Sintaxe básica: ( parameters ) -> { code }
+* filter usa Predicate<T> e forEach usa Consumer<T>. *
+List<String> lista = Arrays.asList("a", "b", "c", "d");//asList traz um array com tamanho fixo só pode alterar os valores.
+for (String l : lista) {
+    System.out.println(l);
+}
+lista.forEach(l -> System.out.println(l));
+
+Ex_ Lambda_
+package com.gabrielamorim;
+import java.util.Arrays;
+import java.util.Comparator;
+public class Java8Test {
+	public static void main(String[] args) {
+		String[] words = {"ball", "book", "computer", "car", "elephant", "nice"};		
+		Arrays.sort(words, (first, second) -> Integer.compare(first.length(), second.length()));
+		for(String word : words) {
+			System.out.println(word);
+		}
+	}
+}
+
+//interface funcional - Há três regras importantes para interfaces funcionais:
+-Uma interface funcional tem apenas um método abstrato.
+-Um método abstrato que também for um método público na classe Object não será contado como esse método.
+-Uma interface funcional pode ter métodos "default" e métodos estáticos.
+
+para conferir se é interface funcional basta usar a annotation @FunctionalInterface -> se não for funcional, o código não compila.
+
+Interfaces funcional integrada:
+As mais comuns são Function<T, R>, Predicate<T> e Consumer<T>
+import java.util.function.*. 
+O método map do Stream usa Function<T, R> como um parâmetro, filter usa Predicate<T> e forEach usa Consumer<T>. 
+O pacote também tem outras interfaces funcionais como Supplier<T>, BiConsumer<T, U> e BiFunction<T, U, R>.
+
+
+
+
+
+/******************************************/
+
+
+
+
+java.time.LocalDate;
+java.time.LocalTime;
+java.time.LocalDateTime;
+java.time.Instant;
+
+LocalDate localDate = LocalDate.now();
+LocalDate localDate = LocalDate.now(ZoneId.of("GMT+02:30"));
+
+LocalTime localTime = LocalTime.now();
+
+
+LocalDateTime localDateTime = LocalDateTime.now();
+LocalTime localTime = localDateTime.toLocalTime();
+
+Instant instant = Instant.now();
+long timeStampMillis = instant.toEpochMilli();
+
+Instant instant = Instant.now();
+long timeStampSeconds = instant.getEpochSecond();
+
+
+
+/******************************************/
+
+Throws X TryCatch.
+Throws seu metodo declara que pode lançar o erro e se este ocorrer o metodo que o chamou deve tratar ou declarar novamente ate chegar ao inicio da pilha. 
+Try catch - o erro se ocorrer sera capturado pelo bloco catch correspondente e tratará a excessão de acordo com a sua implementação para este bloco e a excessão não será lançada ao metodo chamador
+
+/******************************************/
+
+When overloading method we must change the argument list, also we can change the return type.
+
+interface A{
+	default boolean equals(Object obj){}
+}
+You cannot use default methods to override any of the non-final methods in the java.lang.Object class.
+For example, you cannot override the equals method, it will cause a compile time error.
+So in above code, trying to override equals method, causes a compile time error. 
+
+
+/***************************************/
+
+Instanciar Classes Anônimas.
+
+JButton botaoSair = new JButton("Sair");
+ActionListener sairListener = new ActionListener() {
+	public void actionPerformed(ActionEvent e) {
+		System.exit(0);
+	}
+};
+botaoSair.addActionListener(sairListener);
+
+-----------ou
+
+JButton botaoSair = new JButton("Sair");
+botaoSair.addActionListener( new ActionListener() {
+	public void actionPerformed(ActionEvent e) {
+		System.exit(0);
+	}
+});
+
+/***************************************/
+
+Legal JAVA Access Modifiers:
+Abstract, Final, Native;
+Private, Protected, Public;
+Static, Synchronized, Transient;
+Volatile, StrictFP;
+
+/***************************************/
+
+//Convertendo String para primitivos:             int i = Integer.parseInt("140");
+//Convertendo String diretamente para um wrapper: Long j = Long.valueOf("235555");
+//Convertendo de wrappers para primitivos:        double j = (new Long("123")).doubleValue();
+
+//Convertendo String para Wrapper e Wrapper para primitivo diretamente: double h = Double.valueOf("27").floatValue();
+
+/***************************************/
+
+Variáveis ou métodos protegidas não serão acessadas por subclasses dos parentes em pacotes diferentes.
+
+/***************************************/
+
+Um contrutor não pode ter um retorno, nem mesmo void.
+Um contrutor não pode ser final, static ou abstract
+
+/***************************************/
+
+An object is eligible for GC when there is no live thread can reach it.
+Object Class has a finalize() method.
+
+
+/***************************************/
+
+para lancar uma IOException basta throw new FileNotFoundException();
+
+
+
+/***************************************/
+
+
+* funcionam com "=="
+Todos Boolean e Byte;
+Short e Integer de -128 até 127;
+Caracter ASCII, como letras, números etc.
+
+Valores baixos é possível que o resultado seja true, mesmo usando 2 objetos diferentes.
+Integer i1 = 123;
+Integer i2 = 123;
+System.out.println(i1 == i2); //true
+System.out.println(i1.equals(i2)); //true
+
+---------------------//-----------------------
+
+Integer i1 = 1234;
+Integer i2 = 1234;
+System.out.println(i1 == i2); //false
+System.out.println(i1.equals(i2)); //true
+
+
+/***************************************/
+
+Switch:
+byte, short, char, and int primitive data types
+strings and enums.
+Character, Byte, Short, and Integer
+
+* The variable used in a switch statement can only be integers, 
+convertable integers (byte, short, char), strings and enums.
+
+The value for a case must be the same data type as the variable in 
+the switch and it must be a constant or a literal.
+
+/***************************************/
+
+Collection col = new ArrayList(Arrays.asList(sts));
+		
+/***************************************/
+
+
+
+
+* checked exception (
+- represent invalid conditions in areas outside the immediate control of the program  
+				(invalid user input, database problems, network outages, absent files)
+- are subclasses of Exception
+- * a method is obliged to establish a policy for all checked exceptions thrown by its implementation 
+				(either pass the checked exception further up the stack, or handle it somehow)
+
+IOError,
+IOException,
+SQLException,
+FileNotFoundException,
+ClassNotFoundException,
+
+
+* unchecked exception:
+- represent defects in the program (bugs) - often invalid arguments passed to a non-private method. 
+- are subclasses of RuntimeException
+- method is not obliged to establish a policy for the unchecked exceptions thrown by its implementation (and they almost always do not do so)
+
+AssertionError, 
+RuntimeException,
+ClassCastException, 
+ArithmeticException,
+NoClassDefFoundError, 
+NullPointerException, 
+IllegalStateException,
+NumberFormatException, 
+IllegalArgumentException
+ExceptionInInitializerError,
+ArrayIndexOutOfBoundsException, 
+
+
+
+
+
+
+
+
+
+/***************************************/
+
+* Defaults values:
+Data    Default Value (for fields)
+byte	0
+short	0
+int	    0
+long	0L
+float	0.0f
+double	0.0d
+char	'u0000'
+boolean	false
+
+
+/***************************************/
+
+Which of following represents a correct interface?
+abstract interface I{ default void print(){ } }
+
+as interfaces a 100% abstract so they can be marked with the abstract keyword 
+but it is optional and from Java SE 8 we are allowed to add non abstract default methods to interfaces.
+
+/***************************************/
+
+The down casting can't be occurred implicitly.
+
+/***************************************/
+
+* Consider following statements about non local variables.
+Reference variables default value is null.
+String variables are examples of reference variables.
+
+/***************************************/
+
+A final method cannot be overridden (sobrescrito)
+A method declared static cannot override.(sobrepor)
+
+/***************************************/
+
+default size of the internal array is 10
+
+/***************************************/
+
+The access modifier private can't be used with top level class.
+
+/***************************************/
+
+postfix --------------- expr++ expr--
+unary ----------------- ++expr --expr +expr -expr ~ !
+multiplicative -------- * / %
+additive -------------- + -
+shift ----------------- << >> >>>
+relational ------------ < > <= >= instanceof
+equality -------------- == !=
+bitwise --------------- AND	&
+bitwise exclusive OR -- ^
+bitwise inclusive OR -- |
+logical AND ----------- &&
+logical OR ------------ ||
+ternary --------------- ? :
+assignment ------------ = += -= *= /= %= &= ^= |= <<= >>= >>>=

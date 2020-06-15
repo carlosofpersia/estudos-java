@@ -1,0 +1,48 @@
+
+
+
+Declarações e Controle de Acesso:
+
+Identificadores e JavaBeans
+	Identificadores Legais,
+	Convenções de Código Java da Sun,
+	Padrões de Nomeação JavaBeans.
+	
+Padrões JavaBeans
+	- São classes java que têm propriedades
+	- Nomenclatura javabens: get|set|is
+	isSize -> metodo javabean referente a propriedade size mas seu tipo é booleano
+	getSize
+	setSizer
+	
+	Eventos em javabeans - nomenclatura com add e remove nos métodos:
+	addMyListener -> eventos listener
+	removeMyListener -> eventos listener
+	
+	
+Modificadores referentes a Acesso:
+	- Default -> Pacotes
+	- Public
+	- Private
+	- Protected
+	
+Interfaces
+	- seus métodos são todos publicos e abstratos, não podem ser estaticos.
+	- seus atributos só podem ser abstratos, finais e publicas ou seja "constantes".
+		- public static final CONSTANTE = 42;
+		
+Modificadores não referentes a Acesso:
+	
+	* Mais tipos:
+		- final
+		- abstract
+		- strictfp -> 
+			- é uma palavra-chave e que pode ser usada para modificar uma classe ou um método, mas nunca uma variável;
+			- significa que qualquer código de método na classe se conformará às regras do padrão IEEE754 para pontos flutuante.
+		- transient
+		- synchronized
+		- native
+		- static
+
+	
+
