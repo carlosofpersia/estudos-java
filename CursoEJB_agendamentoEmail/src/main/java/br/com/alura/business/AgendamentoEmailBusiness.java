@@ -4,7 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.Resource;
+import javax.ejb.ApplicationException;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.inject.Inject;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -42,10 +47,62 @@ Como escrever mensagens de log usando java.util.logging.Logger
  *
  * @Resource CDI para fazer o lookup da sessão de e-mail do servidor de aplicação - Esta anotação faz o lookup de recursos disponibilizados pelo servidor de aplicação.
  *
+ * 
+ *
+ *
+ * Aula 07
+A integrar o EJB com JMS
+Que JMS é o padrão Java EE para mensageria
+Que uma fila JMS serve como repositório JMS
+A injetar uma Queue e usar o JMSContext
+A enviar mensagens JMS usando Producer
+Como receber mensagens JMS com Message Driven Bean
+
+* Gerenciamento de Transacao 2 formas:
+
+	* CMT: container managed transaction;
+		CMT é a marcação implícita, ou declarativa da transação.
+			A especificação JTA (Java Transaction API) oferece uma anotação para tal.
+		@TransactionAttribute;
+		@TransactionManagement(TransactionManagementType.CONTAINER)
+
+	* BMT: Bean Managed Transaction
+		BMT é a marcação explícita, ou programática da transação.
+			No Bean Managed Transaction usamos o objeto UserTransaction para chamar begin, rollback e commit.
+		begin(); rollback(); commit();
+		@TransactionManagement(TransactionManagementType.BEAN)
+		
+
+O uso de transações é essencial para qualquer sistema que deseja garantir a durabilidade, integridade e consistência dos dados. 
+Por esse motivo, o EJB integra uma especificação para trabalhar com transações de alto nível, 
+o JTA (Java Transaction API). 
+O JTA oferece duas formas de demarcação de transações, Bean-Managed (BMT), e Container-Managed (CMT).
+
+		CMT (Container-Managed) é a marcação implícita, ou declarativa da transação.
+			A especificação JTA (Java Transaction API) oferece uma anotação para tal.
+
+		BMT (Bean-Managed) é a marcação explícita, ou programática da transação.
+			No Bean Managed Transaction usamos o objeto UserTransaction para chamar begin, rollback e commit.
+ *
+ *
+ *Quando o método inserir for chamado, uma nova transação deve ser criada para este processo. Como podemos configurar a chamada deste método para iniciar sempre uma nova transação?
+	Anotando o método com @TransactionAttribute(TransactionAttributeType.REQUIRED_NEW)
+	Esta anotação, com este parâmetro, configura o EJB para abrir uma nova transação toda vez que o método é chamado.
+
+
+Coloquei manualmente, agora o checked vai dar rollback!
+@ApplicationException(rollback=true)
+public class BusinessException extends Exception
+
+
+
+ *
+ *
  */
 
 @Stateless
 @Logger
+@TransactionManagement(TransactionManagementType.CONTAINER)
 public class AgendamentoEmailBusiness {
 
 	@Inject
@@ -66,7 +123,13 @@ public class AgendamentoEmailBusiness {
 	/*
 	 * @Valid = Bean Validation, usa o arquivo ValidationMessages.properties para
 	 * mensagens
+	 * 
+	 * @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED) - nao pega transacao ejb, da erro devido a exception, mas salva! nao gerou rollback.
+	 * @TransactionAttribute(TransactionAttributeType.REQUIRED) - se nao tiver transacao aberta, ele abre! e da rollback.
+	 * 
+	 * 
 	 */
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void salvarAgendamentosEmail(@Valid AgendamentoEmail agendamentoEmail) throws BusinessException {
 
 		if (!agendamentoEmailDAO.listarAgendamentosEmailPorEmail(agendamentoEmail.getEmail()).isEmpty()) {
@@ -76,12 +139,22 @@ public class AgendamentoEmailBusiness {
 
 		agendamentoEmail.setEnviado(false);
 		agendamentoEmailDAO.salvarAgendamentoEmail(agendamentoEmail);
+
+		//throw new RuntimeException(); com TransactionAttributeType.NOT_SUPPORTED deu exception, mas salvou.
+		//throw new RuntimeException(); com TransactionAttributeType.REQUIRED deu excpetion e gerou um rollback.
+		//throw new BusinessException(); 
 	}
 
 	public List<AgendamentoEmail> listarAgendamentosEmailNaoEnviados() {
 
 		return agendamentoEmailDAO.listarAgendamentosEmailNaoEnviados();
 	}
+	
+	public void marcarEnviadas(AgendamentoEmail agendamentoEmail) {
+		agendamentoEmail.setEnviado(true);
+		agendamentoEmailDAO.atualizarAgendamentoEmail(agendamentoEmail);
+	}
+	
 
 	public void enviarEmail(AgendamentoEmail agendamentoEmail) {
 		try {
