@@ -1,0 +1,270 @@
+
+Introdução a Mensageria com ActiveMQ 5
+
+http://activemq.apache.org/components/classic/download/
+http://activemq.apache.org/download.html
+
+
+$ sh activemq console
+$ java -classpath activemq-all-5.15.13.jar:aula-jms.jar br.com.caelum.TesteMensageria consome
+$ java -classpath activemq-all-5.15.13.jar:aula-jms.jar br.com.caelum.TesteMensageria envia 10
+
+* Middleware Orientado a Mensagem (MOM)
+
+
+Bem-vindo ao treinamento de mensageria, JMS e ActiveMQ.
+Downloads desse capítulo
+
+    Download do ActiveMQ -> https://s3.amazonaws.com/caelum-online-public/jms/apache-activemq-5.12.0-bin.zip
+    Download do JAR (para testar a primeira fila) -> https://s3.amazonaws.com/caelum-online-public/jms/aula-jms.jar
+
+Colocar esses arquivos no mesmo lugar para ser usado com sua classes programada.
+carloss@carloss-note:~/Documents/Desenvolvimento/eclipse-workspace/estudos-java/CursoJMS_ActiveMQ/exemploProfessor$ ls
+activemq-all-5.12.0.jar, activemq-all-5.15.13.jar,  aula-jms.jar
+
+
+
+
+* Acessar o diretório bin do activemq baixado pelo terminal e rodar o comando:
+carloss@carloss-note:~/Documents/Desenvolvimento/eclipse-workspace/JmsActiveMQ/apache-activemq-5.15.13/bin$ sh activemq console
+	$ sh activemq console
+
+ctiveMQ WebConsole available at http://0.0.0.0:8161/
+Acessar o link: Manage ActiveMQ broker
+Sobe o console administrativo: O usuário é "admin" e senha é "admin"
+
+Queues (Fila)
+	Crio uma Fila nova fila.financeiro
+		Vou em Send e envio duas mensagens de Hello World! ...
+
+* Diretorio: ~/Documents/Desenvolvimento/eclipse-workspace/estudos-java/CursoJMS_ActiveMQ/exemploProfessor
+	$ java -classpath activemq-all-5.15.13.jar:aula-jms.jar br.com.caelum.TesteMensageria consome
+	$ java -classpath activemq-all-5.15.13.jar:aula-jms.jar br.com.caelum.TesteMensageria envia 10
+
+Verificar http://0.0.0.0:8161/admin -> Queue
+
+Topics
+Send
+
+
+
+Loja virtual e geração de nota fiscal
+
+Bom, temos uma loja virtual que já está no ar há algum tempo. Produtos são colocados em um carrinho de compra e no final o pedido é finalizado. Quando a compra é finalizada, enviamos os dados da compra para outro sistema responsável pela geração da nota. Até aí tudo bem.
+Problemas de comunicação
+
+Sabemos que eventos promocionais com black friday aumentam o número de acesso vertiginosamente. Queremos que nossa aplicação funcione, mas o problema é que o outro sistema pode falhar, inclusive pode haver algum problema de comunicação na rede e também ele pode não aguentar processar um grande número de informações enviadas. Não podemos perder um pedido só porque o sistema de geração de notas não funciona.
+
+Para evitarmos os problemas que foram citados, precisamos desacoplar os dois sistemas através de um bloco arquitetural que ficará entre ambos. É uma espécie de servidor entre dois sistemas. Esse servidor é chamado de middleware e com ele o a loja virtual não conversa mais diretamente com o sistema de geração de notas fiscais. O objetivo do middleware é desacoplar os dois lados, isto é, as duas aplicações.
+
+Agora, a loja enviará o pedido empacotando-o dentro de um envelope para o middleware que guardará a mensagem recebida e algum momento depois a entregará para o sistema de nota fiscal (assíncrono). Esse processo é orientado à mensagens, por isso que é chamado de MOM (Message Oriented Middleware).
+
+Então, dentro do que vimos, percebemos o desacoplamento arquitetural entre a loja e o sistema de notas (um sistema deixar de conhecer o outro) e todo comunicação é via mensagem. A mensagem é recebida pelo middleware e algum momento posterior, é entregue para o sistema destinarário. Justamente por ser “um momento posterior” tudo ocorre assincronamente, pois não sabemos quando a mensagem será entregue.
+ActiveMQ, o MOM da Apache Foundation
+
+Para implementarmos essa solução, precisamos de um middleware e o mais famoso no mundo Java se chama ActiveMQ da Apache Foundation. Usaremos o ActiveMQ ao longo deste treinamento, um MOM da Apache.
+
+Primeiro passo é instalar o ActiveMQ.
+Instalando o ActiveMQ
+
+Baixamos o ActiveMQ 5.12.x (ou mais recente) em http://activemq.apache.org/download.html.
+
+Observação: No Windows é preciso executar o script InstallService.bat da pasta win32 ou win64 dependendo da arquitetura do computador.
+
+Depois de baixado, só precisamos descompactá-lo. Como todo servidor, precisamos rodá-lo e fazemos através do terminal entrando na pasta apache-activemq-5.12.2/bin. Lá uma série de scripts e precisamos rodar aquele que condiz com o sistema operacional que estamos usando. Por exemplo, no OSX usamos no terminal o comando
+
+sh activemq
+
+Só que não foi dessa vez. A razão é que precisamos passar parâmetros para esse script. Usarmos a opção console:
+
+sh activemq console
+
+Agora sim. Além de subir nosso servidor, ele nos apresenta uma série de logs. O terminal também indica o endereço do nosso servidor: http://localhost:8161
+
+Visualizamos a página principal do ActiveMQ. Há um link (http://localhost:8161/admin) para o console de administrar. Ao ser clicado, precisamos um usuário e uma senha. O login e senha padrão são admin.
+A primeira fila
+
+É bem simples, porém há informações que já são úteis como o nome da máquina que está rodando, versão do servidor, etc. Podemos até enviar já mensagens através do link send. Há também duas opções, queues e topics. Vamos focar no primeiro, pois nossa loja quer enviar uma mensagem com o pedido empacotado a esse MOM. O MOM poderia ter vários outros clientes, isto é, aplicações. Não simplesmente entregamos a mensagem para o MOM, nós indicamos também qual o destino desta mensagem. A mensagem do pedido enviado para o MOM fica cadastrado dentro de uma fila (queue) para o ActiveMQ organizar, inclusive poderíamos ter várias filas. O topic, que não vamos utilizar agora, é um outro destino.
+
+Clicando em queue, é perguntada o nome da fila que chamaremos de financeiro. Podemos acessar a fila criada e seus consumidores (quem gostaria de receber) e os active producers, quem está enviando. Há uma opção de enviar uma mensagem para a fila e é exatamente o que faremos.
+Enviando a mensagem
+
+Na tela de envio de mensagem, precisamos informar qual é o destino, mas não apenas isso. Há um monte de cabeçalhos da mensagem que podemos preencher quando necessário.
+
+Na caixa “Message Body” vamos escrever: Oi mundo mensageria!
+
+Uma mensagem foi enviada, ela está enqueued. Isso signiica que a fila recebeu e guardou, salva. Que tal enviarmos mais uma mensagem? Dessa vez será “Oi! Mensageria segunda mensagem”. As mensagem ficam enqueued, mas nenhum foi entregue pois ainda não temos um consumidor.
+Simulando a entrega
+
+Vamos simular essa entrega para nossa aplicação de nota fiscal que tem interesse em receber essas mensagens. Para isso, preparamos um jar com código Java que consumirá a mensagem, mas ele não possui todo o protocolo possível do ActiveMQ, é por isso que da pasta do ActiveMQ que baixamos, vamos mover o activemq-all-5.12.0.jar. Resumindo: nosso aula-jms.jar depende de ativemq-all-5.12.0.jar.
+
+Sem fechar o terminal do ActiveMQ que está rodando, vamos abrir um novo terminal e executar:
+
+No Linux e Mac:
+
+java –cp activemq-all-5.12.0.jar:aula-jms.jar br.com.caelum.TesteMensageria consome
+
+No Windows:
+
+java –cp activemq-all-5.12.0.jar;aula-jms.jar br.com.caelum.TesteMensageria consome
+
+Nosso programa se conectou ao nosso MOM e recebeu as mensagens que cadastramos.
+
+Podemos enviar mensagens na linha de comando também usando o parâmetro envia seguido com a quantidade de números :
+
+No Linux e Mac:
+
+java –cp activemq-all-5.12.0.jar:aula-jms.jar br.com.caelum.TesteMensageria envia 10
+
+No Windows:
+
+java –cp activemq-all-5.12.0.jar;aula-jms.jar br.com.caelum.TesteMensageria envia 10
+
+Neste exemplo, estamos enviando 10 mensagens. Agora em nosso MOM, temos 10 mensagens. Ao testar a consumidor (recebimento das mensagens) aparece no console:
+
+Agora vamos praticar com os exercícios do capítulo.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+O mundo de integração é bem amplo e complexo. Nesse treinamento vamos focar em uma parte importante desse mundo, vamos focar na Mensageria. No treinamento usaremos o ActiveMQ e no Java o padrão JMS. Não fique preocupado com as siglas, vamos ver tudo em detalhe nos próximos capítulos.
+
+Objetivo é que o aluno fique seguro com os conceitos de mensageria e conheça os detalhes da API JMS.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Vimos no vídeo a explicação e motivação para usar um MOM (Message Oriented Middleware).
+
+Quais são as vantagens de usar um MOM na integração de sistemas? R: Entrega assíncrona e desacoplamento.
+
+Identificamos duas vantagens:
+
+1) As mensagens serão entregues assincronamente.
+
+2) O sistema que recebe a mensagem está arquiteturalmente desacoplado do sistema que envia as mensagens.
+
+O MOM (ou Broker - Intermediador) é um lugar onde os dados ficam salvos temporariamente, até o outro sistema conseguir processá-los. O MOM garante a entrega em algum momento e ajuda assim a lidar com indisponibilidade de sistemas e picos de processamento.
+
+Em geral, a mensageria é um estilo de integração alternativo ao modelo RPC (Remote Procedure Call). O RPC (como o SOAP ou REST) é síncrono e acoplado pela interface de uso.
+
+Como é importante saber as vantagens, também devemos conhecer as desvantagens. Como desvantagem principal podemos dizer que usando um MOM temos que manter mais um componente arquitetural. Nosso sistema fica mais complexo e mais custoso de manter.
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+A ideia da mensageria é muito antiga e nasceu bem antes da plataforma Java. Ou seja, já existiam MOMs (ou message brokers) antes do Java. Você conhece outros MOMs? Pesquise :)
+
+
+* Os brokers são uma parte fundamental na integração de sistemas e existem vários no mercado, alguns de grandes fornecedores. Exemplos populares são o RabbitMQ e o WebsphereMQ e, claro, o nosso ActiveMQ.
+
+Alguns até estão disponíveis na nuvem como Amazon SQS e iron.io.
+
+A wikipedia tem uma lista mais extensa com links de brokers disponíveis.
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+Nesse exercício instalaremos o ActiveMQ como mostramos no vídeo. Estamos assumindo que você já tenha o JRE instalado.
+
+1) Baixe o ZIP do ActiveMQ disponível aqui e extraia em um pasta de fácil acesso pelo terminal (por exemplo C:\mensageria).
+https://s3.amazonaws.com/caelum-online-public/jms/apache-activemq-5.12.0-bin.zip
+
+1.1) No Windows é preciso executar o script InstallService.bat no terminal da pasta win32 ou win64 antes de seguir os próximos passos.
+
+2) Abra um terminal e entre na pasta bin da pasta do ActiveMQ.
+
+3) Inicie o ActiveMQ pelo comando:
+
+Windows:
+
+activemq start
+
+Unix:
+
+sh activemq console
+
+Fique atento ao console para pegar possível erros.
+
+O ActiveMQ possui uma console de administração muito simples mas que serve muito bem o nosso propósito. Durante do curso veremos mais detalhes sobre a console mas já dá uma olhada agora:
+
+4) Abra um navegador e acesse: http://localhost:8161/admin
+
+    Login: admin
+    Senha admin
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+Como apresentado no video, vamos criar e usar uma fila (destination). Isto é enviar uma mensagem e testar o consumidor.
+
+1) Através da interface de administração crie uma fila com o nome fila.financeiro:
+
+2) Depois envie uma mensagem para a fila através da interface de administração (botão send).
+
+3) Agora vamos testar o consumidor:
+
+    Para isso baixe o JAR disponível aqui e coloque em uma pasta de fácil acesso
+    	https://s3.amazonaws.com/caelum-online-public/jms/aula-jms.jar
+    Para esta pasta copie também o JAR principal do ActiveMQ activemq-all-5.12.0.jar que está na raiz de instalação do ActiveMQ
+    Abra um novo terminal e entre na pasta onde está o aula-jms.jar e activemq-all-5.12.0.jar
+    Execute no terminal:
+
+No Windows:
+
+java -cp activemq-all-5.12.0.jar;aula-jms.jar br.com.caelum.TesteMensageria consome
+
+No MacOS e Linux:
+
+java -cp activemq-all-5.12.0.jar:aula-jms.jar br.com.caelum.TesteMensageria consome
+
+Você deve ver o texto da mensagem no terminal. Se tiver com dúvidas pode rever essa parte no video.
+
+-----------------------------------
+
+
+Através desse JAR você também pode testar o envio de mensagens na linha de comando.
+
+Abaixo o comando para enviar 10 mensagens de texto.
+
+No Windows:
+
+java -cp activemq-all-5.12.0.jar;aula-jms.jar br.com.caelum.TesteMensageria envia 10
+
+No MaxOS e Linux:
+
+java -cp activemq-all-5.12.0.jar:aula-jms.jar br.com.caelum.TesteMensageria envia 10
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Já ouviu falar dos os 4 Estilos de Integração? No livro famoso chamado de Enterprise Integration Patterns são descritos vários padrões de integração, entre eles os 4 Estilos de Integração:
+
+http://www.enterpriseintegrationpatterns.com/
+
+Você sabe dizer quais são os 4 estilos? Caso esteja com dúvidas, acesse o link acima para descobrir.
+http://www.enterpriseintegrationpatterns.com/
+
+* RPC, Mensageria, Banco compartilhado, Troca de arquivos
+
+
+Os 4 estilos são:
+
+    Mensageria
+    RPC
+    Banco de dados compartilhado
+    Troca de arquivos
+
+Nesse treinamento vamos focar na mensageira, claro!
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

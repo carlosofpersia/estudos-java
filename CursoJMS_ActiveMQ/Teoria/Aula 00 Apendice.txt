@@ -1,0 +1,72 @@
+
+JMS e ActiveMQ: Mensageria com Java:
+
+Curso Java API:
+
+    Integre sistemas com JMS
+    Entenda a diferença entre fila e topicos
+    Tópicos e assinaturas duráveis
+    Tratando erros e poison messages
+    Tudo isso utilizando o MOM da Apache: o ActiveMQ
+
+Conteúdo Detalhado
+
+    Introdução ao Mensageria com ActiveMQ
+        Loja virtual e geração de nota fiscal
+        Problemas de comunicação
+        ActiveMQ, o MOM da Apache Foundation
+        Instalando o ActiveMQ
+        A primeira fila
+        Enviando a mensagem
+        Simulando a entrega
+    Consumindo mensagens com JMS
+        JMS - A API de mensageria
+        Criação do projeto
+        Criando uma Conexão com o ActiveMQ
+        Subindo o ActiveMQ em memória
+        Criando um MessageConsumer
+        Testando o consumidor
+    Recebendo mensagens com MessageListener
+        Tratador de mensagem
+        Subinterfaces da Message
+        Testando o Listener
+    Enviando e distribuindo mensagens com JMS
+        Criando o MessageProducer
+        Competição entre Consumidores
+        Trabalhando de forma distribuída
+    Tópicos e assinaturas duráveis
+        Broadcast de mensagens
+        Modelo Publish-Subscriber
+        Criação do Topic e Producer
+        Assinaturas duráveis
+        Entrega garantida
+        Testando o broadcast
+    Selectores e propriedades da Mensagem JMS
+        Todas as mensagens são importantes?
+        Consumo condicional de mensagens
+        Message Selectors
+        Considerações sobre o Message Selector
+        Alterando propriedades da mensagem JMS
+        Testando o selector
+        Mensagens noLocal
+    Enviando mensagens especificas e tratamento de erro
+        Introdução
+        Mensagens bem construídas
+        Construindo o XML
+        Enviando diretamente um objeto
+        Quando o recebimento da mensagem falha
+        Recebendo ObjectMessage
+        Tentativas de entrega da mensagem
+        Conhecendo a DLQ
+        Consumindo mensagens da DLQ
+        Confirmando o recebimento da mensagem programaticamente
+        Usando acknowledge
+        Trabalhando com Session commit e rollback
+        Para saber mais: Session.DUPS_OK_ACKNOWLEDGE
+    Prioridade e Tempo de vida da mensagem
+        Relembrando dos modelos de entrega
+        Um novo problema: vários logs
+        Definindo o que é importante
+        Persistente vs não persistente
+        Prioridade da mensagem
+        Habilitando prioridades em activemq.xml
