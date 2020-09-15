@@ -1,6 +1,8 @@
 
 Introdução a Mensageria com ActiveMQ 5
 
+http://activemq.apache.org/jndi-support.html
+
 http://activemq.apache.org/components/classic/download/
 http://activemq.apache.org/download.html
 
@@ -19,7 +21,8 @@ Downloads desse capítulo
     Download do JAR (para testar a primeira fila) -> https://s3.amazonaws.com/caelum-online-public/jms/aula-jms.jar
 
 Colocar esses arquivos no mesmo lugar para ser usado com sua classes programada.
-carloss@carloss-note:~/Documents/Desenvolvimento/eclipse-workspace/estudos-java/CursoJMS_ActiveMQ/exemploProfessor$ ls
+carloss@carloss-note:~/Documents/Desenvolvimento/eclipse-workspace/estudos-java/CursoJMS_ActiveMQ/exemploProfessor
+$ ls
 activemq-all-5.12.0.jar, activemq-all-5.15.13.jar,  aula-jms.jar
 
 

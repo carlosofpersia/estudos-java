@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="73161455-1d77-4e81-a756-8b81d0dc47e6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/Aula 04 - jms-comp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/Aula 07 DLQ - activemq-queues.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/Aula04 - activemq_consumers.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/Aula_03.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/Aula_04.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/Aula_05.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/Aula_06.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/Aula_07_1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/Aula_07_2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/Aula_08.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/exemploProfessor/JMS-e-ActiveMQ-Mensageria-com-Java-capitulo1.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/exemploProfessor/JMS-e-ActiveMQ-Mensageria-com-Java-capitulo2.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/exemploProfessor/JMS-e-ActiveMQ-Mensageria-com-Java-capitulo3.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/exemploProfessor/JMS-e-ActiveMQ-Mensageria-com-Java-capitulo4.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/exemploProfessor/JMS-e-ActiveMQ-Mensageria-com-Java-capitulo5.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/exemploProfessor/JMS-e-ActiveMQ-Mensageria-com-Java-capitulo6.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/exemploProfessor/JMS-e-ActiveMQ-Mensageria-com-Java-capitulo7.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/exemploProfessor/jms-modelo.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/exemploProfessor/jms-stage-cap3.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/exemploProfessor/jms-stage-cap5.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/exemploProfessor/jms-stage-cap6.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/exemploProfessor/jms-stage-cap7.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/exemploProfessor/projeto-final-jms-log.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/exemploProfessor/projeto-final-jms.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/allclasses-frame.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/allclasses-noframe.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/constant-values.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/deprecated-list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/help-doc.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/index-all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/BytesMessage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/Connection.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/ConnectionConsumer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/ConnectionFactory.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/ConnectionMetaData.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/DeliveryMode.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/Destination.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/ExceptionListener.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/IllegalStateException.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/InvalidClientIDException.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/InvalidDestinationException.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/InvalidSelectorException.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/JMSException.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/JMSSecurityException.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/MapMessage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/Message.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/MessageConsumer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/MessageEOFException.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/MessageFormatException.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/MessageListener.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/MessageNotReadableException.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/MessageNotWriteableException.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/MessageProducer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/ObjectMessage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/Queue.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/QueueBrowser.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/QueueConnection.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/QueueConnectionFactory.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/QueueReceiver.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/QueueRequestor.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/QueueSender.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/QueueSession.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/ResourceAllocationException.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/ServerSession.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/ServerSessionPool.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/Session.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/StreamMessage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/TemporaryQueue.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/TemporaryTopic.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/TextMessage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/Topic.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/TopicConnection.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/TopicConnectionFactory.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/TopicPublisher.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/TopicRequestor.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/TopicSession.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/TopicSubscriber.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/TransactionInProgressException.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/TransactionRolledBackException.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/XAConnection.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/XAConnectionFactory.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/XAQueueConnection.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/XAQueueConnectionFactory.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/XAQueueSession.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/XASession.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/XATopicConnection.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/XATopicConnectionFactory.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/XATopicSession.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/package-frame.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/javax/jms/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/overview-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/package-list" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/packages.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/serialized-form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/doc/api/stylesheet.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/lib/javax.jms.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/lib/jms.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/BytesMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/Connection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/ConnectionConsumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/ConnectionFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/ConnectionMetaData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/DeliveryMode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/Destination.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/ExceptionListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/IllegalStateException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/InvalidClientIDException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/InvalidDestinationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/InvalidSelectorException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/JMSException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/JMSSecurityException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/MapMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/Message.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/MessageConsumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/MessageEOFException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/MessageFormatException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/MessageListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/MessageNotReadableException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/MessageNotWriteableException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/MessageProducer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/ObjectMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/Queue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/QueueBrowser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/QueueConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/QueueConnectionFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/QueueReceiver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/QueueRequestor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/QueueSender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/QueueSession.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/ResourceAllocationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/ServerSession.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/ServerSessionPool.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/Session.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/StreamMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/TemporaryQueue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/TemporaryTopic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/TextMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/Topic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/TopicConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/TopicConnectionFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/TopicPublisher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/TopicRequestor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/TopicSession.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/TopicSubscriber.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/TransactionInProgressException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/TransactionRolledBackException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/XAConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/XAConnectionFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/XAQueueConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/XAQueueConnectionFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/XAQueueSession.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/XASession.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/XATopicConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/XATopicConnectionFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/jms-apidocs/jms1.1/src/share/javax/jms/XATopicSession.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/src/br/com/caelum/jms/dlq/TesteConsumidorAcknowledgeAula7_3.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/src/br/com/caelum/jms/dlq/TesteConsumidorDlqAula7_2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/src/br/com/caelum/jms/dlq/TesteProdutorAcknowledgeAula7_3.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/src/br/com/caelum/jms/dlq/TesteProdutorDlqAula07_2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/src/br/com/caelum/jms/logs/TesteConsumidorAula08.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/src/br/com/caelum/jms/logs/TesteProdutorAula08.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/src/br/com/caelum/jms/queue/TesteConsumidorAula03.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/src/br/com/caelum/jms/queue/TesteProdutorAula04.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/src/br/com/caelum/jms/queue/TesteQueueBrowserMonitoramentoAula04.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/src/br/com/caelum/jms/topic/TesteConsumidorTopicComercialAula5.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/src/br/com/caelum/jms/topic/TesteConsumidorTopicEstoqueAula05.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/src/br/com/caelum/jms/topic/TesteConsumidorTopicEstoqueOutraAssinaturaAula5.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/src/br/com/caelum/jms/topic/TesteConsumidorTopicEstoqueSelectorAula06.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/src/br/com/caelum/jms/topic/TesteProdutorTopicAula05.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/src/br/com/caelum/jms_jaxb/TesteConsumidorTopicComercialAula7_1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/src/br/com/caelum/jms_jaxb/TesteProdutorTopicAula07_1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/src/br/com/caelum/modelo/Item.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/src/br/com/caelum/modelo/Pedido.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/src/br/com/caelum/modelo/PedidoFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria/ApacheKafka.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.log" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.ui.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.ui.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.debug.ui/dialog_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.debug.ui/dialog_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.debug.ui/launchConfigurationHistory.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.debug.ui/launchConfigurationHistory.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.jdt.core/externalFilesCache" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.jdt.core/externalFilesCache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.jdt.core/nonChainingJarsCache" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.jdt.core/nonChainingJarsCache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.jdt.core/savedIndexNames.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.jdt.core/savedIndexNames.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.jdt.core/variablesAndContainers.dat" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.jdt.core/variablesAndContainers.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.jdt.launching/.install.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.jdt.launching/.install.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.jdt.launching/libraryInfos.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.jdt.launching/libraryInfos.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.jdt.ui/QualifiedTypeNameHistory.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.jdt.ui/QualifiedTypeNameHistory.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.jdt.ui/dialog_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.jdt.ui/dialog_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.m2e.logback.configuration/0.log" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.m2e.logback.configuration/0.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.pde.core/.cache/clean-cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.pde.core/.cache/clean-cache.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.ui.ide/dialog_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.ui.ide/dialog_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.ui.workbench.texteditor/dialog_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.ui.workbench.texteditor/dialog_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.wst.sse.core/task-tags.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.wst.sse.core/task-tags.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/version.ini" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/version.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/.classpath" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/Aula_01.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/Aula_01.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/Aula_02.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/Aula_02.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/exemploProfessor/activemq-all-5.12.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/exemploProfessor/activemq-all-5.12.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/exemploProfessor/activemq-all-5.15.13.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/exemploProfessor/activemq-all-5.15.13.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/exemploProfessor/aula-jms.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/Teoria/exemploProfessor/aula-jms.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/src/br/com/caelum/jms/TesteConsumidor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/src/br/com/caelum/jms/queue/TesteConsumidorAula02.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/src/jndi.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../CursoJMS_ActiveMQ/src/jndi.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1hXxZqtYtRs2ukvajes3zZa77PB" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="br.com.alura.ecommerce" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="NewOrderMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="br.com.alura.ecommerce.NewOrderMain" />
+      <module name="Kafka" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.alura.ecommerce.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.NewOrderMain" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="73161455-1d77-4e81-a756-8b81d0dc47e6" name="Default Changelist" comment="" />
+      <created>1600171298630</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600171298630</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2370" y="364" width="588" height="350" key="#Notifications" timestamp="1600171503806">
+      <screen x="1366" y="0" width="2560" height="1080" />
+    </state>
+    <state x="2370" y="364" width="588" height="350" key="#Notifications/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1600171503806" />
+    <state x="2152" y="116" width="1024" height="845" key="#Project_Structure" timestamp="1600171658371">
+      <screen x="1366" y="0" width="2560" height="1080" />
+    </state>
+    <state x="2152" y="116" width="1024" height="845" key="#Project_Structure/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1600171658371" />
+    <state x="2127" y="197" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600171485065">
+      <screen x="1366" y="0" width="2560" height="1080" />
+    </state>
+    <state x="2127" y="197" key="#com.intellij.execution.impl.EditConfigurationsDialog/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1600171485065" />
+    <state x="2397" y="317" width="524" height="444" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1600172110786">
+      <screen x="1366" y="0" width="2560" height="1080" />
+    </state>
+    <state x="2397" y="317" width="524" height="444" key="#com.intellij.ide.util.PackageChooserDialog/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1600172110786" />
+    <state x="2422" y="429" width="484" height="219" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1600172113108">
+      <screen x="1366" y="0" width="2560" height="1080" />
+    </state>
+    <state x="2422" y="429" width="484" height="219" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1600172113108" />
+    <state x="1513" y="98" width="2313" height="882" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1600171633101">
+      <screen x="1366" y="0" width="2560" height="1080" />
+    </state>
+    <state x="1513" y="98" width="2313" height="882" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1600171633101" />
+    <state x="2360" y="104" width="618" height="870" key="find.popup" timestamp="1600171515847">
+      <screen x="1366" y="0" width="2560" height="1080" />
+    </state>
+    <state x="2360" y="104" width="618" height="870" key="find.popup/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1600171515847" />
+  </component>
+</project>

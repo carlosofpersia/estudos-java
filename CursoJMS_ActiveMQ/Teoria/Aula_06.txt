@@ -1,0 +1,248 @@
+
+http://0.0.0.0:8161/admin/index.jsp
+
+Home | Queues | Topics |
+
+-->Topics
+
+/************************************************/
+
+* Acessar o diretório bin do activemq baixado pelo terminal e rodar o comando:
+carloss@carloss-note:~/Documents/Desenvolvimento/eclipse-workspace/JmsActiveMQ/apache-activemq-5.15.13/bin$ sh activemq console
+$ sh activemq console
+
+admin
+admin
+
+/************************************************/
+
+* Selectores e propriedades da Mensagem JMS
+
+
+
+No capítulo anterior, vimos outro modelo de entrega, o tópico. Aprendemos que não há diferença da fila no que diz respeito à criação e envio de mensagens. A diferença mora na entrega da mensagem.
+
+Vimos que nossos producers enviam suas mensagem para a fila e que ela se encarrega de balancear sua entrega, ou seja, apenas um consumer receberá a mensagem. Porém, há situações em que faz sentido avisar mais de um sistema que a mensagem foi recebida através de um broadcast. Neste caso não usamos uma fila, mas um tópico.
+
+Aprendemos também que o tópico por padrão não garante a entrega. Por exemplo, se não houver nenhum consumidor online, perderemos a mensagem enviada.
+
+Um outro ponto importante, quando estamos falando de fila, é que não é incomum ouvirmos o termo sender para nossos producers e receiver para nossos consumers, caracterizando o modelo sender/receiver. Já no tópico, os producers são chamados de publisher e os consumers de subscriber. Nesta aula, continuaremos a focar no modelo publisher/subscriber.
+
+imagem aqui
+
+* Consumo condicional de mensagens
+Vamos voltar para nosso estoque, organizando a baixa de produtos. Um detalhe é que muitos produtos de uma loja virtual não precisam de baixa no estoque, como no caso dos livros digitais. Dentro desse contexto, precisamos definir algum critério na mensagem para que o estoque saiba qual delas é de seu interesse, em outras palavras: o consumer quer consumir todas as mensagem, mas pode ter algum critério de rejeição de mensagem.
+
+Message Selectors
+Vamos criar uma cópia do arquivo TesteConsumidorTopicoEstoque.java, mas com o nome TesteConsumidorTopicoEstoqueSelector.java. O sufixo Selector não é por acaso, pois no mundo JMS chamamos os critério de consumo das mensagens de Selector.
+
+O código é muito parecido com o que já vimos, por isso fizemos uma cópia. Vamos alterar apenas a linha
+
+MessageConsumer consumer = session.createDurableSubscriber(topico, “assinatura”);
+O método createDurableSubscriber(..) é sobrecarregado e um método que nos interessa é aquele que recebe uma string de selector e um booleano. Vamos entender um pouquinho mais desse Message Selector a partir do Javadoc.
+
+https://docs.oracle.com/javaee/6/api/javax/jms/Message.html
+
+A interface principal do JMS que se chama Message é bem esclarecedora. Nela, há uma documentação sobre os Message Selector. Duas coisas merecem atenção.
+
+Considerações sobre o Message Selector
+Não podemos usar messages selectors para buscar algum valor dentro do corpo da mensagem, ou seja, nosso XML, porém ele permite buscar dentro do cabeçalho e propriedades da mensagem. A consequência disso para nós é que precisaremos de alguma forma alterar o cabeçalho e propriedades da mensagem para que o message selector execute seu papel.
+
+O segundo ponto é que os messages selectors possuem uma sintaxe parecida com SQL para busca de informações.
+
+Vamos alterar nosso código, indicando que se houver a propriedade ebook com valor false nosso estoque está interessando na mensagem. É uma regra simples, poderia ser outra:
+
+MessageConsumer consumer = session.createDurableSubscriber(topico, "assinatura", "ebook= false", false);
+##Alterando propriedades da mensagem JMS
+
+É claro, nossas mensagens precisam ser enviadas com essa informação. Vamos alterar a classe TesteProdutoTopico. Uma mensagem (Message) tem uma série de métodos e estamos interessados no setBooleanProperty que recebe como primeiro parâmetro o nome da propriedade e o segundo seu valor.
+
+message.setBooleanProperty("ebook", false);
+Antes de rodarmos, em nossa classe TesteConsumidorTopicoEstoqueSelector, vamos alterar a assinatura para “assinatura-selector” para deixar ainda mais claro.
+
+##Testando o selector
+
+Rodando nosso teste, lá no ActiveMQ, vemos que nosso "assinatura-seletor" já está registrado. Inclusive ele mostra o seletor “ebook=false” para sabermos qual critério ele utilizará.
+
+Agora, vamos rodar nosso TesteProdutorTopic. Tudo funciona, passou no critério do nosso seletor, mas também vamos testar o contrário, vamos enviar a mensagem com o seletor "ebook=true". Não deve aparecer nenhuma mensagem de log do nosso estoque, pois ele deve ignorar essa mensagem.
+
+Excelente, aprendemos a criar um critério para indicar o interesse ou não de uma mensagem em nosso tópico. Agora, vamos fazer o seguinte: se a propriedade não existir, isto é, "ebook", o estoque deverá sempre receber. Vamos testar. Bem, não recebeu a mensagem, então, por padrão, se não há a propriedade na mensagem ela é ignorada. Porém, queremos que ele processe, caso ela não exista. Para isso, na string do critério do selector, vamos adicionar "ebook is null OR ebook=false". Um teste rapidamente mostra que o resultado é o esperado.
+
+##Mensagens noLocal
+
+Agora, vamos voltar àquele parâmetro, logo após o nosso selector, que é false. Ele se chama "noLocal" e diz respeito à conexão. Uma conexão pode servir para criar várias assinaturas, mas também produtores. Poderíamos usar a mesma conexão para também enviar a mensagem. A questão é se estamos interessados em mensagens enviadas pela nossa própria conexão. Com false indicamos que não queremos receber essas mensagens. Para nós não faz diferença, por que usamos sempre uma nova conexão para enviar ou receber uma mensagem.
+
+
+
+/**************************************************/
+
+
+2+ Consumindo mensagens com critério
+
+Muitas vezes queremos que nosso consumer não possua interesse em todas as mensagens, mas apenas nas que sigam algum critério. Podemos criar critérios através dos:
+
+Selectors -> Usamos selectors (seletores) para que consumers processem determinadas mensagens e não todas.
+
+
+
+
+
+3+ Características de Seletores
+
+sobre os message selectors:
+
+
+Não podemos usar messages selectors para buscar algum valor dentro do corpo da mensagem, porém ele permite buscar dentro do cabeçalho e propriedades da mensagem.
+
+- Não podem ser usados para buscar valores dentro do corpo da mensagem
+
+- Possuem uma sintaxe parecida com SQL para busca de informações.
+
+- Buscam valores apenas nos headers (cabeçalho) e properties (propriedades) das mensagens.
+
+
+O segundo ponto é que os messages selectors possuem uma sintaxe parecida com SQL para busca de informações.
+
+
+
+
+
+4+ Um pouco mais sobre Selectoress
+
+Temos o seguinte consumer:
+
+MessageConsumer consumer = session.createDurableSubscriber(topico, "assinatura", "ebook=true", false);
+E as seguintes afirmações sobre ele:
+
+a) O message selector é o terceiro parâmetro.
+
+b) Só processará mensagens onde a informação da propriedade ebook seja verdadeira.
+
+c) Podemos adicionar mais uma condição no message selector através do operador OR
+
+Message selectors são armazenados no header da mensagem e nunca no corpo. Podemos ter regras mais complexas, adicionando no terceiro parâmetro o operador lógico OR.
+
+
+/******************************************************************************/
+
+
+
+5 + Mãos à obra: Selecionado as mensagens
+
+
+
+Como mostrado no video, vamos alterar nosso código, indicando que se houver a propriedade ebook com valor false na mensagem JMS, nosso estoque está interessando na mensagem.
+
+1) No Eclipse, no projeto jms, abra a classe TesteConsumidorTopicoEstoque (ou copie ela) e altere a linha que cria a assinatura durável de seguinte maneira:
+
+MessageConsumer consumer = session.createDurableSubscriber(topico, "assinatura", "ebook=false", false);
+2) Com ActiveMQ no ar rode a classe TesteConsumidorTopicoEstoque. O consumidor deve estar online, pronto para receber mensagens.
+
+3) Agora envie uma mensagem com uma propriedade. Para isso abre a classe TesteProdutorTopico e adicione uma propriedade na mensagem:
+
+message.setBooleanProperty("ebook", false);
+4) Rode a classe TesteProdutorTopico e verifique se o consumidor recebeu a mensagem. Teste também o contrário (com ebook true).
+
+****** Opniao do intrutor *****
+
+Uma vez funcionando teste também se o consumidor estoque recebe as mensagens se a propriedade ebook não existe.
+
+Para fazer isso funcionar altere o selector na classe TesteConsumidorTopicoEstoque da seguinte maneira:
+
+ ebook is null OR ebook=false
+
+
+/******************************************************************************/
+
+
+
+
+6+ Novamente o JMS segue um padrão de integração, o Selective Consumer:
+
+
+
+Segue também o link da site sobre os padrões:
+
+http://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageSelector.html
+
+Reflita sobre as desvantagens no uso de selectores e depois clique em continuar para ver a opinião do instrutor.
+
+Opinião do instrutor
+
+Uma desvantagem seria que a regra/condição do recebimento da mensagem está nos consumidores. Muitas vezes queremos centralizar essas regras no lado do servidor. Para isso não devemos usar Selective Consumers e sim apenas consumidores simples. No lado do servidor (ActiveMQ) aplicaríamos um filtro, central, que define se a mensagem pode passar ou não.
+
+E claro que existe também para isso um padrão de integração, o Message Filter: http://www.enterpriseintegrationpatterns.com/patterns/messaging/Filter.html
+
+O JMS e ActiveMQ não dão suporte ao este comportamento mas existem brokers mais sofisticados onde isso é possível. Exemplos disso são os Enterprise Service Bus (ESB) que implementam a maioria dos padrões de integração.
+
+
+/********************************************************************/
+
+7+ Para saber mais: Autenticação e Autorização
+
+https://activemq.apache.org/xml-configuration.html
+
+Até agora usamos os nossos consumers e producers sem nenhuma restrição de acesso. Em outras palavras, não foi preciso se autenticar, não tem autorização e consequentemente qualquer um poderá acessar o ActiveMQ e usar tópicos e filas.
+
+Como isso é algo importante no dia-a-dia, o ActiveMQ possui uma configuração que permite definir usuários, grupos e permissões. Vamos ver rapidamente como habilitar essa configuração.
+
+Definindo usuários e grupos
+Para definir usuários e seus grupos devemos usar plugins do ActiveMQ, no nosso caso um plugin de autenticação e outro de autorização. O primeiro passo é adicionar no arquivo conf/activemq.xml os usuários, senhas e seus grupos através do <simpleAuthenticationPlugin>.
+
+No XML, logo após o elemento <broker ...> adicione:
+
+<plugins>
+  <simpleAuthenticationPlugin anonymousAccessAllowed="false">
+    <users>
+        <authenticationUser username="admin" password="admin" groups="users,admins"/>
+        <authenticationUser username="user" password="senha" groups="users"/>
+        <authenticationUser username="guest" password="senha" groups="guests"/>
+    </users>
+  </simpleAuthenticationPlugin>
+
+  <!-- aqui vem ainda o authorizationPlugin -->
+</plugins>
+Repare que configuramos anonymousAccessAllowed="false". Isso significa que não podemos mais conectar ao ActiveMQ sem ter um usuário definido. Ao executar o código Java que realiza a conexão, recebemos uma exceção:
+
+java.lang.SecurityException: User name [null] or password is invalid.
+Faz todo sentido pois agora devemos nos autenticar!
+
+Usando uma conexão com usuário e senha
+Para definir o user name e password devemos mexer no código Java. Para nos conectar ao ActiveMQ sempre usamos o método createConnection() da interface ConnectionFactory. Esse método é sobrecarregado e possui uma versão que recebe o user name e password:
+
+Connection connection = cf.createConnection("user", "senha");
+Ao reiniciar o ActiveMQ com plugin de autenticação configurado podemos estabelecer uma conexão autenticada através do código Java!
+
+Definindo permissões
+Agora só falta dizer quais são as permissões de cada grupo. Existem 3 permissões disponíveis:
+
+leitura (read);
+escrita (write);
+administrativa (admin).
+Cada permissão fica associada a um tópico/fila e aos seus grupos. Repare que usamos os grupos users, admins e guests. Sabendo disso, segue um exemplo de autorização para o tópico comercial:
+
+<authorizationEntry topic="comercial" read="users" write="users" admin="users,admins" />
+O grupo users pode ler, escrever e administrar o tópico e o grupo admin também possui a permissão administrativa.
+
+A configuração completa deve ser feita dentro do arquivo conf/activemq.xml, dentro do elemento <plugins>. No nosso exemplo o grupo users tem acesso completo às destinations financeiro e comercial:
+
+<authorizationPlugin>
+    <map>
+      <authorizationMap>
+        <authorizationEntries>
+          <authorizationEntry queue="fila.financeiro" read="users" write="users" admin="users,admins" />
+          <authorizationEntry topic="comercial" read="users" write="users" admin="users,admins" />
+          <authorizationEntry topic="ActiveMQ.Advisory.>" read="users,admins" write="users,admins" admin="users,admins"/>
+        </authorizationEntries>
+        <tempDestinationAuthorizationEntry>
+          <tempDestinationAuthorizationEntry read="admin" write="admin" admin="admin"/>
+        </tempDestinationAuthorizationEntry>
+      </authorizationMap>
+    </map>
+</authorizationPlugin> 
+Além do nosso tópico comercial e a fila financeira, existe uma terceira configuração relacionada ao tópico ActiveMQ.Advisory.. Esse tópico já existe por padrão no ActiveMQ e recebe mensagens administrativas (AdvisoryMessage) sempre que for criado um consumer, producer e um novo destination. Mais infos em: http://activemq.apache.org/advisory-message.html
+
+Uma vez feita toda a configuração dos plugins, basta reiniciar o ActiveMQ. Além disso, como já falamos, devemos usar no código Java o usuário e a senha para nos conectar corretamente com a fila financeiro ou com o tópico comercial.
+
+Você pode ver a configuração completa nesse arquivo: activemq.xml
+
