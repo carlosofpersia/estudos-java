@@ -3,17 +3,21 @@
 /*************************************************/
 
 Instalacao
+    Capitulo 01.2 Instalando o Kafka localmente
+
+http://www.basef.com.br/index.php/Atalhos_do_IntelliJ_Idea
 
 // site do zookeeper
 https://zookeeper.apache.org/releases.html#download
 // site do kafka
 https://kafka.apache.org/downloads
 https://kafka.apache.org/quickstart
-
 //plugins pom do maven para kakfa:
 https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients/2.6.0
 //plugins pom do maven para log:
 https://mvnrepository.com/artifact/org.slf4j/slf4j-simple/1.7.30
+//problema ao executar network do kafka
+https://cursos.alura.com.br/forum/topico-uncaught-exception-in-thread-kafka-producer-network-thread-producer-1-124051
 
 --------------------------------------------------------------------------------
 
@@ -32,24 +36,35 @@ $ ./bin/kafka-topics.sh --create --topic LOJA_NOVO_PEDIDO --bootstrap-server loc
 4. Listar os topicos existentes
 carloss@carloss-note:~/Documents/Desenvolvimento/eclipse-workspace/JmsKafka/kafka_2.13-2.6.0
 $ ./bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+$ ./bin/kafka-topics.sh --describe --bootstrap-server localhost:9092
 
 5. Produzir mensagens
 carloss@carloss-note:~/Documents/Desenvolvimento/eclipse-workspace/JmsKafka/kafka_2.13-2.6.0
 $ ./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic LOJA_NOVO_PEDIDO
+$ ./bin/kafka-topics.sh --describe --topic LOJA_NOVO_PEDIDO --bootstrap-server localhost:9092
 > pedido_0, 550
 > pedido_1, 330
 > pedido_2, 100
 
 6. Consumir as mensagens
 carloss@carloss-note:~/Documents/Desenvolvimento/eclipse-workspace/JmsKafka/kafka_2.13-2.6.0
-$ bin/kafka-console-consumer.sh --topic LOJA_NOVO_PEDIDO --bootstrap-server localhost:9092 --from-beginning
+$ ./bin/kafka-console-consumer.sh --topic LOJA_NOVO_PEDIDO --bootstrap-server localhost:9092 --from-beginning
 
 /*************************************************/
 
-7. Criando projeto JAVA + MAVEN
+7. Criando projeto JAVA + MAVEN -> faco as configuracoes no InteliJ ...
 
+    7.1 Criar um produtor de mensagem -> NewOrderMain
+        criar o produtor de mensagem na classe - NewOrderMain - para produzir uma nova mensagem ao kafka.
+        executo o passo 4. se der algum erro, rodar novamente, pois o topic ainda nao existe.
+        $ ./bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+        $ ./bin/kafka-topics.sh --describe --bootstrap-server localhost:9092
+        executo o passo 6. com o nome do meu topico - ECOMMERCE_NEW_ORDER - que foi definido na classe - NewOrderMain - para consumir a mensagem enviada.
+        $ ./bin/kafka-console-consumer.sh --topic ECOMMERCE_NEW_ORDER --bootstrap-server localhost:9092 --from-beginning
 
-
+    7.2 Criar um consumidor de mensagem -> FraudDetectorService
+        criar o consumidor de mensagem na classe - FraudDetectorService - para receber as mensagens do kafka.
+        rodar o 7.2 e depois o 7.1 para produzir e consumir.
 
 
 
@@ -241,6 +256,27 @@ Extraia uma camada de abstração própria com boas práticas
 
 /*****************************************************************/
 
-01.2 Instalando o Kafka localmente
+
+
+
+06. Produtores x Consumidores
+
+Em um sistema bancário, um usuário inicia o processo de uma transação bancária, qual abordagem é baseada em produtores e consumidores de mensagens?
+R. A requisição é feita por um site ou app cujo servidor envia uma mensagem de pedido de transação bancária.
+Essa abordagem mistura o processo síncrono e a mensagem.
 
 /*****************************************************************/
+
+08. O que aprendemos nessa aula:
+
+O que são produtores
+O que são consumidores
+Criação de tópicos manualmente
+Como instalar e rodar o Kafka.
+
+
+/*****************************************************************/
+
+
+
+
