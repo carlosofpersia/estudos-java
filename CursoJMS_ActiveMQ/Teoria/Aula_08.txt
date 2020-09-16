@@ -1,0 +1,235 @@
+
+
+Home | Queues | Topics |
+
+--> Queues ok 
+--> Topics ok
+
+/************************************************/
+
+* Acessar o diretório bin do activemq baixado pelo terminal e rodar o comando:
+carloss@carloss-note:~/Documents/Desenvolvimento/eclipse-workspace/JmsActiveMQ/apache-activemq-5.15.13/bin$ sh activemq console
+$ sh activemq console
+
+http://0.0.0.0:8161/admin/index.jsp
+admin
+admin
+
+/************************************************/
+
+Aula 08 *  Prioridade e Tempo de vida da mensagem
+
+/************************************************/
+
+ https://activemq.apache.org/how-can-i-support-priority-queues
+
+ $ nano /home/carloss/Documents/Desenvolvimento/eclipse-workspace/JmsActiveMQ/apache-activemq-5.15.13/conf/activemq.xml
+ // Adicionar na linha 45: 
+
+ <policyEntry queue=">" prioritizedMessages="true"/>
+
+/************************************************/
+
+
+01+ Prioridade e Tempo de vida da mensagem
+
+
+##Revisão
+
+A motivação inicial do uso do JMS era a nossa loja virtual onde é criado um pedido a partir de uma compra. Com o pedido em mãos, precisávamos nos integrar com outros sistemas e utilizamos um MOM para desacoplar nossos sistemas, sendo assim, a geração de um e-book e o processamento no sistema financeiro podem acontecer assincronamente.
+
+
+Dentro desse contexto, vimos dois modelos de entrega: a fila e o tópico. Na hora que estamos enviando a mensagem para o MOM, não há diferença entre fila e tópico, porém quando nosso MOM entrega nossas mensagens a coisa muda de figura. Enquanto a fila envia exatamente para apenas um, o tópico espalha a mensagem. Neste capítulo, vamos mudar um pouco o nosso caso de uso.
+
+
+Um novo problema: vários logs
+Arquivos de logs são comuns em sistemas e é muito provável que todos aqui já tenham visto um. Alguns fornecem informações sobre o sistema, outros o que está sendo executado e por aí vai. Cada aplicação de cada sistema gera seu arquivo de log e se quisermos saber o que está acontecendo com cada um deles precisaríamos olhar diversos arquivos. A ideia agora é centrar o acesso aos arquivo de log em um único lugar.
+
+
+Em nossa infraestrutura teremos uma aplicação com a responsabilidade de analisar os logs. Todas as aplicações enviaram uma mensagem JMS para um fila log, deixaremos de trabalhar com pedidos aqui. Os processadores agora poderão analisar os logs, tudo centralizado.
+
+
+O problema é quando os processadores estão offline. A fila continuará a receber as mensagens de log de todas as aplicações, gerando um volume muito grande de informações. Precisamos pensar como a fila lidará com esse grande volume de informações.
+
+Definindo o que é importante
+Nossos log's possuem informações mais importantes e menos importantes. Mensagens menos importantes são as INFO. Vamos começar por elas.
+
+Podemos informar para nosso ActiveMQ que mensagens de erro INFO podem ter um tratamento diferente.
+
+Vamos alterar nosso TesteProdutorFila.java. No método message.send, vamos passar mais algumas parâmetros:
+
+// TesteProdutorFila
+// código anterior omitido
+Message message = session.createTextMessage("INFO | ....");
+producer.send(message, DeliveryMode.NON_PERSISTENT);
+// código posterior omitido
+Persistente vs não persistente
+O padrão é DeliveryMode.PERSISTENT, fazendo o ActiveMQ guardar a mensagem em um banco de dados. Caso ele tenha sido reiniciado, não haverá problema, pois ele recuperará a mensagem que foi salva. Mas no caso dos nossos log's do tipo INFO, não precisamos dessa persistência. Se o ActiveMQ reiniciar e perdermos essas informações, não será de grande importância.
+
+Prioridade da mensagem
+O próximo parâmetro é a prioridade. Podemos usar um número inteiro de 0 até 9, da menor prioridade para a maior. Quando temos várias mensagens na fila, o ActiveMQ consegue reorganizá-la em termos de prioridade.
+
+// código anterior omitido
+producer.send(message, DeliveryMode.NON_PERSISTENT, 3);
+// código posterior omitido
+E o último parâmetro é o tempo de vida. Se ninguém conseguir consumir a mensagem, podemos deixá-la viva por algum tempo e, se esse tempo expirar, a mensagem será descartada. Vamos usar 5 segundos, mas em milissegundos:
+
+// código anterior omitido
+producer.send(message, DeliveryMode.NON_PERSISTENT, 3, 5000);
+// código posterior omitido
+Habilitando prioridades em activemq.xml
+Podemos saber ainda mais sobre a parte de prioridade na própria documentação online do ActiveMQ (http://activemq.apache.org/how-can-i-support-priority-queues.html). Lá, vemos que por padrão o ActiveMQ não respeita a prioridade das mensagens, precisamos ativar esse recurso em sua configuração.
+
+Precisamos colocar no XML do ActiveMQ a configuração:
+
+ <destinationPolicy>
+  <policyMap>
+    <policyEntries>
+      <policyEntry queue=">" prioritizedMessages="true"/>
+   ...
+Vamos editar o arquivo apache-activemq-5.12.0/conf/activemq.xml e adicionar a configuração:
+
+<policyEntry queue=">" prioritizedMessages="true"/>
+Com a alteração feita, basta enviarmos uma mensagem e verificarmos no admin web do ActiveMQ se ela está na fila.
+
+Agora, vamos parar o ActiveMQ, subindo-o logo em seguida para que leve em consideração a nova configuração. Se olharmos a mensagem, ela não está mais lá, porque não é persistente.
+
+Agora, vamos enviar algumas mensagens com diferentes prioridades e vê-las no admin o ActiveMQ (INFO, DEBUG, ERROR).
+
+Basta executar nosso consumidor e ver a ordem na qual ele consumirá as mensagens.
+
+
+
+
+/*******************************************************/
+
+
+02+ PERSISTENT E NON_PERSISTENT
+
+Em suas palavras, qual a diferença entre os modos NON_PERSISTENT e PERSISTENT?
+
+O modo NON_PERSISTENT apagará todas as mensagem que não foram consumidas assim que o ActiveMQ reiniciar.
+
+Opinião do instrutor
+
+O modo padrão do ActiveMQ é PERSISTENT . Este modo guardar a mensagem em um banco de dados. Caso o ActiveMQ tenha sido reiniciado, não haverá problema, pois ele recuperará a mensagem que foi salva. O modo NON_PERSISTENT apagará todas as mensagem que não foram consumidas assim que o ActiveMQ reiniciar.
+
+
+
+/*******************************************************/
+
+03+ Priorização de mensagens
+
+Temos as seguintes afirmações sobre priorização de mensagens no ActiveMQ:
+
+a) O ActiveMQ não vem por padrão com o suporte a priorização ativado, sendo necessário ativá-lo no arquivo activemq.xml
+
+b) producer.send(message, DeliveryMode.NON_PERSISTENT, 3, 5000);. Neste exemplo, a prioridade é o terceiro parâmetro do método send do producer.
+
+O ActiveMQ não suporta priorização de mensagens por padrão e para ativá-la precisamos adicionar a seguinte configuração em seu arquivo activemq.xml:
+
+ <destinationPolicy>
+  <policyMap>
+    <policyEntries>
+      <policyEntry queue=">" prioritizedMessages="true"/>
+
+
+
+No seguinte exemplo:
+
+producer.send(message, DeliveryMode.NON_PERSISTENT, 3, 5000);
+
+O terceiro parâmetro é um interger que indica o nível de priorização. Vai de 0 a 9. O valor 0 é a menor priorização e o valor 9 é a maior.
+
+
+
+/*******************************************************/
+
+04+ Detalhes da criação de mensagens
+
+Qual das opções abaixo configura um producer para enviar uma mensagem não persistente, de extrema prioridade que que expirará em 10 segundos?
+
+producer.send(message, DeliveryMode.NON_PERSISTENT, 9, 10000);
+
+O parâmetro 9 é a prioridade máxima de uma mensagem e o parâmetro 10000 é a quantidade de tempo em milissegundos. É através de DeliveryMode.NON_PERSISTENT que criamos uma mensagem não persistente.
+
+
+
+/*******************************************************/
+
+05+ Mãos à obra: Projeto log
+
+
+Igual no vídeo vamos criar um novo projeto para enviar mensagens JMS com prioridades e outras configurações.
+
+1) Com ActiveMQ rodando acesse o console de administração:
+
+2) No console crie uma nova fila: fila.log
+
+3) Agora no Eclipse crie um novo projeto jms-log. Copie o JAR activemq-all-5.12.0.jar do projeto anterior e configure o classpath.
+
+4) No projeto jms-log crie uma nova classe ProcessadorLog para consumir as mensagens JMS.
+
+*Em dúvida olhe nas classes criadas no projeto anterior.
+
+5) Na pasta src crie um novo arquivo jndi.properties:
+
+java.naming.factory.initial = org.apache.activemq.jndi.ActiveMQInitialContextFactory
+java.naming.provider.url = tcp://localhost:61616
+queue.LOG = fila.log
+6) Agora crie a classe para enviar mensagens JMS para a fila.log. Chame a classe de ProdutorMensagemLog.
+
+7) Teste o envio da mensagem com um tempo de vida de 5s:
+
+Message message = session.createTextMessage("INFO | .....");
+producer.send(message,DeliveryMode.NON_PERSISTENT, 1, 5000);
+8) Sem ter nenhum consumidor online, envie uma mensagem para a fila.log. Verifique no console de administração do ActiveMQ se a mensagem realmente chegou.
+
+
+
+Opinião do instrutor
+
+Como temos configurado um time-to-live (TTL) de 5s a mensagem deve desaparecer da fila depois de um tempo.
+
+Repare também que enviamos uma mensagem no modo NON_PERSISTENT. Envie duas novas mensagens (com um tempo de vida um pouco maior), a primeira PERSISTENT outra NON_PERSISTENT. Reinicie o ActiveMQ, a fila deve perder a segunda mensagem já que ela não foi persistida. Ok?
+
+
+
+
+/*******************************************************/
+
+06+ Mãos à obra: Prioridades da mensagem
+
+Como apresentado no vídeo, vamos testar também a fila.log para respeitar as prioridades das mensagens.
+
+1) Para tal, abra o arquivo de configuração do ActiveMQ que está na pasta conf da instalação do mesmo:
+
+apache-activemq-5.12.0/conf/activemq.xml
+
+2) No arquivo activemq.xml é preciso configurar o suporte à fila com prioridades. Logo abaixo da tag <policyEntries> adicione:
+
+<policyEntry queue=">" prioritizedMessages="true"/>
+Isso faz que todas as filas funcionem com prioridades.
+
+3) Agora reinicie o ActiveMQ. Fique atento ao console para ver se não tem nenhum problema na hora de subir.
+
+4) Volte ao Eclipse. No projeto jms-log envie algumas mensagens com prioridades diferentes.
+
+5) No mesmo projeto jms-log rode o consumidor da fila.log e verifique se as mensagens vêm na prioridades certa.
+
+
+Opinião do instrutor
+
+A especificação JMS diz que um provedor (MOM) não precisa dar suporte ao PriorityQueues. O ActiveMQ faz isso desde que adicionemos a tag no activemq.xml.
+
+No entanto, na documentação do ActiveMQ é apresentada uma alternativa quando não há PriorityQueue. Podemos usar consumidores com um seletores diferentes, cada um com uma prioridade específica:
+
+//recebendo mensagens da fila com prioridade maior que 6
+MessageConsumer consumer = session.createConsumer(fila, "JMSPriority > 6" );
+É importante lembrar que seletores existem para tópicos e filas!
+
+Mais infos na documentação do ActiveMQ:
+
+http://activemq.apache.org/how-can-i-support-priority-queues.html
+
+

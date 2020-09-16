@@ -1,0 +1,463 @@
+
+http://0.0.0.0:8161/admin/index.jsp
+
+Home | Queues | Topics |
+
+-->Topics
+
+/************************************************/
+
+* Acessar o diretório bin do activemq baixado pelo terminal e rodar o comando:
+carloss@carloss-note:~/Documents/Desenvolvimento/eclipse-workspace/JmsActiveMQ/apache-activemq-5.15.13/bin$ sh activemq console
+$ sh activemq console
+
+admin
+admin
+
+/************************************************/
+
+* Tópicos e assinaturas duráveis
+
+Broadcast - java produz, "mom" recebe e envia para os varios sistemas que estao interessados em receber a mensagem.
+
+Quando o Producer envia uma mensagem, o consumidor nao consegue consumi-la se estiver off line e depois ficar online.
+
+devemos entao identificar.
+
+
+/************************************************/
+
+* Tópicos e assinaturas duráveis
+
+
+Nos últimos capítulos estudamos como enviar uma mensagem JMS a partir de um código JAVA para o nosso MOM e como depois funciona a entrega da mensagem para um consumidor.
+
+Vimos que dentro do MOM existe um destino que chamamos de Fila e ela depois entrega para um consumidor. Até percebemos que podemos ter mais de um consumidor, só que quando a FILA recebe a mensagem, essa mensagem vai apenas para um dos consumidores. Nunca temos consumidores recebendo a mesma mensagem.
+
+Esse cenário faz todo sentido para sistemas que geram uma Nota Fiscal. Quando um pedido chega na nossa FILA e esse pedido vai para um consumidor que fica gerando Nota Fiscal, ele se torna ocupado, e nesse tempo outro consumidor está disponível para pegar outro pedido. Assim melhoramos a disponibilidade do nosso sistema e até aumentamos o desempenho porque os dois conseguem fazer as tarefas em paralelo e até mesmo distribuídos em máquinas diferentes.
+
+Modelo Publish-Subscriber
+Em outros cenários poderíamos querer avisar ao sistema financeiro e também ao meu estoque que um produto foi comprado. Ou seja, nesse caso não basta apenas enviar apenas a mensagem para um consumidor. Essa mensagem deveria chegar nos dois consumidores (sistemas). Neste caso queremos espalhar a mensagem para os nossos consumidores e isso chamamos de Broadcast.
+
+O Producer fica apenas enviando a mensagem para o MOM e ele fica encarregado de entregá-la para vários outros sistemas. Portanto a tarefa do MOM é avisar aos sistemas que estão interessados em escutar ou receber essa mensagem. Para o Producer não importa quantos sistemas serão notificados.
+
+Neste capítulo iremos focar nesse modelo de entrega. Na hora de enviar teremos poucas alterações, o que muda realmente é o modelo de entrega.
+
+Criação do Topic e Producer
+Vamos no console de administração do ActiveMQ e entraremos agora em Topics, não mais em Queues. Criaremos um tópico chamado de topico.loja e depois de criado o tópico está disponível para nosso uso.
+
+
+Agora vamos enviar uma mensagem JMS via Java; para isso criamos uma classe TestaProdutorTopico que será semelhante ao TestaProdutor que já tínhamos, inclusive para diferenciar o envio da Fila para o Tópico renomeie a classe TestaProdutor para TestaProdutorFila.
+
+Como sempre, vamos precisar de InitialContext, ConnectionFactory, uma Connection inicializada, uma Session e por último um destino, só que agora o destino não será a fila financeiro. Lembrando que o nome vem do jndi.properties. Vamos modificar esse arquivo para que ele tenha um tópico com o mesmo nome que configuramos no ActiveMQ. O formato de cadastro é:
+
+topic.[jndiName] = [physicalName]
+
+
+Onde o physicalName é o nome que cadastramos no ActiveMQ e o jndiName o nome para conseguirmos fazer lookup.
+
+Sabendo disso, vamos alterar o nosso properties para:
+
+java.naming.factory.initial = org.apache.activemq.jndi.ActiveMQInitialContextFactory
+
+java.naming.provider.url = tcp://localhost:61616
+queue.financeiro = fila.financeiro
+
+# novidade aqui
+topic.loja = topico.loja
+
+
+
+Vamos alterar o código do TesteProdutorTopico para que o tópico seja "loja" e que enviemos apenas uma mensagem.
+
+// criação da fabrica, conexão e sessão
+Destination loja = (Destination) context.lookup("loja");
+
+
+Vamos rodar essa classe para enviar uma mensagem, não deve ocorrer nenhum erro. E sendo assim, iremos verificar via ActiveMQ no tópico topico.loja que uma mensagem foi recebida. Segue uma vez o código da classe TesteProdutorTopico:
+
+
+public class TesteProdutorTopico {
+
+    public static void main(String[] args) throws Exception {
+
+        InitialContext context = new InitialContext();
+        ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");
+
+        Connection connection = factory.createConnection();
+        connection.start();
+        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+
+        Destination topico = (Destination) context.lookup("loja");
+        MessageProducer producer = session.createProducer(topico);
+
+        Message message = session.createTextMessage("<pedido><id>222</id></pedido>");
+        producer.send(message);
+
+        session.close();
+        connection.close();
+        context.close();
+    }
+}
+
+
+Perceba que o Produtor para Tópicos não é muito diferente do para Fila. O que vai mudar é o modelo de entrega do MOM.
+
+## Criaremos agora nosso TesteConsumidorTopico, que será de forma análoga ao já criado para testar o consumo da Fila. A única coisa que muda é o nome do lookup do destino:
+
+
+
+
+public class TesteConsumidorTopico {
+
+    @SuppressWarnings("resource")
+    public static void main(String[] args) throws Exception {
+
+        InitialContext context = new InitialContext();
+        ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");
+
+        Connection connection = factory.createConnection(); 
+        connection.start();
+        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+
+        Destination topico = (Destination) context.lookup("loja");
+        MessageConsumer consumer = session.createConsumer(topico );
+
+        consumer.setMessageListener(new MessageListener() {
+
+            @Override
+            public void onMessage(Message message) {
+
+                TextMessage textMessage = (TextMessage)message;
+
+                try {
+                    System.out.println(textMessage.getText());
+                } catch (JMSException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        });
+
+
+        new Scanner(System.in).nextLine();
+
+        session.close();
+        connection.close();
+        context.close();
+    }
+}
+
+
+
+Obs: Renomeie o seu arquivo TestaConsumidor para TestaConsumidorFila, para ficar mais claro no projeto.
+
+Se executamos nesse instante o código aparentemente nenhuma mensagem foi recebida. Execute uma vez e confira. Mesmo resultado, nenhuma mensagem!
+
+##Assinaturas duráveis
+
+O problema é que o tópico não sabe quantos consumidores iremos ter. Isso é diferente da Fila que define que tem de entregar a mensagem para um e tanto faz onde o consumidor esteja ela vai entregar para UM. Um tópico não sabe se vai ter um sistema interessado na mensagem ou vários outros. Em algum lugar o sistema financeiro, ou estoque, deverá avisar ao tópico que está interessado em receber as mensagens desse tópico. Se a gente não faz essa primeira identificação, o tópico não saberá quem são os consumidores para entregar a mensagem. Logo precisamos informá-los ao tópico.
+
+Em no nosso primeiro cenário isso não ocorreu, ou seja quando estávamos offline a mensagem foi perdida. Imagine a aplicação de estoque offline por qualquer motivo e sem dar baixa de um produto quando ela voltasse ao seu estado de ativa, ou online, complicado não é? Portanto é muito importante identificarmos no tópico os consumidores interessados nas mensagens, para que eles possam receber sem perdas.
+
+Vamos adicionar algumas identificações pela classe TestaConsumidorTopico. A primeira é através da Connection passar um identificador, fazemos isso via método setClientID.
+
+//codigo omitido
+Connection connection = factory.createConnection(); 
+connection.setClientId("estoque"); //identificar a conexão
+//codigo omitido
+Além de identificarmos uma conexão devemos identificar o nosso consumidor, porque com um conexão poderíamos ter vários consumidores. Fazemos essa segunda identificação através do método createDurableSubscriber(...) que recebe dois parâmetros: um tópico e um nome (a identificação).
+
+//codigo omitido
+MessageConsumer consumer = session.createDurableSubscriber(topico, "assinatura");
+//codigo omitido
+Execute uma vez o seu TestaConsumidorTopico para que o Tópico receba esse cadastro do consumer. Deixe ele offline após isso. Segue uma vez o código completo desse consumidor:
+
+public class TesteConsumidorTopico {
+
+    @SuppressWarnings("resource")
+    public static void main(String[] args) throws Exception {
+
+        InitialContext context = new InitialContext();
+        ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");
+
+        Connection connection = factory.createConnection(); 
+        connection.setClientID("estoque");
+
+        connection.start();
+        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+
+        Topic topico = (Topic) context.lookup("loja");
+
+        MessageConsumer consumer = session.createDurableSubscriber(topico, "assinatura");
+
+        consumer.setMessageListener(new MessageListener() {
+
+            @Override
+            public void onMessage(Message message) {
+
+                TextMessage textMessage = (TextMessage)message;
+
+                try {
+                    System.out.println(textMessage.getText());
+                } catch (JMSException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        });
+
+
+        new Scanner(System.in).nextLine();
+
+        session.close();
+        connection.close();
+        context.close();
+    }
+}
+Entrega garantida
+Para verificarmos se realmente a mensagem fica guardada para o nosso consumer estoque na assinatura, execute o TestaProdutorTopico uma vez e depois o `TestaConsumidorTopico que estava offline quando a mensagem foi enviada.
+
+Perceba que realmente conseguimos recebê-la!
+
+Testando o broadcast
+Uma das funcionalidade que queríamos com o tópico era o de envio via Broadcast, ou seja vários consumidores deveriam receber a mensagem enviada. Para testar esse recebimento vamos criar outro consumidor TestaConsumidorTopicoComercial e renomear o seu TestaConsumidorTopico para TestaConsumidorTopicoEstoque, para identificarmos de maneira clara. A nossa classe nova terá o código similar mas com identificação diferente:
+
+public class TesteConsumidorTopicoComercial {
+
+    @SuppressWarnings("resource")
+    public static void main(String[] args) throws Exception {
+
+        InitialContext context = new InitialContext();
+        ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");
+
+        Connection connection = factory.createConnection(); 
+        connection.setClientID("comercial");
+
+        connection.start();
+        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+
+        Topic topico = (Topic) context.lookup("loja");
+
+        MessageConsumer consumer = session.createDurableSubscriber(topico, "assinatura");
+
+        consumer.setMessageListener(new MessageListener() {
+
+            @Override
+            public void onMessage(Message message) {
+
+                TextMessage textMessage = (TextMessage)message;
+
+                try {
+                    System.out.println(textMessage.getText());
+                } catch (JMSException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        });
+
+
+        new Scanner(System.in).nextLine();
+
+        session.close();
+        connection.close();
+        context.close();
+    }
+}
+Execute os dois consumidores, fazendo que eles representem um sistema online. Mantenha os dois console abertos. E após isso execute uma vez o seu TestaProdutorTopico. Veja que agora os dois consumidores receberam a mensagem:
+
+
+Era exatamente isso que queríamos, vários sistemas recebendo a mesma mensagem. Diferentemente da Fila, que apenas um sistema recebia. Além disso, vimos que o tópico guarda uma mensagem desde que algum consumidor tenha se identificado previamente e ele não tenha conseguido entregá-la.
+
+Vamos aos exercícios, praticar um pouco?
+
+
+-------------------------------------------
+
+
+* Quando queremos enviar a mesma mensagem para diversos consumidores diferentes, fazendo um broadcast, qual dos tipos de destino devemos utilizar ? - Tópico
+
+Devemos utilizar o Tópico quando queremos que uma mesma mensagem seja disparada para diversos consumidores diferentes!
+
+-------------------------------------------
+
+* Dado o seu conhecimento sobre Filas e Tópicos, podemos afirmar que:
+
+A fila envia uma mensagem apenas para um consumidor, já o tópico envia uma mesma mensagem para diversos consumidores simultaneamente.
+
+
+A) A diferença entre filas e tópicos é apenas ordem de entrega das mensagens. - Afirmativa errada
+
+A ordem não é afetada se usamos Filas ou Tópicos, por padrão ambos entreguem conforme as mensagens chegam.
+
+B) O Tópico só envia mensagem caso haja mais de um Consumidor. - Afirmativa errada
+
+Os Tópicos podem sim enviar mensagem para apenas um consumidor, casa apenas um consumidor estiver online. Se tivermos consumidores identificados (assinaturas duráveis) o tópico vai guardar a mensagem até a entrega acontecer.
+
+C) A fila envia uma mensagem apenas para um consumidor, já o tópico envia uma mesma mensagem para diversos consumidores simultaneamente. - Afirmativa correta
+
+Filas enviam uma mensagem apenas para um consumidor, já os Tópicos enviam uma mesma mensagem para diversos consumidores simultaneamente.
+
+D) A fila envia mensagens para vários consumidores. - Afirmativa errada
+
+A fila sempre entrega para um consumidor apenas.
+
+-------------------------------------------
+
+* Para que as mensagens que o Tópico entrega não sejam perdidas quando os Consumidores estão offline, precisamos fazer algumas configurações. Quais das alternativas abaixo contempla todas elas ?
+
+Nós devemos identificar uma conexão com o método setClientId("clientId"), por exemplo:
+
+connection.setClientID("comercial");
+e identificar o assinatura (o consumidor) com o método createDurableSubscriber(topico,"nomeAssinatura"):
+
+MessageConsumer consumer = session.createDurableSubscriber(topico, "assinatura");
+
+-------------------------------------------
+
+* Descreva melhor uma assinatura durável?
+
+É um consumidor de um tópico que se identificou. Ou seja, o tópico sabe da existência desse consumidor.
+
+Assinaturas duráveis só existem para tópicos. Uma assinatura durável é nada mais do que um consumidor de um tópico que se identificou. Ou seja, o tópico sabe da existência desse consumidor.
+
+O tópico, por padrão, não garante a entrega da mensagem, pois não sabe se existe 1 ou 20 consumidores. Então de cara, o tópico só entrega as mensagens para consumidores que estiverem online.
+
+Podemos mudar isso através de assinaturas duráveis. Isso é nada mais do que um consumidor identificado.
+
+-------------------------------------------
+
+* Nesse exercício vamos criar o tópico no ActiveMQ e enviar e receber mensagens para ele. Ainda não usaremos uma assinatura durável. Seguem as passos:
+
+1) Com ActiveMQ rodando acesse a interface de administração: http://localhost:8161/admin/topics.jsp e crie um novo tópico com o nome topico.loja
+
+2) No Eclipse, no projeto jms mapea o tópico no arquivo jndi.properties. Adicione a linha seguinte:
+
+topic.loja = topico.loja
+
+
+-------------------------------------------
+
+3) Agora crie uma nova classe TesteConsumidorTopico para consumir as mensagens JMS desse tópico. A classe é bem parecida com o outro consumidor (TesteConsumidorFila). Só muda o nome no lookup do destino:
+
+//no lookup vem o nome do topico 
+Destination topico = (Destination) context.lookup("loja");
+4) Agora crie a classe do produtor. Chame a classe TesteProdutorTopico. Novamente, pode pegar o código do produto da fila e ajustar. Altere apenas o nome do destino no lookup.
+
+5) Agora rode a classe TesteProdutorTopico para enviar uma mensagem JMS para o tópico.
+
+6) Rode a classe TesteConsumidorTopico para deixar o consumidor online. O consumidor recebeu a mensagem?
+
+Resultado:
+
+
+O consumidor não recebeu a mensagem pois o tópico não a guardou. Por padrão, o tópico não salva as mensagens, apenas para consumidores identificados. No próximo exercício vamos deixar o consumidor durável (assinatura durável)!
+
+Segue o código completo do produtor para comparação:
+
+public class TesteProdutorTopico {
+
+    public static void main(String[] args) throws Exception {
+
+        InitialContext context = new InitialContext();
+        ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");
+
+        Connection connection = factory.createConnection();
+        connection.start();
+        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+
+        Destination topico = (Destination) context.lookup("loja");
+        MessageProducer producer = session.createProducer(topico);
+
+        Message message = session.createTextMessage("<pedido><id>222</id></pedido>");
+        producer.send(message);
+
+        session.close();
+        connection.close();
+        context.close();
+    }
+}
+O consumidor (ainda não durável):
+
+public class TesteConsumidorTopico {
+
+    public static void main(String[] args) throws Exception {
+
+        InitialContext context = new InitialContext();
+        ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");
+
+        Connection connection = factory.createConnection(); 
+        connection.start();
+        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+
+        Destination topico = (Destination) context.lookup("loja");
+        MessageConsumer consumer = session.createConsumer(topico );
+
+        consumer.setMessageListener(new MessageListener() {
+
+            @Override
+            public void onMessage(Message message) {
+
+                TextMessage textMessage = (TextMessage)message;
+
+                try {
+                    System.out.println(textMessage.getText());
+                } catch (JMSException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        });
+
+
+        new Scanner(System.in).nextLine();
+
+        session.close();
+        connection.close();
+        context.close();
+    }
+}
+
+
+
+
+-------------------------------------------
+
+
+Mãos à obra: Assinatura durável
+
+Agora vamos usar assinaturas duráveis para garantir a entrega da mensagem enviada para um tópico.
+
+1) No Eclipse, renomeie a classe TesteConsumidorTopico para TesteConsumidorTopicoEstoque (ou copie a classe).
+
+2) Na classe TesteConsumidorTopicoEstoque identifique a conexão. Logo após da criação da conexão adicione:
+
+//criação da conexão
+connection.setClientID("estoque");
+3) Falta ainda identificar o consumidor (assinatura). Substitua:
+
+MessageConsumer consumer = session.createConsumer(topico );
+por
+
+MessageConsumer consumer = session.createDurableSubscriber(topico, "assinatura");
+4) Com as alterações feitas rode uma vez a classe TesteConsumidorTopicoEstoque. Assim o tópico vai conhecer o consumidor. Depois para a execução (deixe ele offline).
+
+5) Agora envie algumas mensagens para o nosso tópico.
+
+6) Como criamos um consumidor identificado, ao rodar a classe TesteConsumidorTopicoEstoque, devemos receber todas as mensagens enviadas. Tente isso!
+
+
+Agora crie mais uma assinatura durável, por exemplo com a clientId comercial e o nome da assinatura assinatura-comercial. Teste o broadcast das mensagens!
+
+
+
+-------------------------------------------
+
+
+
+
+-------------------------------------------
+
+
+-------------------------------------------

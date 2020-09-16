@@ -1,0 +1,509 @@
+
+http://0.0.0.0:8161/admin/index.jsp
+
+Home | Queues | Topics |
+
+-->Queues
+
+    /************************************************/
+
+* Acessar o diretório bin do activemq baixado pelo terminal e rodar o comando:
+carloss@carloss-note:~/Documents/Desenvolvimento/eclipse-workspace/JmsActiveMQ/apache-activemq-5.15.13/bin$ sh activemq console
+    $ sh activemq console
+
+    /************************************************/
+
+
+Enviando mensagens e Competição entre Consumidores
+
+
+No capítulo anterior falamos como consumir mensagens com JMS. 
+Vimos como criar uma Connection, Session, trabalhar com Consumer e tratar as mensagens com o MessageListener. 
+Nosso objetivo neste capítulo é trabalhar com o envio de mensagens para a nossa fila.
+
+
+
+Criando o MessageProducer
+Também precisaremos de ConnectionFactory, Connection, Session e um Destination portanto podemos reaproveitar esse código do nosso TesteConsumidor com a diferença que precisaremos de um MessageProducer em vez de um MessageConsumer!
+
+
+IntialContext context = new InitialContext();
+ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");
+
+Connection connection = factory.createConnection();
+connection.start();
+Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+
+Destination fila = (Destination) context.lookup("financeiro");
+MessageProducer producer = session.createProducer(fila);
+
+
+Bem parecido com um MessageConsumer não? Com o MessageProducer em mãos podemos chamar o método send que recebe uma instância de alguma das subinterfaces de Message, por exemplo TextMessage ou ObjectMessage, etc.
+
+MessageProducer producer = session.createProducer(fila);
+producer.send(...);
+
+Para criar a mensagem, usamos a Session que é o objeto que conhece os detalhes de criação dos nossos componentes JMS. Podemos fazer algo assim:
+
+
+MessageProducer producer = session.createProducer(fila);
+Message message = session.createTextMessage("<pedido><id>123</id></pedido>");
+
+producer.send(message);
+
+
+Pronto! Agora que tudo está pronto, vamos enviar e checar no painel do ActiveMQ se o envio ocorreu no ActiveMQ (webconsole);
+
+Podemos ver agora que algumas mensagens já foram enfileiradas. Vamos então iniciar nosso Consumer e ver que ele receberá o nosso XML:
+<pedido><id>123</id></pedido>
+
+
+		/*(JNDI + JMS, esse InitialContext procura um arquivo chamado jndi.properties)*/
+        InitialContext context = new InitialContext();
+
+        //imports do package javax.jms
+        ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");
+        Connection connection = factory.createConnection();
+
+        connection.start();
+        /*************************************/
+
+        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        Destination fila = (Destination) context.lookup("queueFilaFinanceiro_JndiProperties");
+
+        /*************************************/
+        
+        MessageProducer producer = session.createProducer(fila);
+    	Message message = session.createTextMessage("<pedido><id>123</id></pedido>");
+    	producer.send(message);
+
+        /*************************************/
+        // new Scanner(System.in).nextLine(); 
+
+        session.close();
+        connection.close();
+        context.close();
+
+
+
+Competição entre Consumidores
+Perfeito! Vamos agora entender um pouco mais sobre como o MOM distribui as mensagens para os consumidores, para isso faremos um pequeno teste de stress no nosso produtor. Vamos criar um laço para enviar mil mensagens à fila para analisar como as mensagens serão distribuídas:
+
+
+MessageProducer producer = session.createProducer(fila);
+
+for(int i = 0; i < 1000; i ++) { 
+    Message message = session.createTextMessage("<pedido><id>" + i + "</id></pedido>");
+    producer.send(message);
+}
+
+Após executarmos esse código concluímos que todas as mensagens chegaram corretamente, perfeito! O que testaremos agora é colocar dois consumidores para a mesma fila e analisarmos o modelo de entrega caso haja mais de um consumidor online. Ou seja, vamos executar mais uma máquina virtual rodando o TesteConsumidor e então vamos rodar novamente o TesteProdutor para enviar as mil mensagens.
+
+Repare que o primeiro consumidor recebe apenas as mensagens de id 0, 2, 4, 6, ... e não recebe mais todas as mensagens como no exemplo anterior. E o segundo consumidor recebe justamente as mensagens que o primeiro não recebeu. Ou seja, como a fila funciona? Ela entrega as mensagens apenas para um consumidor. Quando chega a mensagem, se há dois consumidores online (como no nosso caso) essa mensagem é entregue apenas para um dos dois (e nunca para os dois). Isso que o ActiveMQ faz é o que chamamos de balanceamento de carga.
+
+
+Vamos testar agora com mais um consumidor online. Execute novamente a TesteConsumidor e reenvie as mensagens (TesteProdutor). Perceba que os consumidores agora recebem mensagens sempre de três em três. O primeiro recebe 0, 3, 6, ... e o último 2, 5, 8, .... Ou seja, foi feito um balanceamento de carga. Ele realmente entrega uma mensagem apenas para um dos três (e nunca para os três). Esse é a ideia do modelo de distribuição de fila.
+
+
+
+
+		/*(JNDI + JMS, esse InitialContext procura um arquivo chamado jndi.properties)*/
+        InitialContext context = new InitialContext();
+
+        //imports do package javax.jms
+        ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");
+        Connection connection = factory.createConnection();
+
+        connection.start();
+        /*************************************/
+
+        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        Destination fila = (Destination) context.lookup("queueFilaFinanceiro_JndiProperties");
+
+        /*************************************/
+        
+        MessageProducer producer = session.createProducer(fila);
+        
+        for (int i = 0; i < 1000; i++) {
+
+        	Message message = session.createTextMessage("<pedido><id>"+i+"</id></pedido>");
+        	producer.send(message);
+		}
+        
+
+        /*************************************/
+        // new Scanner(System.in).nextLine(); 
+
+        session.close();
+        connection.close();
+        context.close();
+
+
+
+
+**************************************************
+
+* Middleware Orientado a Mensagem (MOM)
+
+
+Exercicios:
+
+1.
+
+Para criar uma instância de Message usamos uma classe que conhece detalhes de como criar componentes do JMS. Que classe é essa?
+
+
+O objeto Session do JMS (javax.jms.Session) é o objeto responsável pela criação de diversos componentes do JMS como Producer, Consumer, Browser e implementações de Message.
+
+Nela há vários métodos de criação, por exemplo:
+
+createBrowser()
+createProducer()
+createConsumer()
+createMessage()
+
+2.
+Modelo de distribuição
+
+Quando é feita a distribuição, apenas um dos consumidores recebe a mensagem.
+
+Quando trabalhamos com filas, as mensagens são entregues apenas para um consumidor. Se houver mais de um consumidor online a mensagem é entregue apenas para um dos (e nunca para os dois).
+
+Varios consumidores fazem balanceamento de carga das mensagem criadas pela fila.
+
+Somente entrega a mensagem para 1 consumidor.
+
+
+
+/***********************************************************/
+
+
+
+
+
+* Parte 2 aula 04
+
+
+Trabalhando de forma distribuída - Colocando consumidores em maquinas diferentes!
+
+Recapitulando: Tendo dois consumidores competindo, apenas um receberá essa mensagem, nunca uma mesma mensagem será distribuída para dois consumidores. Nesse capítulo, vamos focar nesse conceito de distribuição de mensagens do JMS.
+
+
+Desenho no diretorio da teoria: "activemq_consumers.png"
+
+No desenho acima, o producer, o ActiveMQ e cada consumidor poderiam estar em máquinas diferentes. Tudo o que foi explicado até agora funciona de maneira distribuída, funciona na rede. Ou seja, vamos rodar o ActiveMQ em uma máquina, e vamos testar os dois consumidores, mas em máquinas diferentes, cada um indicado pelo seu ip.
+
+No desenho acima, o producer, o ActiveMQ e cada consumidor poderiam estar em máquinas diferentes. Tudo o que foi explicado até agora funciona de maneira distribuída, funciona na rede. Ou seja, vamos rodar o ActiveMQ em uma máquina, e vamos testar os dois consumidores, mas em máquinas diferentes, cada um indicado pelo seu ip.
+
+Com o ActiveMQ ainda rodando, exatamente como tínhamos feito, precisamos saber o ip da nossa máquina. No mundo UNIX (Linux, Mac) basta digitar o comando ifconfig no terminal, no caso do Windows, o comando é ipconfig. Através do comando, descobrimos que o ip, nesse caso, é 192.168.0.208.
+
+No arquivo jndi.properties, vamos editar o java.naming.provider.url, substituindo localhost pelo ip 192.168.0.208 (edite de acordo com o seu ip):
+
+java.naming.provider.url = tcp://192.168.0.208:61616
+
+Em máquinas diferentes, temos dois consumidores, ambos com o java.naming.provider.url configurado para utilizar o ip do ActiveMQ.
+
+Rodando os dois consumidores, ambos se conectam com sucesso ao ActiveMQ. Com isso, temos dois consumidores com conexões ativas, aguardando alguma mensagem. Ou seja, esses dois consumidores já estão competindo, para ver quem recebe primeiro a mensagem.
+
+Agora, vamos no produtor e enviar as mensagens, como foi feito no vídeo anterior. Com isso, os consumidores recebem as mensagens, mesmo em máquinas diferentes.
+
+Se formos olhar no console de cada consumidor, vemos que eles não recebem todas as mensagens, cada um recebe uma parte das mensagens, de maneira distribuída.
+
+Então nós fizemos basicamente o mesmo no vídeo anterior, só que utilizando máquinas diferentes, mostrando que as mensagens realmente são entregues de maneira distribuída.
+
+Mas essas configurações no jndi.properties podem variar de MOM para MOM, alguns precisam de autenticação e autorização, ou de alguma configuração a mais. No caso do ActiveMQ, é bem simples, basta colocar seu ip, o ip da sua máquina, no arquivo jndi.properties do produtor e dos consumidores.
+
+
+EX:
+
+pegar o ip  da maquina
+$ ifconfig
+-- 192.168.0.107
+
+# use the following property to configure the default connector
+*** java.naming.provider.url = tcp://localhost:61616 ***
+
+java.naming.provider.url = tcp://192.168.0.107:61616
+
+---------------------------
+
+Exercicios: 
+
+1.
+
+Distribuindo em várias máquinas
+
+O que deve ser feito para trabalhar de forma distribuída?
+
+Editar o arquivo jndi.properties e alterar o valor da propriedade java.naming.provider.url colocando como valor o ip do MOM.
+
+A propriedade java.naming.provider.url recebe o IP do MOM que queremos enviar/consumir mensagens. Além disso, essa propriedade faz parte do arquivo jndi.properties.
+
+* java.naming.provider.url = tcp://192.168.0.107:61616
+
+2.
+Para saber mais: Usando um Properties
+
+Em Java temos uma classe que representa arquivos de propriedades: a classe Properties. E podemos usá-la para configurar o contexto do JNDI no lugar do arquivo jndi.properties. Para isso, crie uma instância de Properties:
+
+Properties properties = new Properties();
+
+E adicione as mesmas propriedades do arquivo jndi.properties:
+
+
+properties.setProperty("java.naming.factory.initial", "org.apache.activemq.jndi.ActiveMQInitialContextFactory");
+properties.setProperty("java.naming.provider.url", "tcp://192.168.0.94:61616");
+properties.setProperty("queue.financeiro", "fila.financeiro");
+
+Por fim, precisamos passar essas propriedades no construtor da classe InitialContext
+
+InitialContext context = new InitialContext(properties);
+
+No final, o código completo ficará:
+
+Properties properties = new Properties();
+properties.setProperty("java.naming.factory.initial", "org.apache.activemq.jndi.ActiveMQInitialContextFactory");
+
+properties.setProperty("java.naming.provider.url", "tcp://192.168.0.94:61616");
+properties.setProperty("queue.financeiro", "fila.financeiro");
+
+InitialContext context = new InitialContext(properties);
+
+
+
+--------------------------------------------
+// arquivo jndi.properties
+
+java.naming.factory.initial = org.apache.activemq.jndi.ActiveMQInitialContextFactory
+
+# use the following property to configure the default connector
+#tcp://localhost:61616 -> colocar o IP para funcionar distribuido (maquinas diferentes!)
+java.naming.provider.url = tcp://192.168.0.107:61616
+
+# use the following property to specify the JNDI name the connection factory
+# should appear as. 
+#connectionFactoryNames = connectionFactory, queueConnectionFactory, topicConnectionFactry
+
+# register some queues in JNDI using the form
+# queue.[jndiName] = [physicalName]
+queue.queueFilaFinanceiro_JndiProperties = fila.financeiro
+
+# register some topics in JNDI using the form
+# topic.[jndiName] = [physicalName]
+topic.topicFilaFinanceiro_JndiProperties = fila.financeiro
+--------------------------------------------
+
+
+
+
+**************************************************
+
+* Parte 3 aula 04
+
+
+Resumo da API JMS
+
+Acredite ou não, já vimos as partes principais da API JMS!
+
+Podemos resumir a construção do Producer/Consumer através da imagem seguinte:
+
+
+Desenho no diretorio da teoria: "jms-comp.png"
+
+A ConnectionFactory e a fila (Destination) pegamos através do lookup usando o InitialContext.
+
+Mesmo já conhecendo as principais interfaces temos ainda muito a aprender sobre este padrão poderoso! Vem ai outros modelos de entrega, roteamento de mensagens e muito mais. Pronto para o próximo capitulo?
+
+
+
+
+**************************************************
+
+(Opcional) Criando um QueueBrowser
+
+Dependendo da nossa aplicação, podemos precisar apenas checar (monitoramento) as mensagens que chegaram para uma determinada fila sem consumi-la. Ou seja, apenas queremos ver sem tirá-las da fila. Para isso podemos usar um componente do JMS chamado QueueBrowser, usado para navegar sobre as mensagens sem consumi-las.
+
+Para criar um QueueBrowser usaremos a Session:
+
+
+Destination fila = (Destination) context.lookup("financeiro");        
+QueueBrowser browser = session.createBrowser((Queue) fila);
+
+Usando o QueueBrowser, como podemos visualizar as mensagens?
+
+Caso necessário, use o Javadoc: https://docs.oracle.com/javaee/7/api/javax/jms/QueueBrowser.html
+
+Podemos usar o método getEnumeration que retorna uma estrutura contendo as mensagens:
+
+Enumeration msgs = browser.getEnumeration();
+while (msgs.hasMoreElements()) { 
+    TextMessage msg = (TextMessage) msgs.nextElement(); 
+    System.out.println("Message: " + msg.getText()); 
+}
+
+
+
+**************************************************
+
+Varios consumidores fazem balanceamento de carga das mensagem criadas pela fila.
+
+Somente entrega a mensagem para 1 consumidor.
+
+
+
+
+**************************************************
+http://activemq.apache.org/jndi-support.html
+console admin admin da fila mq
+http://0.0.0.0:8161/admin/queues.jsp
+
+* Acessar o diretório bin do activemq baixado pelo terminal e rodar o comando:
+carloss@carloss-note:~/Documents/Desenvolvimento/eclipse-workspace/JmsActiveMQ/apache-activemq-5.15.13/bin$ sh activemq console
+	$ sh activemq console
+
+**************************************************
+
+
+
+* Mãos à obra: Criando o produtor:
+
+
+Como apresentado no vídeo vamos criar uma nova classe para enviar uma mensagem para nossa fila. O código é bem parecido com o consumidor:
+
+1) Crie uma nova classe TesteProdutor no mesmo pacote do consumidor. Gere o método main.
+
+2) Dentro do método main inicialize a ConnectionFactory, Connection e Session:
+
+
+InitialContext context = new InitialContext();
+ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");
+
+Connection connection = factory.createConnection();
+connection.start();
+Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+
+
+3) Depois disso faça o lookup da fila e crie o MessageProducer:
+
+Destination fila = (Destination) context.lookup("financeiro");
+MessageProducer producer = session.createProducer(fila);
+
+
+4) Com o produtor em mãos vamos cria uma mensagem de texto e enviá-la:
+
+Message message = session.createTextMessage("<pedido><id>123</id></pedido>");
+producer.send(message);
+
+5) Por fim, feche todos os recursos:
+
+session.close();
+connection.close();
+context.close();
+
+
+Faça o tratamento de exceção (basta um throws Exception no método main).
+
+6) Rode a classe TesteProdutor uma ou duas vezes e verifique o console de administração do ActiveMQ. Veja se as mensagens foram enviadas.
+
+7) Suba o consumidor para receber a mensagem do MOM! Verifique o console.
+
+
+
+//classe criada e testada:
+
+----------------------------------------
+package br.com.caelum.jms;
+
+import javax.jms.Connection;
+import javax.jms.ConnectionFactory;
+import javax.jms.Destination;
+import javax.jms.Message;
+import javax.jms.MessageProducer;
+import javax.jms.Session;
+import javax.naming.InitialContext;
+
+/**
+ * 
+ * MOM (Message Oriented Middleware).
+ * 
+ * lookup -> significa: pega pra mim!
+ * 
+ * Pegar sobre JNDI -> Java Naming and Directory Interface 
+ * é uma API para acesso a serviços de diretórios. 
+ * Ela permite que aplicações cliente descubram e obtenham 
+ * dados ou objetos através de um nome.
+ *  
+ * JNDI + JMS -> http://activemq.apache.org/jndi-support.html
+ * example if you place this jndi.properties file on your classpath;
+ * 
+ * @author carloss
+ *
+ */
+public class TesteProdutorAula04 {
+
+	@SuppressWarnings("resource")
+	public static void main(String[] args) throws Exception {
+
+		/*
+		// Usando jndi.properties sem o arquivo, ou seja, diretamente pelo java.
+		Properties properties = new Properties();
+		properties.setProperty("java.naming.factory.initial", "org.apache.activemq.jndi.ActiveMQInitialContextFactory");
+
+		properties.setProperty("java.naming.provider.url", "tcp://192.168.0.107:61616");
+		properties.setProperty("queue.financeiro", "fila.financeiro");
+		InitialContext context = new InitialContext(properties);
+		*/
+
+		/*(JNDI + JMS, esse InitialContext procura um arquivo chamado jndi.properties)*/
+        InitialContext context = new InitialContext();
+        
+
+        //imports do package javax.jms
+        ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");
+        Connection connection = factory.createConnection();
+
+
+        connection.start();
+        /*************************************/
+
+        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        Destination fila = (Destination) context.lookup("queueFilaFinanceiro_JndiProperties");
+
+        /*************************************/
+        
+        MessageProducer producer = session.createProducer(fila);
+        
+        for (int i = 0; i < 1000; i++) {
+
+        	Message message = session.createTextMessage("<pedido><id>"+i+"</id></pedido>");
+        	producer.send(message);
+		}
+        
+
+
+        /*
+         // somente visualizar/monitorar as mensagens da fila
+        QueueBrowser browser = session.createBrowser((Queue) fila);
+
+        Enumeration<?> msgs = browser.getEnumeration();
+        while (msgs.hasMoreElements()) { 
+            TextMessage msg = (TextMessage) msgs.nextElement(); 
+            System.out.println("Message: " + msg.getText()); 
+        }
+        
+        */
+        
+
+        /*************************************/
+        // new Scanner(System.in).nextLine(); 
+
+        session.close();
+        connection.close();
+        context.close();
+	}
+}
+
+
+----------------------------------------
+
+

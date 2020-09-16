@@ -1,0 +1,494 @@
+
+Consumindo mensagens com JMS
+
+JMS - A API de mensageria
+
+http://activemq.apache.org/jndi-support.html
+
+
+Transcrição
+
+No primeiro capítulo, tivemos uma introdução de o que é um MOM, como ele desacopla o produtor do consumidor da mensagem, e que a entrega das mesmas é feita de forma assíncrona. Neste segundo capítulo do curso, queremos entrar nos detalhes do código, criar um consumidor e dar início a nossa aplicação.
+JMS - A API de mensageria
+
+Vimos um dos MOM's mais famosos do mundo Java, que é o ActiveMQ. Porém ele não é o único, e a própria ideia de MOM's é bem antiga. Existe uma série de servidores e middlewares no mercado, como: IBM WebSphere, WebLogic Server Messaging, HornetQ, Artemis, Apollo ...
+
+Imagine agora, que para produzir ou consumir mensagens a partir do código java, devemos aprender sempre a API específica desses MOM's. Porém, no final, a gente sempre cria mensagem e recebe mensagem. Para facilitar o trabalho do desenvolvedor, foi criado um padrão JavaEE em cima dessa ideia de mensageria, que é o JMS (Java Messaging Service).
+
+Continuaremos usando o ActiveMQ, porém o código que estaremos utilizando, serve também para um IBM WebSphere ou para um WebLogic Server Messaging. Muda muito pouco o código Java necessário para consumir ou escrever mensagens, e por debaixo dos panos, continuamos a usar o ActiveMQ.
+Criação do projeto
+
+Agora, vamos rapidamente subir o ActiveMQ, do mesmo jeito que foi feito na aula anterior(com o parâmetro 'console' na linha de comando) e acessar com "User Name: admin / Password: admin".
+
+Para começar com os códigos, precisamos abrir também o eclipse JavaEE, e criar um projeto Java padrão. Usaremos o Java 1.8 como JRE e o nome será jms. Precisamos do arquivo do ActiveMQ no nosso projeto. Para isso, clique com o botão direito no projeto, New -> folder. Chame essa pasta de lib e então, arraste o arquivo do ActiveMQ activemq-all-5.12.0.jar para dentro dela. Após isso, dentro do eclipse, clique com o botão direito no JAR copiado e Build Path -> Add to Build Path.
+Criando uma Conexão com o ActiveMQ
+
+Com a importação do .jar feita, podemos começar com o nosso código. Crie uma classe TesteConsumidor no pacote br.com.caelum.jms. Usaremos o tempo todo importações da biblioteca javax.jms.
+
+Criaremos uma conexão. Porém, da onde vem a nossa ConnectionFactory? O MOM vai te fornecer! A ideia é que quando o MOM é inicializado, que ele ja disponibilize essa conexão dentro de um registro. Com isso, precisamos apenas pegar essa conexão dentro de um registro, e esse é o JNDI. O nome utilizado no lookup é apresentado na documentação do MOM.
+
+public class TesteConsumidor {
+    public static void main(String[] args) throws Exception{
+
+        InitialContext context = new InitialContext(); 
+
+        //imports do package javax.jms
+        ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");
+        Connection connection = factory.createConnection();
+        connection.start();
+
+        new Scanner(System.in).nextLine(); //parar o programa para testar a conexao
+
+        connection.close();
+        context.close();
+}
+
+Além disso, devemos criar um arquivo jndi.properties na pasta src que copiamos do site do ActiveMQ:
+
+java.naming.factory.initial = org.apache.activemq.jndi.ActiveMQInitialContextFactory
+
+# use the following property to configure the default connector
+java.naming.provider.url = vm://localhost
+
+# use the following property to specify the JNDI name the connection factory
+# should appear as. 
+#connectionFactoryNames = connectionFactory, queueConnectionFactory, topicConnectionFactry
+
+# register some queues in JNDI using the form
+# queue.[jndiName] = [physicalName]
+queue.MyQueue = example.MyQueue
+
+# register some topics in JNDI using the form
+# topic.[jndiName] = [physicalName]
+topic.MyTopic = example.MyTopic
+
+Subindo o ActiveMQ em memória
+
+Ao rodar o código aparentemente foi estabelecida uma conexão com ActiveMQ como previsto. Vamos verificar isso no console de administração do ActiveMQ. Para nossa supresa não aparece nenhuma conexão. O que aconteceu? A resposta está no arquivo jndi.properties. Repare a linha:
+
+vm://localhost
+
+o vm indica que o ActiveMQ subiu em memória. O ActiveMQ não precisa rodar em sua JVM dedicada. O nosso código Java não só estabeleceu uma conexão como também criou uma nova instancia do ActiveMQ! Mas com certeza isso não foi a nossa intenção pois já subimos o ActiveMQ antes separadamente. Vamos mudar isso e alterar a linha no jndi.properties:
+
+java.naming.provider.url = tcp://localhost:61616
+
+Rodando nossa classe de teste, vemos que não imprime nada no console, mas ao entrarmos na console de administração do (http://localhost:8161/admin/connections.jsp) ActiveMQ -> Connections, observamos que há uma nova conexão com o ID da sua máquina local.
+
+Criando um MessageConsumer
+
+Agora queremos criar um Consumer, que irá receber nossas mensagens.
+
+public class TesteConsumidor {
+//cria context, factory, connection
+
+Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+Destination fila = (Destination) context.lookup("financeiro");
+MessageConsumer consumer = session.createConsumer(fila);
+
+Message message = consumer.receive();
+System.out.println("Recebendo msg: "+ message);
+
+session.close();
+//fecha conexões
+}
+
+Ja tinhamos nossa fila de consumo, que foi criada na primeira aula. Sendo assim, o ActiveMQ disponibiliza no jndi.properties, e acessamos pelo lookup. Porém, precisamos configurar o arquivo de properties para ele saber o que procurar.
+
+Dentro do JNDI, temos a linha:
+
+# queue.[jndiName] = [physicalName]
+Queue.MyQueue = example.MyQueue
+
+Na direita, fica o nome da fila que foi criada no ActiveMQ, que no nosso caso é fila.financeiro. Na esquerda, fica o nome na qual usaremos para referenciar essa fila no código Java. Substituindo:
+
+queue.financeiro = fila.financeiro
+
+Testando o consumidor
+
+Assim, ja podemos acessar o nosso consumer do ActiveMQ pelo nosso código Java. Criamos também uma Message que irá receber uma mensagem do consumer e printá-la no nosso console. Rodamos a classe para criar o nosso MessageConsumer:
+
+Agora para testar, enviamos uma mensagem através da console de administração.
+
+E no console...
+
+Queremos agora que nossa aplicação fique online, que o MessageConsumer consiga receber essas mensagens o tempo todo e não só uma mensagem. Essa configuração, iremos aprender mais a frente. Agora é a hora dos exercícios.
+
+
+
+/********************************/
+
+
+ O que é um destination?
+
+No código usamos algo que se chama Destination, no mundo JMS, o que caracteriza melhor um Destination:
+	É o lugar concreto onde a mensagem será salvo dentro do MOM.
+
+* Middleware Orientado a Mensagem (MOM)
+
+O ActiveMQ ou MOM em geral pode ter vários consumidores e receber mensagens de vários clientes. Para organizar o recebimento e a entrega das mensagens criamos destinos (ou Destination) no MOM. A nossa fila.financeiro é um Destination, ou seja, o lugar concreto onde a mensagem será salvo temporariamente.
+
+No mundo JMS um destination é representado pela interface javax.jms.Destinaton e fizemos um lookup para pegá-lo:
+
+Destination fila = (Destination) context.lookup("fila.financeiro");
+
+Segue também o JavaDoc da interface Java que representa um destino:
+
+http://docs.oracle.com/javaee/5/api/javax/jms/Destination.html
+
+/********************************/
+
+Como é criada a nossa ConnectionFactory?
+
+ConnectionFactory factory = (ConnectionFactory)context.lookup("ConnectionFactory");
+
+Para ser correto a fábrica não é criada e sim é feito um lookup(pega pra mim) dela:
+
+ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");
+
+O lookup é feito através da classe InitialContext que por sua vez se baseia no arquivo de configuração jndi.properties:
+
+java.naming.factory.initial = org.apache.activemq.jndi.ActiveMQInitialContextFactory
+java.naming.provider.url = tcp://localhost:61616
+
+#outras configurações do arquivo jndi.properties omitidas
+
+Esse arquivo jndi.properties e a classe InitialContext fazem parte de um outro padrão JavaEE, o JNDI (Java Naming e Diretory Service).
+
+O lookup é uma operação muito comum em ambientes JavaEE para descobrir ou pegar um recurso que o servidor disponibiliza. Dependendo do servidor os recursos podem variar muito. Por exemplo, usando um servidor de aplicação, podemos pegar configurações de segurança, pool de conexão, gerenciadores de transação ou caches, etc.
+
+No nosso caso o servidor ou Middelware é o ActiveMQ e ele automaticamente disponibiliza a ConnectionFactory. O ActiveMQ não é um servidor de aplicação e sim um Message Broker. 
+
+
+/********************************/
+
+
+Qual é a responsabilidade da Session?
+
+A Session no JMS abstrai o trabalho transacional e confirmação do recebimento da mensagem.
+
+
+
+A Session no JMS abstrai o trabalho transacional e confirmação do recebimento da mensagem. Além disso, também serve para produzir o MessageConsumer! É um objeto todo poderoso que criamos a partir da conexão:
+
+Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+
+O primeiro parâmetro do método createSession define se queremos usar o tratamento da transação como explícito. Como colocamos false, não é preciso chamar session.commit() ou session.rollback(). Faremos ainda mais exercícios com estes parâmetros para entender melhor o comportamento transacional da Session.
+
+O Session.AUTO_ACKNOWLEDGE diz que queremos automaticamente (através da Session) confirmar o recebimento da mensagem JMS. 
+
+/********************************/
+
+
+Pesquise na documentação do JMS e dê uma olhada nas Sub-Interfaces de javax.jms.Destination. Quais são elas?
+
+Queue, TemporaryQueue, Topic, TemporaryTopic
+
+
+As sub-interfaces são: Queue, TemporaryQueue, TemporaryTopic, Topic.
+
+Durante o curso, usaremos tanto a Queue quanto o Topic com muito detalhe.
+
+É sempre bom ler a documentação da tecnologia que está sendo utilizada, e em JMS é muito comum recorrermos à ela. Surgindo problemas, não se esqueça de consultá-la!
+
+
+/********************************/
+
+
+Nosso objetivo nesse capítulo era receber uma mensagem JMS. Para tal precisamos usar um MessageConsumer. Qual é a ordem correta das classes envolvidas para construir um MessageConsumer?
+
+ConnectionFactory --> Connection --> Session --> MessageConsumer
+
+
+
+
+Tudo começa com a ConnectionFactory que pegamos através do InitalContext. A fábrica cria a Connection que por sua vez instancia a Session. A Session é responsável por criar o MessageConsumer. Assim podemos desenhar:
+
+ConnectionFactory -> Connection  -> Session -> MessageConsumer
+
+Apesar de ser um pouco verboso temos uma clara divisão de responsabilidade entre as classes envolvidas. Faz sentido?
+
+
+
+/********************************/
+
+
+
+
+Nesse exercício vamos estabelecer uma conexão com o ActiveMQ como mostrado no vídeo.
+
+1) Para isso vamos criar um novo projeto Java no Eclipse com o nome jms.
+
+2) Copie o JAR activemq-all-5.12.0.jar da instalação do ActiveMQ para o projeto jms e adicione este JAR no classpath.
+
+3) No projeto jms, na pasta src crie um nova classe TesteConsumidor. Dentro do método main adicione o código seguinte:
+
+InitialContext context = new InitialContext();
+
+//importe do package javax.jms
+ConnectionFactory cf = (ConnectionFactory)context.lookup("ConnectionFactory");
+Connection conexao = cf.createConnection();
+
+conexao.start();
+
+new Scanner(System.in).nextLine();
+
+conexao.close();    
+context.close();
+
+4) Na pasta src crie um novo arquivo com o nome jndi.properties. Cole o seguinte conteúdo:
+
+java.naming.factory.initial = org.apache.activemq.jndi.ActiveMQInitialContextFactory
+java.naming.provider.url = tcp://localhost:61616
+
+5) Rode a classe TesteConsumidor (cuidado! o ActiveMQ deve estar rodando).
+
+6) Acesse o console de administração do ActiveMQ: http://localhost:8161/admin/ (login/senha:admin) e clique no link Connections. Deve aparecer a conexão ativa que o nosso TesteConsumidor criou.
+
+7) Para finalizar a conexão basta voltar no Eclipse e apertar Enter dentro do console ativo.
+
+Dica: A conexão é o primeiro passo para receber ou enviar uma mensagem com JMS! O próximo passo é criar um MessageConsumer! Vamos continuar?
+
+
+
+/********************************/
+
+
+
+
+Já temos uma conexão estabelecida mas nosso objetivo é receber uma mensagem JMS do ActiveMQ. Para isso é preciso usar uma javax.jms.Session e um javax.jms.MessageConsumer. Além disso, precisamos pegar (lookup) o nosso destino que é a fila.financeiro:
+
+1) Na classe TesteConsumidor, logo após da linha com conexao.start() adicione o código seguinte:
+
+//cria context, factory, connection
+
+Session session = conexao.createSession(false, Session.AUTO_ACKNOWLEDGE);
+Destination fila = (Destination) context.lookup("financeiro");
+MessageConsumer consumer = session.createConsumer(fila);
+
+Message message = consumer.receive();
+System.out.println("Recebendo msg: " + message);
+
+session.close();
+
+//scanner e close da  connection e context
+
+Além disso, coloque no arquivo jndi.properties:
+
+queue.financeiro = fila.financeiro
+
+2) Salve tudo e garante que os imports foram do package javax.jms.
+
+3) Rode a classe TesteConsumidor.
+
+4) Envie uma mensagem pela console de administração do ActiveMQ.
+
+5) Verifique se a mensagem aparece no console do Eclipse.
+
+
+
+Dica: 
+
+
+
+
+O método receive() da interface MessageConsumer aguarda o recebimento da mensagem JMS. Repare que a execução ficou parado na linha da chamada do método receive().
+
+Podemos passar um parâmetro ao método receive para definir o tempo de espera (ou o tempo de timeout). Por exemplo, podemos dizer que queremos esperar exatamente 10 segundos:
+
+Message message = consumer.receive(10000); //em milli segundos
+
+Nesse exemplo a execução vai ficar parado por 10 segundos. Após 10s sem receber nenhuma mensagem o método receive devolve null e a execução continua normalmente.
+
+Veja também o javadoc da interface MessageConsumer:
+
+https://docs.oracle.com/javaee/7/api/javax/jms/MessageConsumer.html#receive-long-
+
+
+
+/********************************/
+
+Você também pode criar um consumidor especifico para uma fila. Veja o código usando a interface Queue*:
+
+package br.com.caelum.consumer.queue;
+
+import javax.jms.Message;
+import java.util.Scanner;
+import javax.jms.Queue;
+import javax.jms.QueueConnection;
+import javax.jms.QueueConnectionFactory;
+import javax.jms.QueueReceiver;
+import javax.jms.QueueSession;
+import javax.jms.Session;
+import javax.naming.InitialContext;
+
+public class QueueReceiverTest {
+
+    public static void main(String[] args) throws Exception {
+        InitialContext ctx = new InitialContext();
+        QueueConnectionFactory cf = (QueueConnectionFactory)ctx.lookup("ConnectionFactory");
+        QueueConnection conexao = cf.createQueueConnection();
+        conexao.start();
+
+        QueueSession sessao = conexao.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
+        Queue fila = (Queue) ctx.lookup("financeiro");
+        QueueReceiver receiver = (QueueReceiver) sessao.createReceiver(fila );
+
+        Message message = receiver.receive();
+        System.out.println(message);
+
+        new Scanner(System.in).nextLine();
+
+        sessao.close();
+        conexao.close();    
+        ctx.close();
+    }
+}
+
+Pense na desvantagem dessa abordagem. Pensou? Clique em continuar e veja a resposta do instrutor!
+
+
+
+
+Normalmente usa-se as interfaces mais genéricas que funcionam com qualquer destino, não só Queue. Como veremos existem outros destinos.
+
+Além disso, a interface QueueReceiver só possui um método a mais, o getQueueName() que é pouco útil.
+
+Queue q = receiver.getQueueName(); //única diferença entre MessageConsumer e QueueReceiver
+
+
+
+
+/********************************/
+
+
+
+Vimos no video que é possível subir o ActiveMQ a partir de uma aplicação Java.
+
+Para isso basta alterar o arquivo jndi.properties:
+
+#java.naming.provider.url = tcp://hostname:61616
+java.naming.provider.url = vm://localhost
+
+Tente isso uma vez e pense na vantagem dessa abordagem, em seguida, clique em continuar para ver a opinião do instrutor.
+
+
+
+Quando rodamos o código com a configuração vm://localhost deve aparece no console do Eclipse as seguintes informações:
+
+ INFO | Recovery replayed 1 operations from the journal in 0.018 seconds.
+ INFO | Apache ActiveMQ 5.12.0 (localhost, ID:MacBook-Pro-de-Nico.local-50161-1441074141876-0:1) is starting
+ INFO | Apache ActiveMQ 5.12.0 (localhost, ID:MacBook-Pro-de-Nico.local-50161-1441074141876-0:1) started
+ INFO | For help or more information please see: http://activemq.apache.org
+ INFO | Connector vm://localhost started
+
+Subimos o ActiveMQ junto com nossa aplicação.
+
+Isso pode ser útil quando queremos ter as vantagens do MOM dentro de uma aplicação web, por exemplo, sem precisar manter uma instância separada do ActiveMQ.
+
+
+
+
+/********************************/
+
+
+ Para saber mais: JMS 2.0 
+
+
+Estamos usando o JMS na versão 1.1 mas já existe uma atualização do padrão para a versão 2.0 que faz parte do Java EE 7.
+
+No entanto, a grande maioria dos MOMs no mercado trabalham ainda com essa versão 1.1. Com ActiveMQ isso não é diferente e tudo funciona ainda com JMS 1.1.
+
+Vimos os passos para criar um MessageConsumer com JMS 1.1:
+
+ConnectionFactory -> Connection  -> Session -> MessageConsumer
+
+No JMS 2.0 o desenho seria um pouco mais simples pois foi introduzido uma nova interface JMSContext que combina o trabalho da Connection e Session:
+
+ConnectionFactory -> JMSContext -> JMSConsumer
+
+
+
+
+Segue também um artigo no blog da Caelum sobre o novo padrão JMS 2.0:
+
+http://blog.caelum.com.br/a-nova-api-do-jms-2-0-no-java-ee-7/
+
+
+/********************************/
+
+
+
+
+
+
+package br.com.caelum.jms;
+
+import java.util.Scanner;
+
+import javax.jms.Connection;
+import javax.jms.ConnectionFactory;
+import javax.jms.Destination;
+import javax.jms.Message;
+import javax.jms.MessageConsumer;
+import javax.jms.Session;
+import javax.naming.InitialContext;
+
+/**
+ * 
+ * MOM (Message Oriented Middleware).
+ * 
+ * lookup -> significa: pega pra mim!
+ * 
+ * Pegar sobre JNDI -> Java Naming and Directory Interface 
+ * é uma API para acesso a serviços de diretórios. 
+ * Ela permite que aplicações cliente descubram e obtenham 
+ * dados ou objetos através de um nome.
+ *  
+ * JNDI + JMS -> http://activemq.apache.org/jndi-support.html
+ * example if you place this jndi.properties file on your classpath;
+ * 
+ * @author carloss
+ *
+ */
+public class TesteConsumidorAula02 {
+
+	@SuppressWarnings("resource")
+	public static void main(String[] args) throws Exception {
+
+		/*(JNDI + JMS, esse InitialContext procura um arquivo chamado jndi.properties)*/
+        InitialContext context = new InitialContext();
+
+        //imports do package javax.jms
+        ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");
+        Connection connection = factory.createConnection();
+
+        connection.start();
+
+        /*************************************/
+
+        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        Destination fila = (Destination) context.lookup("queueFilaFinanceiro_JndiProperties");
+        MessageConsumer consumer = session.createConsumer(fila);
+        Message message = consumer.receive();//pode aceitar parametro de tempo consumer.receive(2000);
+
+        //para várias filas chama várias vezes.
+        /*
+        message = consumer.receive();
+        message = consumer.receive();
+        message = consumer.receive();
+        message = consumer.receive();
+        message = consumer.receive();
+        */
+
+        System.out.println("Recebendo msg CADU: "+ message);
+
+        /*************************************/
+        
+        //new Scanner(System.in).nextLine(); 
+        
+
+        session.close();
+        connection.close();
+        context.close();
+	}
+}

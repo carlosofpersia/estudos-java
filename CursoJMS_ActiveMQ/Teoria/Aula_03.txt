@@ -1,0 +1,340 @@
+
+**************************************************
+http://activemq.apache.org/jndi-support.html
+console admin admin da fila mq
+http://0.0.0.0:8161/admin/queues.jsp
+
+* Acessar o diretório bin do activemq baixado pelo terminal e rodar o comando:
+carloss@carloss-note:~/Documents/Desenvolvimento/eclipse-workspace/JmsActiveMQ/apache-activemq-5.15.13/bin$ sh activemq console
+	$ sh activemq console
+
+**************************************************
+
+
+http://activemq.apache.org/jndi-support.html
+
+Link para baixar o download da api usada na aula: "https://s3.amazonaws.com/caelum-online-public/jms/jms-apidocs.zip"
+
+
+ * Recebendo mensagens com MessageListener 
+
+	No capítulo anterior conseguimos estabelecer uma conexão utilizando a fábrica disponibilizada pelo ActiveMQ, através do InitialContext. E a partir dessa conexão que inicializamos, criamos a nossa sessão, que faz o recebimento e a confirmação das mensagens.
+
+	Da nossa Session, criamos um MessageConsumer, que fica escutando mensagens da fila (Destination) que pegamos do nosso InitialContext. E conseguimos obter nossa mensagem através do método consumer.receive().
+
+* Tratador de mensagem
+
+	O problema que encontramos no último capítulo, é que nosso sistema recebia apenas uma mensagem e encerrava o seu funcionamento, e não é isso que queremos. Nos esperamos que ele fique escutando o tempo todo por mensagens, e para isso , devemos cadastrar um novo objeto no nosso consumer, com o responsabilidade de tratar as mensagens que recebemos.
+
+	Para manter a separação de responsabilidades, vamos fazer com o que Consumer delegue o tratamento das mensagens para um objeto da interface MessageListener:
+
+	consumer.setMessageListener();
+
+	E para usar esta interface, vamos utilizar uma classe anônima MessageListener que a implementa:
+
+	consumer.setMessageListener(new MessageListener(){
+
+	});
+
+	E nesta classe devemos implementar o método chamado onMessage, que recebe a mensagem e a faz algum processamento com ela. Por enquanto vamos apenas exibi-la no console:
+
+	consumer.setMessageListener(new MessageListener(){
+
+	    @Override
+	    public void onMessage(Message message){
+	        System.out.println(message);
+	    }
+
+	});
+
+	Removendo a linha System.out.println("Recebendo msg: " + message");, podemos ir na página de envio de mensagens do ActiveMQ testar que o nosso método onMessage funciona, e enviar diversas mensagens sem que o nosso sistema se encerre.
+
+	Repare que apesar de enviarmos apenas mensagens de texto, no nosso console aparece algo do tipo:
+
+	ActiveMQTextMessage {commandId = 7,responseRequired = false, messageId = ID, message="Sua mensagem aqui!!"}
+	ActiveMQTextMessage {commandId = 10, responseRequired = false, messageId = ID:carloss-note-43375-1592961035180-4:1:1:1:6, originalDestination = null, originalTransactionId = null, producerId = ID:carloss-note-43375-1592961035180-4:1:1:1, destination = queue://fila.financeiro, transactionId = null, expiration = 0, timestamp = 1592962130599, arrival = 0, brokerInTime = 1592962130599, brokerOutTime = 1592962130602, correlationId = , replyTo = null, persistent = false, type = , priority = 0, groupID = null, groupSequence = 0, targetConsumerId = null, compressed = false, userID = null, content = org.apache.activemq.util.ByteSequence@6c0d83c3, marshalledProperties = null, dataStructure = null, redeliveryCounter = 0, size = 0, properties = null, readOnlyProperties = true, readOnlyBody = true, droppable = false, jmsXGroupFirstForConsumer = false, text = <pedido><id>789</id></pedido>
+}
+
+
+Subinterfaces da Message
+	BytesMessage, MapMessage, ObjectMessage, StreamMessage, TextMessage
+
+	Isto ocorre pois estamos usando a interface Message, que possui subinterfaces mais específicas, que podemos utilizar para pegar o texto da mensagem mais diretamente.
+
+	Primeiro vamos pegar a mensagem que estamos recebendo e fazer um cast dela para uma das suas subinterfaces, a TextMessage, já que estamos trabalhando com mensagens de texto:
+
+	consumer.setMessageListener(new MessageListener(){
+
+	    @Override
+	    public void onMessage(Message message){
+	        TextMessage textMessage  = (TextMessage)message;
+	        System.out.println(message);
+	    }
+
+	});
+
+	Agora que temos uma TextMessage podemos utilizar o método getText() para pegar apenas o texto da mensagem, deixando assim o resultado mais elegante:
+
+	consumer.setMessageListener(new MessageListener(){
+
+	    @Override
+	    public void onMessage(Message message){
+	        TextMessage textMessage  = (TextMessage)message;
+	        System.out.println(textMessage.getText());
+	    }
+
+	});
+
+	Como esta API é um pouco antiga, o Eclipse deve reclamar dizendo que o método getText joga uma exceção , então devemos envolve-lo com um try-catch:
+
+	consumer.setMessageListener(new MessageListener(){
+
+	    @Override
+	    public void onMessage(Message message){
+	        TextMessage textMessage  = (TextMessage)message;
+	        try{
+	            System.out.println(textMessage.getText());
+	        } catch(JMSException e){
+	            e.printStackTrace();
+	        }    
+	    }
+
+	});
+
+	Testando agora vemos que as nossas mensagens aparecem muito mais limpas no console: <pedido><id>123</id></pedido>
+
+
+
+
+--------------------------------------------------------------------
+
+
+*  Delegando o tratamento de mensagens
+
+	Muitas vezes queremos que um consumer fique escutando o tempo todo e nunca termine quando receber uma mensagem. Para que isso seja possível, precisamos delegar o tratamento de mensagens para um objeto que implemente a interface.
+
+	Qual das opções abaixo contém a interface que precisamos implementar?
+	R: MessageListener
+		A interface é MessageListener, inclusive o método do consume que o associa a um objeto que implementa essa interface é setMessageListener. Não é incomum passarmos como parâmetro para o método uma classe anônima, poupando assim a criação de mais uma classe. Criando uma classe ou usando uma classe a anônima, é o método onMessage que precisamos implementar.
+
+
+
+*  Subinterfaces da interface Message
+
+Vejamos a seguinte instância de um consumer no qual estamos delegando o processamento da mensagem a um MessageListener:
+
+	consumer.setMessageListener(new MessageListener(){
+
+	    @Override
+	    public void onMessage(Message message){
+	        System.out.println(message);
+	    }
+
+	});
+
+
+
+O método onMessage da interface MessageListener recebe uma Message. Existem mensagens mais específicas cada uma, com seu objetivo.
+
+Cole como resposta o código anterior modificado para usar a subinterface TextMessage dentro do método onMessage, imprimindo-a no console o texto da mensagem.
+
+consumer.setMessageListener(new MessageListener(){
+
+    @Override
+    public void onMessage(Message message){
+        TextMessage textMessage  = (TextMessage)message;
+        try{
+            System.out.println(textMessage.getText());
+        } catch(JMSException e){
+            e.printStackTrace();
+        }    
+    }
+
+});
+
+Veja que realizamos um casting para TextMessage e para obter o texto da mensagem usamos o método getText(). Como o método getText() lança uma exceção checked, somos obrigados a tratar a exceção dentro do método onMessage(..).
+
+
+*  Mãos à obra: Criando o MessageListener
+
+
+
+
+Segue uma vez o código completo da classe TesteConsumidor:
+
+public class TesteConsumidor {
+
+    public static void main(String[] args) throws Exception {
+
+        InitialContext context = new InitialContext();
+        ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");
+
+        Connection connection = factory.createConnection(); 
+        connection.start();
+        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+
+        Destination fila = (Destination) context.lookup("financeiro");
+        MessageConsumer consumer = session.createConsumer(fila );
+
+        consumer.setMessageListener(new MessageListener() {
+
+            @Override
+            public void onMessage(Message message) {
+
+                TextMessage textMessage = (TextMessage)message;
+
+                try {
+                    System.out.println(textMessage.getText());
+                } catch (JMSException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        });
+
+
+        new Scanner(System.in).nextLine();
+
+        session.close();
+        connection.close();
+        context.close();
+    }
+}
+
+**************************************************************************
+
+
+Você já deve ter escutado do padrão de projeto Observer! Um exemplo de Observer em Java é o ActionListener da API Swing.
+
+Segue um esboço de código que registra um ActionListener no botão:
+
+botao.setActionListener(new ActionListener () { //classe anónima!
+
+public void actionPerformed(ActionEvent event) {
+      //tratamento do evento 
+  }
+});
+
+
+Quando o botão foi acionado ele notifica todos os listeners cadastrados. Mais genérico, um lado cria um evento (o botão) e tem um outro lado que recebe o evento (o ActionListener). Ambos estão desacoplados.
+
+A pergunta é: O que isso tem a ver com JMS e mensageria em geral? Depois de refletir sobre o assunto, clique em continuar para a ver a opinião do instrutor.
+
+O JMS segue o mesmo padrão de projeto Observer! A diferença é que JMS é remoto ou distribuído. Ou seja, no padrão Observer originalmente descrito no livro GOF, tudo acontece na memória, o Observer desacopla objetos. Com JMS, a comunicação entre Producer e Consumer é remota, desacoplamento arquitetural.
+
+Para fazer a comparação com o exemplo apresentado na pergunta: O botão seria um produtor de mensagem (ainda não criamos um produtor pelo JMS, apenas usamos o console de administração, isso vem no próximo capítulo). O ActionListener representa o MessageListener do mundo JMS e o ActionEvent seria a Message. Faz sentido?
+
+Mais informações sobre este padrão Observer na página do Enterprise Integration Patterns:
+
+http://www.enterpriseintegrationpatterns.com/patterns/messaging/ObserverJmsExample.html
+
+
+
+
+
+
+/**********************************************************/
+
+
+
+
+
+package br.com.caelum.jms;
+
+import java.util.Scanner;
+
+import javax.jms.Connection;
+import javax.jms.ConnectionFactory;
+import javax.jms.Destination;
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.MessageConsumer;
+import javax.jms.MessageListener;
+import javax.jms.Session;
+import javax.jms.TextMessage;
+import javax.naming.InitialContext;
+
+/**
+ * 
+ * MOM (Message Oriented Middleware).
+ * 
+ * lookup -> significa: pega pra mim!
+ * 
+ * Pegar sobre JNDI -> Java Naming and Directory Interface 
+ * é uma API para acesso a serviços de diretórios. 
+ * Ela permite que aplicações cliente descubram e obtenham 
+ * dados ou objetos através de um nome.
+ *  
+ * JNDI + JMS -> http://activemq.apache.org/jndi-support.html
+ * example if you place this jndi.properties file on your classpath;
+ * 
+ * @author carloss
+ *
+ */
+public class TesteConsumidorAula03 {
+
+	@SuppressWarnings("resource")
+	public static void main(String[] args) throws Exception {
+
+		/*(JNDI + JMS, esse InitialContext procura um arquivo chamado jndi.properties)*/
+        InitialContext context = new InitialContext();
+
+        //imports do package javax.jms
+        ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");
+        Connection connection = factory.createConnection();
+
+        connection.start();
+
+        /*************************************/
+        
+        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        Destination fila = (Destination) context.lookup("queueFilaFinanceiro_JndiProperties");
+        MessageConsumer consumer = session.createConsumer(fila);
+
+        /*
+        Message message = consumer.receive(2000);
+        System.out.println("Recebendo msg CADU: "+ message);
+        ou
+        */
+
+        //delega a mensagem para o tratador de mensagem
+        consumer.setMessageListener(new MessageListener() {
+			
+			@Override
+			public void onMessage(Message message) {
+
+				System.out.println(message);
+				TextMessage textMessage  = (TextMessage) message;
+		        try {
+					System.out.println(textMessage.getText());
+				} catch (JMSException e) {
+					e.printStackTrace();
+				}
+
+			}
+		});
+
+
+        
+        /*
+         // somente visualizar/monitorar as mensagens da fila
+        QueueBrowser browser = session.createBrowser((Queue) fila);
+
+        Enumeration<?> msgs = browser.getEnumeration();
+        while (msgs.hasMoreElements()) { 
+            TextMessage msg = (TextMessage) msgs.nextElement(); 
+            System.out.println("Message: " + msg.getText()); 
+        }
+        
+        */
+        
+
+        /*************************************/
+
+        new Scanner(System.in).nextLine(); 
+
+        session.close();
+        connection.close();
+        context.close();
+	}
+}
