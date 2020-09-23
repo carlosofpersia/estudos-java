@@ -182,14 +182,46 @@ Cuidado com poll longo
 
 /*****************************************************************/
 -------------------------------------------------------------------
+Aula.03.2 - Extraindo uma camada de consumidor (Refatorando o codigo)
 
-Aula.03.2 - Extraindo uma camada de consumidor
+Refatoracao das classes EmailService.java e FraudDetectorService.java
+Criacao da Classe KafkaService.java
+Criacao da Interface ConsumerFunction.java
 
-KafkaService
+---------------------------------------------
+Aula.03.3 - Extraindo nossa camada de producer
+
+Refatoracao das classe NewOrderMain.java
+Criacao da classe KafkaDispatcher.java (para generizar a programacao do producer)
+
+---------------------------------------------
+Aula.03.5 - Our own layer
+
+Qual a vantagem de criar nossa própria camada?
+    Adotar boas práticas como evitar código duplicado.
+    Definir padrões, boas práticas e evitar más práticas, permitindo novos/as devs começar a desenvolver rapidamente código pronto para produção.
+
+---------------------------------------------
+Aula.03.6 - O que aprendemos nessa aula:
+
+A importância de evitar copy e paste
+Criando nossa camada de abstração
+Criando nosso Dispatcher (Producer)
+Criando nosso Service (Consumer)
 
 
 
-EmailService
+
+/*****************************************************************/
+-------------------------------------------------------------------
+Aula.04. Serialização customizada
+
+-------------------------------------------------------------------
+Aula.04.02 Diretórios do Kafka e Zookeeper
+
+
+
+
 
 
 
