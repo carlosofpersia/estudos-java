@@ -361,12 +361,51 @@ Lidando com customização por serviço
 Aula.05. Microsserviços como módulos em um mono repo
 
 -------------------------------------------------------------------
-Aula.05.02 Microsserviços como módulos em um mono repo
+
+new -> module -> maven -> configuracoes:
+    * Criar um novo modulo service-email
+        e mover ServiceEmail.java -> refactor move ...
+    * Criar um novo modulo service-frauddetector
+        e mover FraudDetectorService.java
+    * Criar um novo modulo service-log
+        e mover LogService.java
+
+Em todas os poms que foram criados clicar
+-> "Alt + Insert" -> Escolhe Dependency
+digitar "add dependency"
+e escolher a pai.
+
+-------------------------------------------------------------------
+Aula.05.03 - Binários dos microsserviços
+
+* colocar o Order.java e o Email.java com seus recursos e testar tudo.
+
+--//--
+
+Por fim rodar o maven GO para gerar um pacote de todo o projeto "ecommerce".
+Em Maven Maven GO -> mvn package
+E e gerado o projeto completo:
+/home/carloss/Documents/Desenvolvimento/eclipse-workspace/estudos-java/CursoJMS_KAFKA/service-new-order/target/service-new-order-1.0-SNAPSHOT.jar
+
+
+-------------------------------------------------------------------
+Aula.05.05 - Bibliotecas comuns
+
+Qual uma vantagem de extrair bibliotecas comuns?
+    Múltiplos projetos se beneficiam da mesma base de código.
+    Isso permite que devs foquem nos requerimentos únicos de seu projeto.
+
+
+Aula.05.06 - O que aprendemos?
+
+como criar módulos
+como manter tudo em um mono repo
+como gerenciar dependências entre módulos
+como gerar os binários de cada módulo
 
 
 
-
-
+Fim deste curso. Thanks
 
 
 

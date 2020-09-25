@@ -1,0 +1,5 @@
+/home/carloss/Documents/Desenvolvimento/eclipse-workspace/estudos-java/CursoJMS_KAFKA/common-kafka/src/main/java/br/com/alura/ecommerce/ConsumerFunction.java
+/home/carloss/Documents/Desenvolvimento/eclipse-workspace/estudos-java/CursoJMS_KAFKA/common-kafka/src/main/java/br/com/alura/ecommerce/KafkaDispatcher.java
+/home/carloss/Documents/Desenvolvimento/eclipse-workspace/estudos-java/CursoJMS_KAFKA/common-kafka/src/main/java/br/com/alura/ecommerce/KafkaService.java
+/home/carloss/Documents/Desenvolvimento/eclipse-workspace/estudos-java/CursoJMS_KAFKA/common-kafka/src/main/java/br/com/alura/ecommerce/GsonSerializer.java
+/home/carloss/Documents/Desenvolvimento/eclipse-workspace/estudos-java/CursoJMS_KAFKA/common-kafka/src/main/java/br/com/alura/ecommerce/GsonDeserializer.java
