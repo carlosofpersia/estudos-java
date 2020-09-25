@@ -218,13 +218,150 @@ Aula.04. Serialização customizada
 
 -------------------------------------------------------------------
 Aula.04.02 Diretórios do Kafka e Zookeeper
+Tirar as filas do diretorio temporario do linux,
+pois de tempos em tempos este e excluido.
+
+$ ls /tmp/zookeeper/
+$ ls /tmp/kafka-logs/
+
+1. criar os diretorios em algum lugar bem pensado.
+$ pwd
+/home/carloss/Documents/Desenvolvimento/eclipse-workspace/JmsKafka/kafka_2.13-2.6.0
+$ cd ..
+$ mkdir data
+$ mkdir data/zookeeper
+$ mkdir data/kafka
+$ cd data/
+$ pwd
+    // Esse e o caminho a ser trocado.
+    /home/carloss/Documents/Desenvolvimento/eclipse-workspace/JmsKafka/data/(kafka|zookeeper)
+
+2. Acessar as configuracoes do kafka para adicionar o path:
+
+$ cd /home/carloss/Documents/Desenvolvimento/eclipse-workspace/JmsKafka/kafka_2.13-2.6.0
+$ vi config/server.properties
+
+############################# Log Basics #############################
+# A comma separated list of directories under which to store log files
+log.dirs=/tmp/kafka-logs
+* Trocar por:
+log.dirs=/home/carloss/Documents/Desenvolvimento/eclipse-workspace/JmsKafka/data/kafka
+
+3. Acessar as configuracoes do zookeeper para adicionar o path:
+
+$ cd /home/carloss/Documents/Desenvolvimento/eclipse-workspace/JmsKafka/kafka_2.13-2.6.0
+$ sudo vi config/zookeeper.properties
+# the directory where the snapshot is stored.
+dataDir=/tmp/zookeeper
+* Trocar por:
+dataDir=/home/carloss/Documents/Desenvolvimento/eclipse-workspace/JmsKafka/data/zookeeper
+
+
+4. Testar nos novos lugares:
+$ cd /home/carloss/Documents/Desenvolvimento/eclipse-workspace/JmsKafka/kafka_2.13-2.6.0
+
+* ligar o  zookeeper
+    $ ./bin/zookeeper-server-start.sh ./config/zookeeper.properties
+* ligar o  kafka
+    $ ./bin/kafka-server-start.sh ./config/server.properties
+
+
+
+-------------------------------------------------------------------
+Aula04.03 - Serialização com GSON
+
+1. Usar generics no KafkaDispatcher.java
+    class KafkaDispatcher<T>
+    private final KafkaProducer<String, T> producer;
+    public void send(String topic, String key, T value) ...
+
+2. Usar o generics no recebimento do objeto requerido:
+    try (var dispatcher = new KafkaDispatcher<Order>() ) {...
+    try (var dispatcher = new KafkaDispatcher<String>() ) {...
+
+3. Criar uma classe Order.java
+
+4. Alterar a classe NewOrederMain.java para usar o KafkaDispatcher<T>
+com o generics e fazer os tests com Order e String.
+
+5. Transformar o Order para StringSerializer
+Add a lib gson no pom e rodar o maven:
+https://mvnrepository.com/artifact/com.google.code.gson/gson/2.8.6
+
+6. Criar uma classe GsonSerializer.java e configura-la com o kafka para colocar em properties em KafkaDispatcher.java
+properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, GsonSerializer.class.getName());
+
+7. Rodar tudo e estamos felizes e contentes ate aqui!.
+
+
+-------------------------------------------------------------------
+Aula04.04 - Migrando o log
+* Ajustando a classe LogService.java para usar o KafkaService.
+* Criando 2 contructs para usar expressao regular no topic ... ECOMMERCE.*
+
+
+-------------------------------------------------------------------
+Aula04.05 - Deserialização customizada.
+* Para usarmos ORDER e String no consumer.
+
+* Criar a classe GsonDeserializer.java
+* Criar a classe Email.java
+* Alterar a NewOrderMain para usar a classe Email, pq agora todos sao objetos.
+* Alterar a LogService.java (retorna deserialize String)
+* Alterar a FraudDetectorService.java (retorna deserialize Order)
+* Alterar a EmailService.java (retorna deserialize Email)
+
+
+-------------------------------------------------------------------
+Aula04.06 - Deserialização customizada.
+* Para usarmos uma propriedade generica.
+altero o contrutor do KafkaService.JAVA
+    // add o parametro  em getProperties
+        Map<String, String> overrideProperties;
+    // Problema com deserializacao de String para Gson na hora de deserializar.
+        properties.putAll(overrideProperties);
+
+        try (var service = new KafkaService(
+                LogService.class.getSimpleName(), Pattern.compile("ECOMMERCE.*")
+                , logService::parse, String.class
+                , Map.of(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName()))) {
+            service.run();
+        }
+
+        try (var service = new KafkaService<Order>(FraudDetectorService.class.getSimpleName()
+                , "ECOMMERCE_NEW_ORDER", fraudDetectorService::parse, Order.class
+                , new HashMap<>())) {
+            service.run();
+        };
+
+        try ( var service = new KafkaService<Email>(EmailService.class.getSimpleName()
+                , "ECOMMERCE_SEND_EMAIL", emailService::parse, Email.class
+                , new HashMap<>())) {
+            service.run();
+        };
+
+-------------------------------------------------------------------
+Aula04.08 - O que aprendemos?
+
+Como limpar os diretórios de log e dados do zookeeper e kafka
+Como utilizar diretórios não temporátios para o zookeeper e kafka
+Como utilizar o GSON
+Criando um serializador customizado do Kafka
+Verificar o conteúdo exato de uma mensagem em um programa
+Deserialização customizada
+Lidando com customização por serviço
 
 
 
 
 
 
+/*****************************************************************/
+-------------------------------------------------------------------
+Aula.05. Microsserviços como módulos em um mono repo
 
+-------------------------------------------------------------------
+Aula.05.02 Microsserviços como módulos em um mono repo
 
 
 
