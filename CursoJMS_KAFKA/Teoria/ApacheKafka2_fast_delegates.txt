@@ -1,0 +1,45 @@
+
+
+* Apache Kafka
+
+Kafka: Fast delegate, evolução e cluster de brokers
+
+Use servidor http como ponto de entrada
+Evolua os serviços e schemas
+Faça seu serviço acessar bancos externos
+Conheça como fazer a replicação de clusters
+
+--------------------------------------------------------------------------------
+
+1. Ligar o zookeeper
+carloss@carloss-note:~/Documents/Desenvolvimento/eclipse-workspace/JmsKafka/kafka_2.13-2.6.0
+$ ./bin/zookeeper-server-start.sh ./config/zookeeper.properties
+
+2. Ligar o kafka
+carloss@carloss-note:~/Documents/Desenvolvimento/eclipse-workspace/JmsKafka/kafka_2.13-2.6.0
+$ ./bin/kafka-server-start.sh ./config/server.properties
+
+
+--------------------------------------------------------------------------------
+*** Aula 01
+
+Como fazer um consumidor também produzir
+Como lidar com patterns e novos topics
+Como acessar um banco de dados
+Problemas de schema que vão sendo levantados durante a evolução dos serviços
+
+* crio um modulo service-users
+
+	Add as dependencias do modulo sqlite-jdbc no pom.xml do service-users
+	mvnrepository sqlite
+	https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc
+	no service-users/pom.xml eu coloco o sqlite;
+
+	Add as dependencias do modulo common-kafka no pom.xml do service-users
+
+
+
+
+
+--------------------------------------------------------------------------------
+*** Aula 02
