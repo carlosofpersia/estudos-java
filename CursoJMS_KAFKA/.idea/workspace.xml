@@ -34,18 +34,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="73161455-1d77-4e81-a756-8b81d0dc47e6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/ConsumerFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/ConsumerFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/KafkaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/KafkaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/target/classes/br/com/alura/ecommerce/ConsumerFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/target/classes/br/com/alura/ecommerce/ConsumerFunction.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/target/classes/br/com/alura/ecommerce/KafkaService.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/target/classes/br/com/alura/ecommerce/KafkaService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Teoria/ApacheKafka2_fast_delegates.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Teoria/ApacheKafka2_fast_delegates.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service-frauddetector/src/main/java/br/com/alura/ecommerce/FraudDetectorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-frauddetector/src/main/java/br/com/alura/ecommerce/FraudDetectorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service-frauddetector/src/main/java/br/com/alura/ecommerce/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-frauddetector/src/main/java/br/com/alura/ecommerce/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-frauddetector/target/classes/br/com/alura/ecommerce/FraudDetectorService.class" beforeDir="false" afterPath="$PROJECT_DIR$/service-frauddetector/target/classes/br/com/alura/ecommerce/FraudDetectorService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-frauddetector/target/classes/br/com/alura/ecommerce/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/service-frauddetector/target/classes/br/com/alura/ecommerce/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-new-order/src/main/java/br/com/alura/ecommerce/NewOrderMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-new-order/src/main/java/br/com/alura/ecommerce/NewOrderMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-new-order/src/main/java/br/com/alura/ecommerce/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-new-order/src/main/java/br/com/alura/ecommerce/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-users/src/main/java/br/com/alura/ecommerce/CreateUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-users/src/main/java/br/com/alura/ecommerce/CreateUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-users/src/main/java/br/com/alura/ecommerce/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-users/src/main/java/br/com/alura/ecommerce/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/users_database.db" beforeDir="false" afterPath="$PROJECT_DIR$/target/users_database.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +111,7 @@
       <command value="mvn package" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.CreateUserService">
+  <component name="RunManager" selected="Application.NewOrderMain">
     <configuration name="CreateUserService" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -267,9 +264,10 @@
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
     <state x="2335" y="341" width="659" height="396" key="#com.intellij.fileTypes.FileTypeChooser/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1602634056612" />
-    <state x="2477" y="246" width="659" height="585" key="#com.intellij.ide.util.MemberChooser" timestamp="1602630660076">
-      <screen x="1366" y="0" width="2560" height="1080" />
+    <state x="1922" y="246" width="565" height="585" key="#com.intellij.ide.util.MemberChooser" timestamp="1602695638143">
+      <screen x="1366" y="0" width="1280" height="1080" />
     </state>
+    <state x="1922" y="246" width="565" height="585" key="#com.intellij.ide.util.MemberChooser/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1602695638143" />
     <state x="2477" y="246" width="659" height="585" key="#com.intellij.ide.util.MemberChooser/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1602630660076" />
     <state x="2397" y="317" width="524" height="444" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1601038139074">
       <screen x="1366" y="0" width="2560" height="1080" />
@@ -291,25 +289,29 @@
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
     <state x="2447" y="296" width="424" height="484" key="FileChooserDialogImpl/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1601043601667" />
-    <state width="2467" height="438" key="GridCell.Tab.0.bottom" timestamp="1602634045279">
-      <screen x="1366" y="0" width="2560" height="1080" />
+    <state width="2467" height="438" key="GridCell.Tab.0.bottom" timestamp="1602695845344">
+      <screen x="1366" y="0" width="1280" height="1080" />
     </state>
-    <state width="2467" height="438" key="GridCell.Tab.0.bottom/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1602634045279" />
+    <state width="2467" height="438" key="GridCell.Tab.0.bottom/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1602695845344" />
+    <state width="2467" height="438" key="GridCell.Tab.0.bottom/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1602635281792" />
     <state width="1273" height="181" key="GridCell.Tab.0.bottom/47.27.1319.741/1366.0.2560.1080@47.27.1319.741" timestamp="1600274812849" />
-    <state width="2467" height="438" key="GridCell.Tab.0.center" timestamp="1602634045279">
-      <screen x="1366" y="0" width="2560" height="1080" />
+    <state width="2467" height="438" key="GridCell.Tab.0.center" timestamp="1602695845343">
+      <screen x="1366" y="0" width="1280" height="1080" />
     </state>
-    <state width="2467" height="438" key="GridCell.Tab.0.center/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1602634045279" />
+    <state width="2467" height="438" key="GridCell.Tab.0.center/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1602695845343" />
+    <state width="2467" height="438" key="GridCell.Tab.0.center/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1602635281791" />
     <state width="1273" height="181" key="GridCell.Tab.0.center/47.27.1319.741/1366.0.2560.1080@47.27.1319.741" timestamp="1600274812849" />
-    <state width="2467" height="438" key="GridCell.Tab.0.left" timestamp="1602634045279">
-      <screen x="1366" y="0" width="2560" height="1080" />
+    <state width="2467" height="438" key="GridCell.Tab.0.left" timestamp="1602695845343">
+      <screen x="1366" y="0" width="1280" height="1080" />
     </state>
-    <state width="2467" height="438" key="GridCell.Tab.0.left/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1602634045279" />
+    <state width="2467" height="438" key="GridCell.Tab.0.left/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1602695845343" />
+    <state width="2467" height="438" key="GridCell.Tab.0.left/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1602635281791" />
     <state width="1273" height="181" key="GridCell.Tab.0.left/47.27.1319.741/1366.0.2560.1080@47.27.1319.741" timestamp="1600274812849" />
-    <state width="2467" height="438" key="GridCell.Tab.0.right" timestamp="1602634045279">
-      <screen x="1366" y="0" width="2560" height="1080" />
+    <state width="2467" height="438" key="GridCell.Tab.0.right" timestamp="1602695845343">
+      <screen x="1366" y="0" width="1280" height="1080" />
     </state>
-    <state width="2467" height="438" key="GridCell.Tab.0.right/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1602634045279" />
+    <state width="2467" height="438" key="GridCell.Tab.0.right/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1602695845343" />
+    <state width="2467" height="438" key="GridCell.Tab.0.right/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1602635281791" />
     <state width="1273" height="181" key="GridCell.Tab.0.right/47.27.1319.741/1366.0.2560.1080@47.27.1319.741" timestamp="1600274812849" />
     <state x="1574" y="197" width="924" height="684" key="Maven.ArtifactSearchDialog" timestamp="1601042683186">
       <screen x="1366" y="0" width="2560" height="1080" />
@@ -351,9 +353,10 @@
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
     <state x="2333" y="246" width="672" height="677" key="run.anything.popup/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1601044128564" />
-    <state x="2332" y="237" width="672" height="678" key="search.everywhere.popup" timestamp="1602633170347">
-      <screen x="1366" y="0" width="2560" height="1080" />
+    <state x="1849" y="237" width="672" height="678" key="search.everywhere.popup" timestamp="1602695636495">
+      <screen x="1366" y="0" width="1280" height="1080" />
     </state>
+    <state x="1849" y="237" width="672" height="678" key="search.everywhere.popup/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1602695636495" />
     <state x="2332" y="237" width="672" height="678" key="search.everywhere.popup/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1602633170347" />
   </component>
 </project>

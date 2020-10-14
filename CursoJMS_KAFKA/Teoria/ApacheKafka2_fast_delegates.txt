@@ -21,7 +21,7 @@ $ ./bin/kafka-server-start.sh ./config/server.properties
 
 
 --------------------------------------------------------------------------------
-*** Aula 01
+*** Aula 01 - Novos produtores e consumidores;
 
 Como fazer um consumidor também produzir
 Como lidar com patterns e novos topics
@@ -33,6 +33,7 @@ Problemas de schema que vão sendo levantados durante a evolução dos serviços
 	Add as dependencias do modulo sqlite-jdbc no pom.xml do service-users
 	mvnrepository sqlite
 	https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc
+	https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc/3.32.3.2
 	no service-users/pom.xml eu coloco o sqlite;
 
 	Add as dependencias do modulo common-kafka no pom.xml do service-users
@@ -42,4 +43,17 @@ Problemas de schema que vão sendo levantados durante a evolução dos serviços
 
 
 --------------------------------------------------------------------------------
-*** Aula 02
+*** Aula 02 - Evoluindo serviços e schemas;
+
+como evoluir um serviço sem quebrar os schemas
+como pensar a evolução de um serviço
+discutindo UUID e id único
+
+
+
+
+--------------------------------------------------------------------------------
+*** Aula 03 - Usando um servidor http como ponto de entrada
+
+
+
