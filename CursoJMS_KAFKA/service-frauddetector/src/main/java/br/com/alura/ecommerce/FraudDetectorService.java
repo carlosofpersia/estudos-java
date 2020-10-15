@@ -26,7 +26,7 @@ public class FraudDetectorService {
         System.out.println(record.topic() + ":::partition: " + record.partition() + " / offset: " + record.offset() + " / timestamp: " + record.timestamp());
         System.out.println("Order processed!");
         try {
-            Thread.sleep(10000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             // ignoring
             e.printStackTrace();

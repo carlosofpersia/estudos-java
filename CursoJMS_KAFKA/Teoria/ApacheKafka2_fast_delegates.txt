@@ -12,13 +12,12 @@ Conheça como fazer a replicação de clusters
 --------------------------------------------------------------------------------
 
 1. Ligar o zookeeper
-carloss@carloss-note:~/Documents/Desenvolvimento/eclipse-workspace/JmsKafka/kafka_2.13-2.6.0
+$ /Documents/Desenvolvimento/eclipse-workspace/JmsKafka/kafka_2.13-2.6.0
 $ ./bin/zookeeper-server-start.sh ./config/zookeeper.properties
 
 2. Ligar o kafka
 carloss@carloss-note:~/Documents/Desenvolvimento/eclipse-workspace/JmsKafka/kafka_2.13-2.6.0
 $ ./bin/kafka-server-start.sh ./config/server.properties
-
 
 --------------------------------------------------------------------------------
 *** Aula 01 - Novos produtores e consumidores;
@@ -50,10 +49,29 @@ como pensar a evolução de um serviço
 discutindo UUID e id único
 
 
-
-
 --------------------------------------------------------------------------------
 *** Aula 03 - Usando um servidor http como ponto de entrada
 
+
+como usar um servidor http embarcado
+como criar um serviço http
+como enviar mensagens a partir do servidor http
+a vantagem de um fast delegate
+
+
+* criar modulo service-http-ecommerce
+
+	add dependencia no pom:
+
+	mvnrepository jetty
+	https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-servlet
+	https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-servlet/9.4.32.v20200930
+
+	Add as dependencias do modulo common-kafka no pom.xml do service-users
+
+	Codificar conforme o projeto e testar
+	http://localhost:8080/new
+
+	http://localhost:8080/new?email=carlosofpersia@hotmail.com&amount=157
 
 
