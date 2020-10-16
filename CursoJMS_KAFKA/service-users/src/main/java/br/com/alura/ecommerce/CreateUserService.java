@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 public class CreateUserService {
@@ -16,7 +17,13 @@ public class CreateUserService {
     CreateUserService() throws SQLException {
         String url = "jdbc:sqlite:target/users_database.db";
         connection = DriverManager.getConnection(url);
-        connection.createStatement().execute("create table Users ( uuid varchar (200) primary key, email varchar(200)  )");
+        try {
+            connection.createStatement().execute("create table Users ( uuid varchar (200) primary key, email varchar(200)  )");
+        } catch (SQLException ex) {
+            // be careful, the sql could be wrong, be realllly careful
+            ex.printStackTrace();
+        }
+
 
     }
 
@@ -37,18 +44,21 @@ public class CreateUserService {
         System.out.println("Order processed!");
 
         var order = record.value();
-        if(isNewUser(order.getEmail())) {
+        if(!isNewUser(order.getEmail())) {
 
             insertNewUser(order.getEmail());
+        } else {
+            System.out.println("****** Email existe!");
         }
     }
 
     private void insertNewUser(String email) throws SQLException {
         var insert = connection.prepareStatement("insert into Users (uuid, email) values (?, ? )");
-        insert.setString(1, String.valueOf(Math.random() * 5000 + 1));
+        String uuid = UUID.randomUUID().toString();
+        insert.setString(1, uuid);
         insert.setString(2, email);
         insert.execute();
-        System.out.println("Usuario uuid e " + email + " adicionado." );
+        System.out.println("****** Usuario criado com sucesso, [" + uuid + "] " + email);
     }
 
     private boolean isNewUser(String email) throws SQLException {

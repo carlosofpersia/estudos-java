@@ -247,6 +247,12 @@ log.dirs=/tmp/kafka-logs
 * Trocar por:
 log.dirs=/home/carloss/Documents/Desenvolvimento/eclipse-workspace/JmsKafka/data/kafka
 
+
+#listeners=PLAINTEXT://:9092
+//posso alterar a porta se preciso for, isso e bom quando formos replicar a quantidade de brokers.
+listeners=PLAINTEXT://:9093...
+
+
 3. Acessar as configuracoes do zookeeper para adicionar o path:
 
 $ cd /home/carloss/Documents/Desenvolvimento/eclipse-workspace/JmsKafka/kafka_2.13-2.6.0
