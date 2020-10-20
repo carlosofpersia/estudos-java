@@ -36,16 +36,17 @@ public class CreateUserService {
         };
     }
 
-    private void parse(ConsumerRecord<String, Order> record) throws SQLException {
+    private void parse(ConsumerRecord<String, Message<Order>> record) throws SQLException {
+
+        var message = record.value();
         System.out.println("---------------------------------------------");
         System.out.println("Processing new order, checking for new USER");
         System.out.println("KEY: " + record.key() + " / VALUE: " + record.value());
         System.out.println(record.topic() + ":::partition: " + record.partition() + " / offset: " + record.offset() + " / timestamp: " + record.timestamp());
         System.out.println("Order processed!");
 
-        var order = record.value();
+        var order = message.getPayload();
         if(!isNewUser(order.getEmail())) {
-
             insertNewUser(order.getEmail());
         } else {
             System.out.println("****** Email existe!");

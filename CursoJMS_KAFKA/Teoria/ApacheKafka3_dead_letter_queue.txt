@@ -57,11 +57,37 @@ usando um processo assíncrono e mantendo o isolamento do banco de usuários
 
 02.3 - A serialização customizada com correlation id e um wrapper
 
+	commom-kafka
+		CorrelationId
+		Message
+		KafkaDispatcher
+
+	rm -rf ../data/*
+
+		MessageAdapter
+		GsonSerializer
+
+
+02.4 - Deserialização customizada
+
+		GsonDeserializer
+		BatchSendMessageService
+		ReadingReportService
+		CreateUserService
 
 
 
+* O que aprendemos?
+
+a importância de um correlation id
+serialização e deserialização customizada em sua própria camada
+wrapping de mensagens com tipo próprio
 
 
+
+**************************************************
+-------------------------------------------------
+03.2 - Implementando o correlation id
 
 
 

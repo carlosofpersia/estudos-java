@@ -15,18 +15,18 @@ import java.util.regex.Pattern;
 
 public class KafkaService<T> implements Closeable {
 
-    private final KafkaConsumer<String, T> consumer;
-    private final ConsumerFunction parse;
+    private final KafkaConsumer<String,  Message<T>> consumer;
+    private final ConsumerFunction<T> parse;
 
     public KafkaService(String groupId, String topic
-            , ConsumerFunction parse, Class<T> type
+            , ConsumerFunction<T> parse, Class<T> type
             , Map<String, String> properties) {
         this(parse, groupId, type, properties);
         this.consumer.subscribe(Collections.singletonList(topic));
     }
 
     public KafkaService(String groupId, Pattern topic
-            , ConsumerFunction parse, Class<T> type
+            , ConsumerFunction<T> parse, Class<T> type
             , Map<String, String> properties) {
         this(parse, groupId, type, properties);
         this.consumer.subscribe(topic);
@@ -75,9 +75,6 @@ public class KafkaService<T> implements Closeable {
 
         //MAX_POLL_RECORDS_CONFIG max de registros para commitar. menos chance de perder registros.
         properties.setProperty(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "1");
-
-        //Resolve o problema de deserializar um tipo de objeto em configure da GsonDeserializer
-        properties.setProperty(GsonDeserializer.TYPE_CONFIG, type.getName());
 
         //Problema com deserializacao de String para Gson na hora de deserializar.
         properties.putAll(overrideProperties);
