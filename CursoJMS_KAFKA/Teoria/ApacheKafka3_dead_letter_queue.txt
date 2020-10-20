@@ -1,0 +1,98 @@
+
+
+Apache Kafka 3
+
+* Dead Letter Queue e Garantias de entrega
+
+Generalize um processo de batch assíncrono
+Entenda melhor a importância de fast delegate e pontas do sistemas
+Entenda a importância e implemente um correlation ID
+Implemente uma versão inicial de deadletter
+Entenda os problemas de retries assíncronos
+
+Agora que você já tem bom conhecimento sobre Kafka e a arquitetura de microserviços avance no uso dela. Replica os seus dados e saiba como lidar com erros no processamento. Aprenda como definir um dead letter queue e tentativas de reenvio. Crie múltiplos tópicos para o mesmo serviço e saiba como obter garantias sobre o envio e entrega de mensagens.
+
+
+--------------------------------------------------------------------------------
+
+1. Ligar o zookeeper
+$ cd /home/carloss/Documents/Desenvolvimento/eclipse-workspace/JmsKafka/kafka_2.13-2.6.0
+$ ./bin/zookeeper-server-start.sh ./config/zookeeper.properties
+
+2. Ligar o kafka
+$ cd /home/carloss/Documents/Desenvolvimento/eclipse-workspace/JmsKafka/kafka_2.13-2.6.0
+$ ./bin/kafka-server-start.sh ./config/server.properties
+
+--------------------------------------------------------------------------------
+
+
+**************************************************
+-------------------------------------------------
+01.2 - Simulando a geração de relatórios
+
+criando um novo serviço que faz IO
+consideramos o acesso a disco como serviço externo
+diversas formas de trabalhar batch
+usando o batch com http fast delegate
+usando um processo assíncrono e mantendo o isolamento do banco de usuários
+
+	* service-reading-report
+		ReadingReportService
+
+	* service-http-ecommerce
+		GenerateAllReportsServlet
+		HttpEcommerceService
+
+	* service-users			
+		BatchSendMessageService
+
+
+
+**************************************************
+-------------------------------------------------
+02.2 - A importância de um CorrelationId
+
+	A chave sera uma string que sera concatenada ...
+
+
+02.3 - A serialização customizada com correlation id e um wrapper
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------
+
+Apache Kafka
+O Apache Kafka é uma plataforma de streaming distribuída. Através dele é possível processar uma grande quantidade de dados e entregá-los em tempo real aos seus consumidores.
+
+Usado no LinkedIn, Netflix, Twitter e várias outras empresas o Kafka se tornou a ferramenta principal para criar pipeline de dados e enviar, processar e consumir mensagens de forma distribuída, algo muito comum em aplicações baseadas em Microsserviços.
+
+Esta formação foi criada em parceria com o Nubank.
+
+
+1. Streams, Cluster e Microsserviços
+Mergulhe de cabeça no mundo de comunicação assíncrona! Entenda as vantagens do Kafka como broker de mensagens e aprenda como usar Producers, Processors e Consumers. Saiba como se conectar aos serviços externos e aumente a disponibilidade através de um cluster. Veja na pratica como paralelizar e escalar a execução construindo uma solução baseada na arquitetura de microsserviços!
+
+
+2. Dead Letter Queue e Garantias de entrega
+Agora que você já tem bom conhecimento sobre Kafka e a arquitetura de microserviços avance no uso dela. Replica os seus dados e saiba como lidar com erros no processamento. Aprenda como definir um dead letter queue e tentativas de reenvio. Crie múltiplos tópicos para o mesmo serviço e saiba como obter garantias sobre o envio e entrega de mensagens.
+
+
+--------------------------------------------
+
+* Definição de Pipeline da Dados
+Um pipeline de dados é uma série de etapas de processamento de dados. Se os dados não estiverem carregados na plataforma de dados, eles serão ingeridos no início do pipeline. Depois, há uma série de etapas nas quais cada uma fornece uma saída que é a entrada para a próxima etapa. Isso continua até que o pipeline esteja completo. Em alguns casos, etapas independentes podem ser executadas em paralelo.
+
+Os pipelines de dados consistem em três elementos principais: uma fonte, uma ou mais etapas de processamento e um destino. Em alguns pipelines de dados, o destino pode ser chamado de coletor. Os pipelines de dados permitem o fluxo de dados de um aplicativo para um Data Warehouse, de um Data Lake para um banco de dados analítico ou para um sistema de processamento de pagamentos, por exemplo. Os pipelines de dados também podem ter a mesma fonte e coletor, de modo que o pipeline seja apenas para modificar o conjunto de dados. Sempre que os dados são processados ​​entre o ponto A e o ponto B (ou pontos B, C e D), há um pipeline de dados entre esses pontos.
+
