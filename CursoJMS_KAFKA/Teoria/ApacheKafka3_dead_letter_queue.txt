@@ -25,6 +25,9 @@ $ ./bin/kafka-server-start.sh ./config/server.properties
 
 --------------------------------------------------------------------------------
 
+colocar em todos os modulos de servicos do InteliJ: Run -> Edit Configurations -> Workin directory:
+$MODULE_WORKING_DIR$
+
 
 **************************************************
 -------------------------------------------------
@@ -76,6 +79,8 @@ usando um processo assíncrono e mantendo o isolamento do banco de usuários
 		CreateUserService
 
 
+http://localhost:8080/admin/generate-reports
+
 
 * O que aprendemos?
 
@@ -87,7 +92,67 @@ wrapping de mensagens com tipo próprio
 
 **************************************************
 -------------------------------------------------
-03.2 - Implementando o correlation id
+03.3 - Implementando o correlation id
+
+* Quem quer usar o Kafka tem que usar o CorrelationId
+
+como implementar um correlation id
+a importância da mensagem como wrapper ou headers
+como manter o histórico de mensagens que geraram uma determinada mensagem
+
+
+	common-kafka
+		CorrelationId
+		KafkaDispatcher
+
+	service-http-ecommerce
+		HttpEcommerceService
+		GenerateAllReportsServlet
+		NewOrderServlet
+
+	service-users
+		BatchSendMessageService
+		CreateUserService
+
+	service-log
+		LogService
+
+	service-frauddetector
+		FraudDetectorService
+
+	service-new-order
+		NewOrderMain
+
+	service-reading-report	
+		ReadingReportService
+
+	service-email
+		EmailService
+
+
+
+**************************************************
+-------------------------------------------------
+03.4 - Revisando a arquitetura até agora
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

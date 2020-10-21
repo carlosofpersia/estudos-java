@@ -277,6 +277,7 @@ Testar com as portas, caso a outra caia.
 
 
 
+
 * Teoria sobre garantia das informacoes de acordo com ACKS_CONFIG
 
 	Porque nós que enviamos uma mensagem, HttpEcommerceService, quando enviamos a nossa mensagem, no send, chamamos um get e ele retornou quando o líder ficou sabendo que estava tudo ok.
@@ -299,4 +300,38 @@ Testar com as portas, caso a outra caia.
 	Provavelmente se você quer isso o padrão será este. Você pode deixar o seu programador sobrescrever essa propriedade da maneira que quiser. Você quer um valor padrão para toda a empresa, para todo seu projeto. No nosso caso eu quero garantir que a mensagem esteja em pelo menos mais dois lugares, três lugares.
 
 	Porque os meus tópicos têm por padrão replication factor três, dessa maneira garante, só isso porque que agora o send.get vai esperar o acks do líder - falar as réplicas já foram sincronizadas, na verdade pode parar, reestartar o nosso HttpEcommerceService, agora ele já está usando essa configuração nova e vai esperar as outras réplicas.
+
+
+
+
+***********************************************
+
+
+
+
+
+--------------------------------------------
+
+Apache Kafka
+O Apache Kafka é uma plataforma de streaming distribuída. Através dele é possível processar uma grande quantidade de dados e entregá-los em tempo real aos seus consumidores.
+
+Usado no LinkedIn, Netflix, Twitter e várias outras empresas o Kafka se tornou a ferramenta principal para criar pipeline de dados e enviar, processar e consumir mensagens de forma distribuída, algo muito comum em aplicações baseadas em Microsserviços.
+
+Esta formação foi criada em parceria com o Nubank.
+
+
+1. Streams, Cluster e Microsserviços
+Mergulhe de cabeça no mundo de comunicação assíncrona! Entenda as vantagens do Kafka como broker de mensagens e aprenda como usar Producers, Processors e Consumers. Saiba como se conectar aos serviços externos e aumente a disponibilidade através de um cluster. Veja na pratica como paralelizar e escalar a execução construindo uma solução baseada na arquitetura de microsserviços!
+
+
+2. Dead Letter Queue e Garantias de entrega
+Agora que você já tem bom conhecimento sobre Kafka e a arquitetura de microserviços avance no uso dela. Replica os seus dados e saiba como lidar com erros no processamento. Aprenda como definir um dead letter queue e tentativas de reenvio. Crie múltiplos tópicos para o mesmo serviço e saiba como obter garantias sobre o envio e entrega de mensagens.
+
+
+--------------------------------------------
+
+* Definição de Pipeline da Dados
+Um pipeline de dados é uma série de etapas de processamento de dados. Se os dados não estiverem carregados na plataforma de dados, eles serão ingeridos no início do pipeline. Depois, há uma série de etapas nas quais cada uma fornece uma saída que é a entrada para a próxima etapa. Isso continua até que o pipeline esteja completo. Em alguns casos, etapas independentes podem ser executadas em paralelo.
+
+Os pipelines de dados consistem em três elementos principais: uma fonte, uma ou mais etapas de processamento e um destino. Em alguns pipelines de dados, o destino pode ser chamado de coletor. Os pipelines de dados permitem o fluxo de dados de um aplicativo para um Data Warehouse, de um Data Lake para um banco de dados analítico ou para um sistema de processamento de pagamentos, por exemplo. Os pipelines de dados também podem ter a mesma fonte e coletor, de modo que o pipeline seja apenas para modificar o conjunto de dados. Sempre que os dados são processados ​​entre o ponto A e o ponto B (ou pontos B, C e D), há um pipeline de dados entre esses pontos.
 

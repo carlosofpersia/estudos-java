@@ -30,7 +30,7 @@ public class BatchSendMessageService {
     public static void main(String[] args) throws SQLException {
         var batchService = new BatchSendMessageService();
         try (var service = new KafkaService<>(BatchSendMessageService.class.getSimpleName()
-                , "SEND_MESSAGE_TO_ALL_USERS"
+                , "ECOMMERCE_SEND_MESSAGE_TO_ALL_USERS"
                 , batchService::parse
                 , String.class
                 , new HashMap<>())) {
@@ -38,7 +38,8 @@ public class BatchSendMessageService {
         };
     }
 
-    private void parse(ConsumerRecord<String, Message<String>> record) throws SQLException, ExecutionException, InterruptedException {
+    private void parse(ConsumerRecord<String, Message<String>> record)
+            throws SQLException, ExecutionException, InterruptedException {
 
         System.out.println("---------------------------------------------");
         System.out.println("Processing new batch");
@@ -46,10 +47,12 @@ public class BatchSendMessageService {
 
         var message = record.value();
         for(User user: getAllUsers()) {
-            userDispatcher.send(message.getPayload(), user.getUuid(), user);
+            userDispatcher.send(message.getPayload()
+                    , user.getUuid()
+                    , message.getId().continueWith(BatchSendMessageService.class.getSimpleName())
+                    , user);
         }
         System.out.println("Batch processed!");
-
     }
 
     private List<User> getAllUsers() throws SQLException {
