@@ -34,40 +34,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="73161455-1d77-4e81-a756-8b81d0dc47e6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Teoria/ApacheKafka.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Teoria/ApacheKafka.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Teoria/ApacheKafka2_fast_delegates.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Teoria/ApacheKafka2_fast_delegates.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Teoria/ApacheKafka3_dead_letter_queue.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Teoria/ApacheKafka3_dead_letter_queue.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/CorrelationId.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/CorrelationId.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/KafkaDispatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/KafkaDispatcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/target/classes/br/com/alura/ecommerce/CorrelationId.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/target/classes/br/com/alura/ecommerce/CorrelationId.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/target/classes/br/com/alura/ecommerce/KafkaDispatcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/target/classes/br/com/alura/ecommerce/KafkaDispatcher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/KafkaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/KafkaService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service-email/src/main/java/br/com/alura/ecommerce/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-email/src/main/java/br/com/alura/ecommerce/EmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-email/target/classes/br/com/alura/ecommerce/EmailService.class" beforeDir="false" afterPath="$PROJECT_DIR$/service-email/target/classes/br/com/alura/ecommerce/EmailService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service-frauddetector/src/main/java/br/com/alura/ecommerce/FraudDetectorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-frauddetector/src/main/java/br/com/alura/ecommerce/FraudDetectorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-frauddetector/target/classes/br/com/alura/ecommerce/FraudDetectorService.class" beforeDir="false" afterPath="$PROJECT_DIR$/service-frauddetector/target/classes/br/com/alura/ecommerce/FraudDetectorService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-http-ecommerce/src/main/java/br/com/alura/ecommerce/GenerateAllReportsServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-http-ecommerce/src/main/java/br/com/alura/ecommerce/GenerateAllReportsServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-http-ecommerce/src/main/java/br/com/alura/ecommerce/NewOrderServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-http-ecommerce/src/main/java/br/com/alura/ecommerce/NewOrderServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-http-ecommerce/target/classes/br/com/alura/ecommerce/GenerateAllReportsServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/service-http-ecommerce/target/classes/br/com/alura/ecommerce/GenerateAllReportsServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-http-ecommerce/target/classes/br/com/alura/ecommerce/NewOrderServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/service-http-ecommerce/target/classes/br/com/alura/ecommerce/NewOrderServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service-log/src/main/java/br/com/alura/ecommerce/LogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-log/src/main/java/br/com/alura/ecommerce/LogService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-log/target/classes/br/com/alura/ecommerce/LogService.class" beforeDir="false" afterPath="$PROJECT_DIR$/service-log/target/classes/br/com/alura/ecommerce/LogService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-new-order/src/main/java/br/com/alura/ecommerce/NewOrderMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-new-order/src/main/java/br/com/alura/ecommerce/NewOrderMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-new-order/target/classes/br/com/alura/ecommerce/NewOrderMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/service-new-order/target/classes/br/com/alura/ecommerce/NewOrderMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-reading-report/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service-reading-report/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-reading-report/service-reading-report.iml" beforeDir="false" afterPath="$PROJECT_DIR$/service-reading-report/service-reading-report.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-reading-report/src/main/java/br/com/alura/ecommerce/IO.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-reading-report/src/main/java/br/com/alura/ecommerce/IO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service-reading-report/src/main/java/br/com/alura/ecommerce/ReadingReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-reading-report/src/main/java/br/com/alura/ecommerce/ReadingReportService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-reading-report/src/main/java/br/com/alura/ecommerce/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-reading-report/src/main/java/br/com/alura/ecommerce/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-reading-report/src/main/resources/report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/service-reading-report/src/main/resources/report.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-reading-report/target/classes/br/com/alura/ecommerce/IO.class" beforeDir="false" afterPath="$PROJECT_DIR$/service-reading-report/target/classes/br/com/alura/ecommerce/IO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-reading-report/target/classes/br/com/alura/ecommerce/ReadingReportService.class" beforeDir="false" afterPath="$PROJECT_DIR$/service-reading-report/target/classes/br/com/alura/ecommerce/ReadingReportService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-reading-report/target/classes/br/com/alura/ecommerce/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/service-reading-report/target/classes/br/com/alura/ecommerce/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-reading-report/target/classes/report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/service-reading-report/target/classes/report.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service-users/src/main/java/br/com/alura/ecommerce/BatchSendMessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-users/src/main/java/br/com/alura/ecommerce/BatchSendMessageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-users/target/classes/br/com/alura/ecommerce/BatchSendMessageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/service-users/target/classes/br/com/alura/ecommerce/BatchSendMessageService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/users_database.db" beforeDir="false" afterPath="$PROJECT_DIR$/target/users_database.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-users/src/main/java/br/com/alura/ecommerce/CreateUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-users/src/main/java/br/com/alura/ecommerce/CreateUserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,13 +112,12 @@
       <command value="mvn package" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.NewOrderMain">
+  <component name="RunManager" selected="Application.BatchSendMessageService">
     <configuration name="BatchSendMessageService" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="br.com.alura.ecommerce.BatchSendMessageService" />
       <module name="service-users" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="br.com.alura.ecommerce.*" />
@@ -159,7 +133,6 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="br.com.alura.ecommerce.CreateUserService" />
       <module name="service-users" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="br.com.alura.ecommerce.*" />
@@ -206,7 +179,6 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="br.com.alura.ecommerce.HttpEcommerceService" />
       <module name="service-http-ecommerce" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="br.com.alura.ecommerce.*" />
@@ -217,12 +189,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LogService" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+    <configuration name="LogService" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="br.com.alura.ecommerce.LogService" />
       <module name="service-log" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="br.com.alura.ecommerce.*" />
@@ -254,7 +225,6 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="br.com.alura.ecommerce.ReadingReportService" />
       <module name="service-reading-report" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="br.com.alura.ecommerce.*" />
@@ -275,19 +245,19 @@
     <list>
       <item itemvalue="Application.NewOrderMain" />
       <item itemvalue="Application.FraudDetectorService" />
-      <item itemvalue="Application.LogService" />
-      <item itemvalue="Application.BatchSendMessageService" />
-      <item itemvalue="Application.CreateUserService" />
-      <item itemvalue="Application.ReadingReportService" />
       <item itemvalue="Application.HttpEcommerceService" />
+      <item itemvalue="Application.LogService" />
+      <item itemvalue="Application.ReadingReportService" />
+      <item itemvalue="Application.CreateUserService" />
+      <item itemvalue="Application.BatchSendMessageService" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.BatchSendMessageService" />
+        <item itemvalue="Application.CreateUserService" />
+        <item itemvalue="Application.ReadingReportService" />
         <item itemvalue="Application.LogService" />
         <item itemvalue="Application.HttpEcommerceService" />
-        <item itemvalue="Application.ReadingReportService" />
-        <item itemvalue="Application.CreateUserService" />
-        <item itemvalue="Application.BatchSendMessageService" />
       </list>
     </recent_temporary>
   </component>
@@ -379,29 +349,29 @@
     </state>
     <state x="1907" y="296" width="374" height="484" key="FileChooserDialogImpl/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603122582729" />
     <state x="2447" y="296" width="424" height="484" key="FileChooserDialogImpl/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1601043601667" />
-    <state width="2467" height="289" key="GridCell.Tab.0.bottom" timestamp="1603293211452">
+    <state width="1211" height="414" key="GridCell.Tab.0.bottom" timestamp="1603407489908">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
     <state width="2467" height="290" key="GridCell.Tab.0.bottom/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603123476704" />
-    <state width="2467" height="289" key="GridCell.Tab.0.bottom/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1603293211452" />
+    <state width="1211" height="414" key="GridCell.Tab.0.bottom/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1603407489908" />
     <state width="1273" height="181" key="GridCell.Tab.0.bottom/47.27.1319.741/1366.0.2560.1080@47.27.1319.741" timestamp="1600274812849" />
-    <state width="2467" height="289" key="GridCell.Tab.0.center" timestamp="1603293211452">
+    <state width="1211" height="414" key="GridCell.Tab.0.center" timestamp="1603407489908">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
     <state width="2467" height="290" key="GridCell.Tab.0.center/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603123476703" />
-    <state width="2467" height="289" key="GridCell.Tab.0.center/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1603293211452" />
+    <state width="1211" height="414" key="GridCell.Tab.0.center/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1603407489908" />
     <state width="1273" height="181" key="GridCell.Tab.0.center/47.27.1319.741/1366.0.2560.1080@47.27.1319.741" timestamp="1600274812849" />
-    <state width="2467" height="289" key="GridCell.Tab.0.left" timestamp="1603293211452">
+    <state width="1211" height="414" key="GridCell.Tab.0.left" timestamp="1603407489907">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
     <state width="2467" height="290" key="GridCell.Tab.0.left/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603123476703" />
-    <state width="2467" height="289" key="GridCell.Tab.0.left/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1603293211452" />
+    <state width="1211" height="414" key="GridCell.Tab.0.left/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1603407489907" />
     <state width="1273" height="181" key="GridCell.Tab.0.left/47.27.1319.741/1366.0.2560.1080@47.27.1319.741" timestamp="1600274812849" />
-    <state width="2467" height="289" key="GridCell.Tab.0.right" timestamp="1603293211452">
+    <state width="1211" height="414" key="GridCell.Tab.0.right" timestamp="1603407489908">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
     <state width="2467" height="290" key="GridCell.Tab.0.right/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603123476703" />
-    <state width="2467" height="289" key="GridCell.Tab.0.right/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1603293211452" />
+    <state width="1211" height="414" key="GridCell.Tab.0.right/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1603407489908" />
     <state width="1273" height="181" key="GridCell.Tab.0.right/47.27.1319.741/1366.0.2560.1080@47.27.1319.741" timestamp="1600274812849" />
     <state width="1211" height="354" key="GridCell.Tab.1.bottom" timestamp="1603209558974">
       <screen x="1366" y="0" width="2560" height="1080" />

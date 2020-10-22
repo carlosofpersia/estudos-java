@@ -13,10 +13,10 @@ public class ReadingReportService {
 
     public static void main(String[] args) {
         var reportService = new ReadingReportService();
-        try (var service = new KafkaService<>(ReadingReportService.class.getSimpleName()
+        try (var service = new KafkaService<>(
+                ReadingReportService.class.getSimpleName()
                 , "ECOMMERCE_USER_GENERATE_READING_REPORT"
                 , reportService::parse
-                , User.class
                 , Map.of())) {
             service.run();
         };

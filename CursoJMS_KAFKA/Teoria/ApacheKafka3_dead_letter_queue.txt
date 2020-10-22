@@ -136,7 +136,51 @@ como manter o histórico de mensagens que geraram uma determinada mensagem
 03.4 - Revisando a arquitetura até agora
 
 
+revisando tópicos e partições
+revisando consumer groups
+revisando líderes e réplicas
+revisando rebalanceamento
 
+	todos os servicos rodando, vamos ver alguns detalhes
+
+	* add qtd de particoes.
+	./bin/kafka-topics.sh --alter --zookeeper localhost:2181 --topic ECOMMERCE_ORDER_APPROVED --partitions 3
+	./bin/kafka-topics.sh --alter --zookeeper localhost:2181 --topic ECOMMERCE_ORDER_REJECTED --partitions 3
+	./bin/kafka-topics.sh --alter --zookeeper localhost:2181 --topic ECOMMERCE_USER_GENERATE_READING_REPORT --partitions 3
+	./bin/kafka-topics.sh --alter --zookeeper localhost:2181 --topic ECOMMERCE_SEND_EMAIL --partitions 3
+	./bin/kafka-topics.sh --alter --zookeeper localhost:2181 --topic ECOMMERCE_SEND_MESSAGE_TO_ALL_USERS --partitions 3
+	./bin/kafka-topics.sh --alter --zookeeper localhost:2181 --topic ECOMMERCE_NEW_ORDER --partitions 3
+
+	* listar os topicos para ver o numero de particoes
+	./bin/kafka-topics.sh --describe --bootstrap-server localhost:9092
+
+	* ver todos os topicos por grupos 
+	./bin/kafka-consumer-groups.sh --all-groups --bootstrap-server localhost:9092 --describe
+
+
+
+-------------------------------------------------
+03.4 - Colocando property para saber de quantas em quantas mensagens eu quero consumir por particao.
+
+
+
+
+* As particoes sao rebalanceadas.
+
+o poll vai pingando no servidor avisando que esta vivo.
+
+	var records = consumer.poll(Duration.ofMillis(100));
+
+quando subo outra particao, o zookeeper faz um rebalanco.
+
+quando um servidor kafka cai, ele para de receber o poll e o servidor percebe entao pega o que esta vivo.
+
+
+
+
+**************************************************
+-------------------------------------------------
+03.4 - Retries e assincronicidade
 
 
 

@@ -29,8 +29,10 @@ public class CreateUserService {
 
     public static void main(String[] args) throws SQLException {
         var createUserService = new CreateUserService();
-        try (var service = new KafkaService<Order>(CreateUserService.class.getSimpleName()
-                , "ECOMMERCE_NEW_ORDER", createUserService::parse, Order.class
+        try (var service = new KafkaService<Order>(
+                CreateUserService.class.getSimpleName()
+                , "ECOMMERCE_NEW_ORDER"
+                , createUserService::parse
                 , new HashMap<>())) {
             service.run();
         };
