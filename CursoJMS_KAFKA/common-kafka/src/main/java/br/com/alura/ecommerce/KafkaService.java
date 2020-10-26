@@ -15,52 +15,66 @@ import java.util.regex.Pattern;
 
 public class KafkaService<T> implements Closeable {
 
-    private final KafkaConsumer<String, T> consumer;
-    private final ConsumerFunction parse;
+    private final KafkaConsumer<String,  Message<T>> consumer;
+    private final ConsumerFunction<T> parse;
 
-    public KafkaService(String groupId, String topic
-            , ConsumerFunction parse, Class<T> type
+    public KafkaService(
+            String groupId
+            , String topic
+            , ConsumerFunction<T> parse
             , Map<String, String> properties) {
-        this(parse, groupId, type, properties);
+        this(parse, groupId, properties);
         this.consumer.subscribe(Collections.singletonList(topic));
     }
 
-    public KafkaService(String groupId, Pattern topic
-            , ConsumerFunction parse, Class<T> type
+    public KafkaService(String groupId
+            , Pattern topic
+            , ConsumerFunction<T> parse
             , Map<String, String> properties) {
-        this(parse, groupId, type, properties);
+        this(parse, groupId, properties);
         this.consumer.subscribe(topic);
     }
 
-    private KafkaService(ConsumerFunction parse, String groupId
-         , Class<T> type, Map<String, String> properties) {
+    private KafkaService(
+            ConsumerFunction<T> parse
+            , String groupId
+            , Map<String, String> properties) {
         this.parse = parse;
-        this.consumer = new KafkaConsumer<>(getProperties(type, groupId, properties));
+        this.consumer = new KafkaConsumer<>(getProperties(groupId, properties));
     }
 
-    public void run() {
+    public void run() throws ExecutionException, InterruptedException {
 
-        while(true) {
-            var records = consumer.poll(Duration.ofMillis(100));
-            if( !records.isEmpty() ) {
-                System.out.println("Encontrei " + records.count() + " registros!");
-                for(var record: records) {
-                    try {
-                        parse.consumer(record);
-                    } catch (Exception e) {
-                        // only catches Exception because no matter witch Exception
-                        // i want to recover and parse the next one.
-                        // so far, just logging the exception for this message
-                        e.printStackTrace();
+        try( var deadLetterDispatcher = new KafkaDispatcher<>() ) {
+
+            while(true) {
+                var records = consumer.poll(Duration.ofMillis(100));
+                if (!records.isEmpty()) {
+                    System.out.println("Encontrei " + records.count() + " registros!");
+                    for (var record : records) {
+                        try {
+                            parse.consumer(record);
+                        } catch (Exception e) {
+                            // only catches Exception because no matter witch Exception
+                            // i want to recover and parse the next one.
+                            // so far, just logging the exception for this message
+                            e.printStackTrace();
+                            var message = record.value();
+                            deadLetterDispatcher.send(
+                                    "ECOMMERCE_DEADLETTER"
+                                    , message.getId().toString()
+                                    , message.getId().continueWith("DeadLetter")
+                                    , new GsonSerializer().serialize("", message) );
+                        }
                     }
+                } else {
+                    System.out.println("Aguardando registros!");
                 }
-            } else {
-                System.out.println("Aguardando registros!");
             }
         }
     }
 
-    private Properties getProperties(Class<T> type, String groupId, Map<String, String> overrideProperties) {
+    private Properties getProperties(String groupId, Map<String, String> overrideProperties) {
         var properties = new Properties();
 
         properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
@@ -75,9 +89,6 @@ public class KafkaService<T> implements Closeable {
 
         //MAX_POLL_RECORDS_CONFIG max de registros para commitar. menos chance de perder registros.
         properties.setProperty(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "1");
-
-        //Resolve o problema de deserializar um tipo de objeto em configure da GsonDeserializer
-        properties.setProperty(GsonDeserializer.TYPE_CONFIG, type.getName());
 
         //Problema com deserializacao de String para Gson na hora de deserializar.
         properties.putAll(overrideProperties);
