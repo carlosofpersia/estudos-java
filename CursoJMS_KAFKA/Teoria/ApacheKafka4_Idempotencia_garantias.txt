@@ -39,23 +39,28 @@ $MODULE_WORKING_DIR$
 	br/com/alura/ecommerce/dispatcher/GsonSerializer.java
 	br/com/alura/ecommerce/dispatcher/KafkaDispatcher.java
 
-
 -------------------------------------------------
 1.3 - Micro serviços de email e fast delegate real
 
 
 
+	Retirei o envio do email das funcoes: NewOrderServlet e NewOrderMain e criei um servico que fica ouvindo
+	o  ECOMMERCE_NEW_ORDER e pega o email, prepara e envia.
+
+	Agora o servico de newOrder esta preocupando so com sua responsabilidade de criar uma nova ordem.
+	o problema ao enviar o e-mail esta para outra galera. fast-delegate.
+
+	service-email-new-order
+		br/com/alura/ecommerce/Email.java
+		br/com/alura/ecommerce/EmailNewOrderService.java
+		br/com/alura/ecommerce/Order.java
 
 
+	service-http-ecommerce
+		br/com/alura/ecommerce/NewOrderServlet.java
 
-
-
-
-
-
-
-
-
+	service-new-order
+		br/com/alura/ecommerce/NewOrderMain.java
 
 
 
@@ -64,8 +69,17 @@ $MODULE_WORKING_DIR$
 -------------------------------------------------
 02.1 Extraindo uma camada de serviços
 
+
+
+
+
+
 -------------------------------------------------
 02.2 Paralelizando com pools de threads
+
+
+
+
 
 ------------------------------------------------
 02.3 Facilidade de criar novos serviços

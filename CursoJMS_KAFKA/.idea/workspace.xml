@@ -34,18 +34,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="73161455-1d77-4e81-a756-8b81d0dc47e6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/service-email-new-order/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-email-new-order/service-email-new-order.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-email-new-order/src/main/java/br/com/alura/ecommerce/Email.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-email-new-order/src/main/java/br/com/alura/ecommerce/EmailNewOrderService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-email-new-order/src/main/java/br/com/alura/ecommerce/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-http-ecommerce/src/main/java/br/com/alura/ecommerce/NewOrderServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-http-ecommerce/src/main/java/br/com/alura/ecommerce/NewOrderServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-new-order/src/main/java/br/com/alura/ecommerce/NewOrderMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-new-order/src/main/java/br/com/alura/ecommerce/NewOrderMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Teoria/ApacheKafka4_Idempotência e garantias.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Teoria/ApacheKafka4_Idempotência e garantias.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
