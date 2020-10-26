@@ -47,7 +47,7 @@ usando um processo assíncrono e mantendo o isolamento do banco de usuários
 		HttpEcommerceService
 
 	* service-users			
-		BatchSendMessageService
+		BatchSendMessageService (BATCH)
 
 
 
@@ -226,14 +226,6 @@ como implementar um dead letter simples
 			enviar uma mensagem :P
 			
 			deadLetter.send("ECOMMERCE_DEADLETTER", ...
-
-
-
-
-
-
-
-
 
 
 

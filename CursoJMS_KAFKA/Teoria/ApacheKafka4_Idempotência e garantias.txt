@@ -28,19 +28,20 @@ $MODULE_WORKING_DIR$
 
 **************************************************
 -------------------------------------------------
-01.1 - Organização e lidando com múltiplos tópicos de envio em um mesmo serviço
+01.2 - Organização e lidando com múltiplos tópicos de envio em um mesmo serviço
 
+	Consumer
+	br/com/alura/ecommerce/consumer/ConsumerFunction.java
+	br/com/alura/ecommerce/consumer/GsonDeserializer.java
+	br/com/alura/ecommerce/consumer/KafkaService.java
 
-
-
-
+	Producer
+	br/com/alura/ecommerce/dispatcher/GsonSerializer.java
+	br/com/alura/ecommerce/dispatcher/KafkaDispatcher.java
 
 
 -------------------------------------------------
-1.2 - Micro serviços de email e fast delegate real
-
-
-
+1.3 - Micro serviços de email e fast delegate real
 
 
 

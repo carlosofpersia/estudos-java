@@ -1,5 +1,8 @@
-package br.com.alura.ecommerce;
+package br.com.alura.ecommerce.consumer;
 
+import br.com.alura.ecommerce.Message;
+import br.com.alura.ecommerce.dispatcher.GsonSerializer;
+import br.com.alura.ecommerce.dispatcher.KafkaDispatcher;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -13,9 +16,14 @@ import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Pattern;
 
+/**
+ * KafkaService + GsonDeserializer
+ * Consumers
+ * @param <T>
+ */
 public class KafkaService<T> implements Closeable {
 
-    private final KafkaConsumer<String,  Message<T>> consumer;
+    private final KafkaConsumer<String, Message<T>> consumer;
     private final ConsumerFunction<T> parse;
 
     public KafkaService(

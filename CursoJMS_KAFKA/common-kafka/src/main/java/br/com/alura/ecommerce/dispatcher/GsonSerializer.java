@@ -1,9 +1,15 @@
-package br.com.alura.ecommerce;
+package br.com.alura.ecommerce.dispatcher;
 
+import br.com.alura.ecommerce.Message;
+import br.com.alura.ecommerce.MessageAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.apache.kafka.common.serialization.Serializer;
 
+/**
+ * KafkaDispatcher + GsonSerializer
+ * @param <T>
+ */
 public class GsonSerializer<T> implements Serializer<T> {
 
     private final Gson gson = new GsonBuilder().registerTypeAdapter(
