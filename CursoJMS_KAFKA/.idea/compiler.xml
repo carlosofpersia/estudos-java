@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="service-log" />
         <module name="service-http-ecommerce" />
+        <module name="service-email-new-order" />
         <module name="common-kafka" />
         <module name="service-new-order" />
         <module name="service-reading-report" />
@@ -20,6 +21,7 @@
       <module name="common-kafka" target="11" />
       <module name="Kafka" target="11" />
       <module name="service-email" target="11" />
+      <module name="service-email-new-order" target="11" />
       <module name="service-frauddetector" target="11" />
       <module name="service-http-ecommerce" target="11" />
       <module name="service-log" target="11" />

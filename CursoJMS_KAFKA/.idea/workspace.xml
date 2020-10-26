@@ -34,65 +34,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="73161455-1d77-4e81-a756-8b81d0dc47e6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/service-email-new-order/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-email-new-order/service-email-new-order.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-email-new-order/src/main/java/br/com/alura/ecommerce/Email.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-email-new-order/src/main/java/br/com/alura/ecommerce/EmailNewOrderService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-email-new-order/src/main/java/br/com/alura/ecommerce/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Teoria/ApacheKafka3_dead_letter_queue.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Teoria/ApacheKafka3_dead_letter_queue.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Teoria/ApacheKafka4_Idempotência e garantias.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Teoria/ApacheKafka4_Idempotência e garantias.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/ConsumerFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/consumer/ConsumerFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/GsonDeserializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/consumer/GsonDeserializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/GsonSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/dispatcher/GsonSerializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/KafkaDispatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/dispatcher/KafkaDispatcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/KafkaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/consumer/KafkaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/target/classes/br/com/alura/ecommerce/ConsumerFunction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/target/classes/br/com/alura/ecommerce/GsonDeserializer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/target/classes/br/com/alura/ecommerce/GsonSerializer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/target/classes/br/com/alura/ecommerce/KafkaDispatcher.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/target/classes/br/com/alura/ecommerce/KafkaService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-email/src/main/java/br/com/alura/ecommerce/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-email/src/main/java/br/com/alura/ecommerce/EmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-email/target/classes/br/com/alura/ecommerce/Email.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-email/target/classes/br/com/alura/ecommerce/EmailService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-frauddetector/src/main/java/br/com/alura/ecommerce/FraudDetectorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-frauddetector/src/main/java/br/com/alura/ecommerce/FraudDetectorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-frauddetector/target/classes/br/com/alura/ecommerce/FraudDetectorService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-frauddetector/target/classes/br/com/alura/ecommerce/Order.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-http-ecommerce/src/main/java/br/com/alura/ecommerce/GenerateAllReportsServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-http-ecommerce/src/main/java/br/com/alura/ecommerce/GenerateAllReportsServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service-http-ecommerce/src/main/java/br/com/alura/ecommerce/NewOrderServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-http-ecommerce/src/main/java/br/com/alura/ecommerce/NewOrderServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-http-ecommerce/target/classes/br/com/alura/ecommerce/Email.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-http-ecommerce/target/classes/br/com/alura/ecommerce/GenerateAllReportsServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-http-ecommerce/target/classes/br/com/alura/ecommerce/HttpEcommerceService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-http-ecommerce/target/classes/br/com/alura/ecommerce/NewOrderServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-http-ecommerce/target/classes/br/com/alura/ecommerce/Order.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-http-ecommerce/target/classes/br/com/alura/ecommerce/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-log/src/main/java/br/com/alura/ecommerce/LogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-log/src/main/java/br/com/alura/ecommerce/LogService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-log/target/classes/br/com/alura/ecommerce/LogService.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/service-new-order/src/main/java/br/com/alura/ecommerce/NewOrderMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-new-order/src/main/java/br/com/alura/ecommerce/NewOrderMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-new-order/target/classes/br/com/alura/ecommerce/Email.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-new-order/target/classes/br/com/alura/ecommerce/NewOrderMain.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-new-order/target/classes/br/com/alura/ecommerce/Order.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-reading-report/src/main/java/br/com/alura/ecommerce/ReadingReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-reading-report/src/main/java/br/com/alura/ecommerce/ReadingReportService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-reading-report/target/classes/br/com/alura/ecommerce/IO.class" beforeDir="false" afterPath="$PROJECT_DIR$/service-reading-report/target/classes/br/com/alura/ecommerce/IO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-reading-report/target/classes/br/com/alura/ecommerce/ReadingReportService.class" beforeDir="false" afterPath="$PROJECT_DIR$/service-reading-report/target/classes/br/com/alura/ecommerce/ReadingReportService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-reading-report/target/classes/br/com/alura/ecommerce/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/service-reading-report/target/classes/br/com/alura/ecommerce/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-users/src/main/java/br/com/alura/ecommerce/BatchSendMessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-users/src/main/java/br/com/alura/ecommerce/BatchSendMessageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-users/src/main/java/br/com/alura/ecommerce/CreateUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-users/src/main/java/br/com/alura/ecommerce/CreateUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-users/target/classes/br/com/alura/ecommerce/BatchSendMessageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/service-users/target/classes/br/com/alura/ecommerce/BatchSendMessageService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-users/target/classes/br/com/alura/ecommerce/CreateUserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/service-users/target/classes/br/com/alura/ecommerce/CreateUserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/alura/a/ecommerce/ConsumerFunction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/alura/a/ecommerce/EmailService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/alura/a/ecommerce/FraudDetectorService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/alura/a/ecommerce/KafkaDispatcher.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/alura/a/ecommerce/KafkaService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/alura/a/ecommerce/LogService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/alura/a/ecommerce/NewOrderMain.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/alura/b/ecommerce/ConsumerFunction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/alura/b/ecommerce/Email.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/alura/b/ecommerce/EmailService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/alura/b/ecommerce/FraudDetectorService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/alura/b/ecommerce/GsonDeserializer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/alura/b/ecommerce/GsonSerializer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/alura/b/ecommerce/KafkaDispatcher.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/alura/b/ecommerce/KafkaService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/alura/b/ecommerce/LogService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/alura/b/ecommerce/NewOrderMain.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/alura/b/ecommerce/Order.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +88,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/service-reading-report/src/main/java" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/service-email-new-order/src/main/java" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -143,20 +96,20 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="br.com.alura.ecommerce" />
       <recent name="br.com.alura.ecommerce.consumer" />
       <recent name="br.com.alura.ecommerce.dispatcher" />
-      <recent name="br.com.alura.ecommerce" />
       <recent name="br.com.alura.first" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="br.com.alura.ecommerce" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/service-email-new-order/src/main/java" />
       <recent name="$PROJECT_DIR$/service-reading-report/src/main/java" />
       <recent name="$PROJECT_DIR$/service-users/src/main" />
       <recent name="$PROJECT_DIR$/service-new-order/src/main/java/br/com/alura/ecommerce" />
       <recent name="$PROJECT_DIR$/src/main/java/br/com/alura/second.ecommerce" />
-      <recent name="$PROJECT_DIR$/src/main/java/br/com/alura" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -372,14 +325,18 @@
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
     <state x="2397" y="317" width="524" height="444" key="#com.intellij.ide.util.PackageChooserDialog/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1601038139074" />
-    <state x="1814" y="334" width="777" height="272" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1603714303661">
+    <state x="1814" y="334" width="777" height="272" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1603716092838">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
-    <state x="1814" y="334" width="777" height="272" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1603714303661" />
+    <state x="1814" y="334" width="777" height="272" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1603716092838" />
     <state x="1789" y="448" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1600962085975">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
     <state x="1789" y="448" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1600962085975" />
+    <state x="1764" y="289" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603716142254">
+      <screen x="1366" y="0" width="2560" height="1080" />
+    </state>
+    <state x="1764" y="289" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1603716142254" />
     <state x="1799" y="283" key="#xdebugger.evaluate" timestamp="1603208599627">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
@@ -396,11 +353,11 @@
       <screen x="1366" y="0" width="1280" height="1080" />
     </state>
     <state x="2027" y="358" width="309" height="482" key="EnvironmentVariablesDialog/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603122499440" />
-    <state x="1907" y="296" width="374" height="484" key="FileChooserDialogImpl" timestamp="1603122582729">
-      <screen x="1366" y="0" width="1280" height="1080" />
+    <state x="2447" y="296" width="374" height="484" key="FileChooserDialogImpl" timestamp="1603715932260">
+      <screen x="1366" y="0" width="2560" height="1080" />
     </state>
     <state x="1907" y="296" width="374" height="484" key="FileChooserDialogImpl/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603122582729" />
-    <state x="2447" y="296" width="424" height="484" key="FileChooserDialogImpl/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1601043601667" />
+    <state x="2447" y="296" width="424" height="484" key="FileChooserDialogImpl/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1603715932260" />
     <state width="1201" height="413" key="GridCell.Tab.0.bottom" timestamp="1603677217942">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
@@ -483,11 +440,11 @@
       <screen x="1366" y="0" width="1280" height="1080" />
     </state>
     <state width="600" height="428" key="javadoc.popup/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603122210429" />
-    <state x="1556" y="198" width="939" height="592" key="new project wizard" timestamp="1603110090095">
-      <screen x="1366" y="0" width="1280" height="1080" />
+    <state x="1746" y="198" width="939" height="592" key="new project wizard" timestamp="1603715881602">
+      <screen x="1366" y="0" width="2560" height="1080" />
     </state>
     <state x="1556" y="198" width="939" height="592" key="new project wizard/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603110090095" />
-    <state x="1746" y="198" width="1372" height="592" key="new project wizard/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1602787558248" />
+    <state x="1746" y="198" width="1372" height="592" key="new project wizard/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1603715881602" />
     <state x="2333" y="246" width="672" height="677" key="run.anything.popup" timestamp="1601044128564">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>

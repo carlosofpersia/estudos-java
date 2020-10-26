@@ -14,12 +14,10 @@ import java.util.concurrent.ExecutionException;
 public class NewOrderServlet extends HttpServlet {
 
     private final KafkaDispatcher<Order> orderDispatcher = new KafkaDispatcher<>();
-    private final KafkaDispatcher<Email> emailDispatcher = new KafkaDispatcher<>();
 
     @Override
     public void destroy() {
         orderDispatcher.close();
-        emailDispatcher.close();
     }
 
     @Override
@@ -40,11 +38,17 @@ public class NewOrderServlet extends HttpServlet {
                             , new CorrelationId(NewOrderServlet.class.getSimpleName())
                             , order);
 
-                    var emailCode = new Email("carlosofpersia@hotmail.com", "Thank you for your order! We are processing your order!");
+                    /* Nao preciso mais, agora eu tenho um servico que prepara
+                     * o e-mail quando ouve um ECOMMERCE_NEW_ORDER.
+                    var emailCode = new Email("carlosofpersia@hotmail.com"
+                    * , "Thank you for your order! We are processing your order!");
+                    * private final KafkaDispatcher<Email> emailDispatcher = new KafkaDispatcher<>();
                     emailDispatcher.send("ECOMMERCE_SEND_EMAIL"
                             , email
                             , new CorrelationId(NewOrderServlet.class.getSimpleName())
                             , emailCode);
+                            * emailDispatcher.close();
+                     */
 
                     System.out.println("New order sent sucessfully.");
 
