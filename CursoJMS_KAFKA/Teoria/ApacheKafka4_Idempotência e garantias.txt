@@ -1,0 +1,177 @@
+
+* Kafka: Idempotência e garantias
+
+Lide com múltiplos tópicos de envio no mesmo serviço
+Extraia camadas de serviços
+Paralelize pools de threads
+Facilite a criação de novos serviços
+Entenda como obter garantias relativas ao envio ou entrega das mensagens
+
+
+--------------------------------------------------------------------------------
+
+1. Ligar o zookeeper
+$ cd /home/carloss/Documents/Desenvolvimento/eclipse-workspace/JmsKafka/kafka_2.13-2.6.0
+$ ./bin/zookeeper-server-start.sh ./config/zookeeper.properties
+
+2. Ligar o kafka
+$ cd /home/carloss/Documents/Desenvolvimento/eclipse-workspace/JmsKafka/kafka_2.13-2.6.0
+$ ./bin/kafka-server-start.sh ./config/server.properties
+
+--------------------------------------------------------------------------------
+
+colocar em todos os modulos de servicos do InteliJ: Run -> Edit Configurations -> Workin directory:
+$MODULE_WORKING_DIR$
+
+
+
+
+**************************************************
+-------------------------------------------------
+01.1 - Organização e lidando com múltiplos tópicos de envio em um mesmo serviço
+
+
+
+
+
+
+
+-------------------------------------------------
+1.2 - Micro serviços de email e fast delegate real
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**************************************************
+-------------------------------------------------
+02.1 Extraindo uma camada de serviços
+
+-------------------------------------------------
+02.2 Paralelizando com pools de threads
+
+------------------------------------------------
+02.3 Facilidade de criar novos serviços
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**************************************************
+-------------------------------------------------
+03.1 Offset latest e earliest
+
+-------------------------------------------------
+03.2 Faça como eu fiz na aula
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**************************************************
+-------------------------------------------------
+04.1 - O problema da mensagem duplicada
+
+
+-------------------------------------------------
+04.2 - Kafka transacional
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**************************************************
+-------------------------------------------------
+5.1 - Id natural e idempotência no banco
+
+-------------------------------------------------
+5.2 - Extraindo o common database
+
+-------------------------------------------------
+5.3 - Idempotência e fast delegate
+
+-------------------------------------------------
+5.4 - Idempotência em apis
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------
+
+Apache Kafka
+O Apache Kafka é uma plataforma de streaming distribuída. Através dele é possível processar uma grande quantidade de dados e entregá-los em tempo real aos seus consumidores.
+
+Usado no LinkedIn, Netflix, Twitter e várias outras empresas o Kafka se tornou a ferramenta principal para criar pipeline de dados e enviar, processar e consumir mensagens de forma distribuída, algo muito comum em aplicações baseadas em Microsserviços.
+
+Esta formação foi criada em parceria com o Nubank.
+
+
+1. Streams, Cluster e Microsserviços
+Mergulhe de cabeça no mundo de comunicação assíncrona! Entenda as vantagens do Kafka como broker de mensagens e aprenda como usar Producers, Processors e Consumers. Saiba como se conectar aos serviços externos e aumente a disponibilidade através de um cluster. Veja na pratica como paralelizar e escalar a execução construindo uma solução baseada na arquitetura de microsserviços!
+
+
+2. Dead Letter Queue e Garantias de entrega
+Agora que você já tem bom conhecimento sobre Kafka e a arquitetura de microserviços avance no uso dela. Replica os seus dados e saiba como lidar com erros no processamento. Aprenda como definir um dead letter queue e tentativas de reenvio. Crie múltiplos tópicos para o mesmo serviço e saiba como obter garantias sobre o envio e entrega de mensagens.
+
+
+--------------------------------------------
+
+* Definição de Pipeline da Dados
+Um pipeline de dados é uma série de etapas de processamento de dados. Se os dados não estiverem carregados na plataforma de dados, eles serão ingeridos no início do pipeline. Depois, há uma série de etapas nas quais cada uma fornece uma saída que é a entrada para a próxima etapa. Isso continua até que o pipeline esteja completo. Em alguns casos, etapas independentes podem ser executadas em paralelo.
+
+Os pipelines de dados consistem em três elementos principais: uma fonte, uma ou mais etapas de processamento e um destino. Em alguns pipelines de dados, o destino pode ser chamado de coletor. Os pipelines de dados permitem o fluxo de dados de um aplicativo para um Data Warehouse, de um Data Lake para um banco de dados analítico ou para um sistema de processamento de pagamentos, por exemplo. Os pipelines de dados também podem ter a mesma fonte e coletor, de modo que o pipeline seja apenas para modificar o conjunto de dados. Sempre que os dados são processados ​​entre o ponto A e o ponto B (ou pontos B, C e D), há um pipeline de dados entre esses pontos.
+

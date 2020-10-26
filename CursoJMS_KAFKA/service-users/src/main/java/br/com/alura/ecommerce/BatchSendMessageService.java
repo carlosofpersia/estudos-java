@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
 public class BatchSendMessageService {
@@ -27,7 +28,7 @@ public class BatchSendMessageService {
         }
     }
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws ExecutionException, InterruptedException, SQLException {
         var batchService = new BatchSendMessageService();
         try (var service = new KafkaService<>(BatchSendMessageService.class.getSimpleName()
                 , "ECOMMERCE_SEND_MESSAGE_TO_ALL_USERS"
@@ -44,12 +45,20 @@ public class BatchSendMessageService {
         System.out.println("Processing new batch");
         System.out.println("Topic: " + record.topic());
 
+        // Testando dead letter. colocado no catch do KafkaService deadLetterDispatcher
+        Random isDeadLetter = new Random();
+        if(isDeadLetter.nextBoolean()) {
+            throw new RuntimeException("deu um erro que eu forcei!");
+        }
+
         var message = record.value();
         for(User user: getAllUsers()) {
-            userDispatcher.send(message.getPayload()
+            userDispatcher.sendAsync(
+                    message.getPayload()
                     , user.getUuid()
                     , message.getId().continueWith(BatchSendMessageService.class.getSimpleName())
                     , user);
+            System.out.println("Acho que enviei para " + user);
         }
         System.out.println("Batch processed!");
     }

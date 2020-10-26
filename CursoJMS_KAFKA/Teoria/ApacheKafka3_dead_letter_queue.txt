@@ -176,14 +176,56 @@ quando subo outra particao, o zookeeper faz um rebalanco.
 quando um servidor kafka cai, ele para de receber o poll e o servidor percebe entao pega o que esta vivo.
 
 
+* urls para testes ...
+http://localhost:8080/new?email=carlosofpersia1@hotmail.com&amount=1
+http://localhost:8080/new?email=carlosofpersia1@hotmail.com&amount=5001 -> acima de 5000 da fraud
+http://localhost:8080/admin/generate-reports
+
+
 
 
 **************************************************
 -------------------------------------------------
-03.4 - Retries e assincronicidade
+04.2 - Retries e assincronicidade
+
+	common-kafka
+		KafkaDispatcher
+			send -> sendAndWait (sincrona)
+			sendAssync -> assincrona
+
+	* in flight request per session 
+		O numero maximo de tentativas paralelas e cinco, mas pode ser configurado.
+		* retries 
+			maximo de vezes que o sistema vai tentar dar retries de enviar mensagens;
+			a ordem dos commits podem ser diferentes;
+			valor maior que zero se falhar tenta de novo.
+		Sao varias configuracoes para o servidor.
+		https://docs.confluent.io/current/installation/configuration/producer-configs.html
+
+**************************************************
+-------------------------------------------------
+04.3 - Enviando mensagem de deadletter
+
+como verificar os retries
+onde estudar configurações importantes do produtor
+como implementar um dead letter simples
 
 
+	* quando eu for consumir a mensagem e da erro.
 
+	em BatchSendMessageService.parse(ConsumerRecord<String... forcar um erro.
+		if(true) throw new RuntimeException("deu um erro que eu forcei!");
+
+	esse erro foi gerado, mas a fila ja andou. cade minhas mensagens?
+
+
+	Para registrar as informacoes quebradas:
+
+		KafkaService.run() { ...
+			registrar o erro no catch.
+			enviar uma mensagem :P
+			
+			deadLetter.send("ECOMMERCE_DEADLETTER", ...
 
 
 

@@ -43,24 +43,33 @@ public class KafkaService<T> implements Closeable {
         this.consumer = new KafkaConsumer<>(getProperties(groupId, properties));
     }
 
-    public void run() {
+    public void run() throws ExecutionException, InterruptedException {
 
-        while(true) {
-            var records = consumer.poll(Duration.ofMillis(100));
-            if( !records.isEmpty() ) {
-                System.out.println("Encontrei " + records.count() + " registros!");
-                for(var record: records) {
-                    try {
-                        parse.consumer(record);
-                    } catch (Exception e) {
-                        // only catches Exception because no matter witch Exception
-                        // i want to recover and parse the next one.
-                        // so far, just logging the exception for this message
-                        e.printStackTrace();
+        try( var deadLetterDispatcher = new KafkaDispatcher<>() ) {
+
+            while(true) {
+                var records = consumer.poll(Duration.ofMillis(100));
+                if (!records.isEmpty()) {
+                    System.out.println("Encontrei " + records.count() + " registros!");
+                    for (var record : records) {
+                        try {
+                            parse.consumer(record);
+                        } catch (Exception e) {
+                            // only catches Exception because no matter witch Exception
+                            // i want to recover and parse the next one.
+                            // so far, just logging the exception for this message
+                            e.printStackTrace();
+                            var message = record.value();
+                            deadLetterDispatcher.send(
+                                    "ECOMMERCE_DEADLETTER"
+                                    , message.getId().toString()
+                                    , message.getId().continueWith("DeadLetter")
+                                    , new GsonSerializer().serialize("", message) );
+                        }
                     }
+                } else {
+                    System.out.println("Aguardando registros!");
                 }
-            } else {
-                System.out.println("Aguardando registros!");
             }
         }
     }
