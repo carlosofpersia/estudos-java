@@ -35,7 +35,8 @@
   <component name="ChangeListManager">
     <list default="true" id="73161455-1d77-4e81-a756-8b81d0dc47e6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Teoria/ApacheKafka4_Idempotência e garantias.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Teoria/ApacheKafka4_Idempotência e garantias.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Teoria/ApacheKafka4_Idempotencia_garantias.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Teoria/ApacheKafka4_Idempotencia_garantias.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-email/src/main/java/br/com/alura/ecommerce/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-email/src/main/java/br/com/alura/ecommerce/EmailService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,8 +46,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Kotlin Class" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -107,7 +108,7 @@
       <command value="mvn package" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.NewOrderMain">
+  <component name="RunManager" selected="Application.EmailService">
     <configuration name="BatchSendMessageService" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -248,10 +249,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.EmailService" />
         <item itemvalue="Application.BatchSendMessageService" />
         <item itemvalue="Application.CreateUserService" />
         <item itemvalue="Application.HttpEcommerceService" />
-        <item itemvalue="Application.EmailService" />
         <item itemvalue="Application.LogService" />
       </list>
     </recent_temporary>
@@ -439,11 +440,11 @@
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
     <state x="2333" y="246" width="672" height="677" key="run.anything.popup/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1601044128564" />
-    <state x="2332" y="237" width="672" height="678" key="search.everywhere.popup" timestamp="1603204698575">
+    <state x="2332" y="237" width="672" height="678" key="search.everywhere.popup" timestamp="1604407797323">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
     <state x="1849" y="237" width="672" height="678" key="search.everywhere.popup/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603119160605" />
-    <state x="2332" y="237" width="672" height="678" key="search.everywhere.popup/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1603204698575" />
+    <state x="2332" y="237" width="672" height="678" key="search.everywhere.popup/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604407797323" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

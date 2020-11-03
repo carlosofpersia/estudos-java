@@ -69,14 +69,34 @@ $MODULE_WORKING_DIR$
 -------------------------------------------------
 02.1 Extraindo uma camada de serviços
 
+	Rodar varias instancias de um serico direto pelo APP. sem ter que rodar o mesmo programa ao mesmo tempo.
+
+	Procuro na documentacao: java class kafkaproducer
+	https://kafka.apache.org/0100/javadoc/index.html?org/apache/kafka/clients/producer/KafkaProducer.html
+	* The producer is thread safe.
+
+	Procuro na documentacao: java class kafkaconsumer
+	https://kafka.apache.org/10/javadoc/index.html?org/apache/kafka/clients/consumer/KafkaConsumer.html
+	* The consumer is not thread-safe.
 
 
-
+	service-email
+		EmailService.java
+		ConsumerService.java
+		ServiceFactory.java
+		ServiceProvider.java
 
 
 -------------------------------------------------
 02.2 Paralelizando com pools de threads
 
+	Rodar 10 threads do servico consumir e-mail.
+
+	
+
+Funcoes de loop para olhar depois
+* IntStream.rangeClosed()
+* Executors.newFixedThreadPool();
 
 
 
