@@ -1,28 +1,29 @@
 package br.com.alura.ecommerce;
 
-import br.com.alura.ecommerce.consumer.KafkaService;
+import br.com.alura.ecommerce.consumer.ConsumerService;
+import br.com.alura.ecommerce.consumer.ServiceRunner;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 
-import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executors;
-import java.util.stream.IntStream;
 
-public class EmailService implements ConsumerService<String> {
+public class EmailService implements ConsumerService<Email> {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
         new ServiceRunner(EmailService::new).start(5);
     }
 
+    @Override
     public String getConsumerGroup() {
         return EmailService.class.getSimpleName();
     }
 
+    @Override
     public String getTopic() {
         return "ECOMMERCE_SEND_EMAIL";
     }
 
+    @Override
     public void parse(ConsumerRecord<String, Message<Email>> record) {
 
         System.out.println("---------------------------------------------");

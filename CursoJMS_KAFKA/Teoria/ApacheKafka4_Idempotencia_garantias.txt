@@ -11,12 +11,25 @@ Entenda como obter garantias relativas ao envio ou entrega das mensagens
 --------------------------------------------------------------------------------
 
 1. Ligar o zookeeper
-$ cd /home/carloss/Documents/Desenvolvimento/eclipse-workspace/JmsKafka/kafka_2.13-2.6.0
-$ ./bin/zookeeper-server-start.sh ./config/zookeeper.properties
+	$ cd /home/carloss/Documents/Desenvolvimento/eclipse-workspace/JmsKafka/kafka_2.13-2.6.0
+	$ ./bin/zookeeper-server-start.sh ./config/zookeeper.properties
 
 2. Ligar o kafka
-$ cd /home/carloss/Documents/Desenvolvimento/eclipse-workspace/JmsKafka/kafka_2.13-2.6.0
-$ ./bin/kafka-server-start.sh ./config/server.properties
+	$ cd /home/carloss/Documents/Desenvolvimento/eclipse-workspace/JmsKafka/kafka_2.13-2.6.0
+	$ ./bin/kafka-server-start.sh ./config/server1.properties
+	$ ./bin/kafka-server-start.sh ./config/server2.properties
+	$ ./bin/kafka-server-start.sh ./config/server3.properties
+	$ ./bin/kafka-server-start.sh ./config/server4.properties
+	$ ./bin/kafka-server-start.sh ./config/server5.properties
+
+
+3. Listar os recursos
+	* listar os topicos para ver o numero de particoes
+	./bin/kafka-topics.sh --describe --bootstrap-server localhost:9092
+
+	* ver todos os topicos por grupos 
+	./bin/kafka-consumer-groups.sh --all-groups --bootstrap-server localhost:9092 --describe
+
 
 --------------------------------------------------------------------------------
 
@@ -92,36 +105,54 @@ $MODULE_WORKING_DIR$
 
 	Rodar 10 threads do servico consumir e-mail.
 
-	
+service-email
+	EmailService.java
+
+		new ServiceRunner(EmailService::new).start(5);
+
+	ConsumerService.java
+	ServiceFactory.java
+	ServiceProvider.java
+	ServiceRunner.java
 
 Funcoes de loop para olhar depois
 * IntStream.rangeClosed()
 * Executors.newFixedThreadPool();
 
-
-
-
 ------------------------------------------------
 02.3 Facilidade de criar novos serviços
 
+	common-kafka
+		ConsumerService.java
+		ServiceFactory.java
+		ServiceProvider.java
+		ServiceRunner.java
 
+	service-email
+		EmailService.java
 
+	service-reading-report
+		ReadingReportService.java
 
+------------------------------------------------
+02.5 Facilidade de criar novos serviços
 
-
-
-
-
-
-
-
-
+	* extraindo uma camada de interface de serviço
+	* paralelizando com thread pools
+	* simplicidade ao criar novos componentes
 
 
 
 **************************************************
 -------------------------------------------------
 03.1 Offset latest e earliest
+
+
+
+
+
+
+
 
 -------------------------------------------------
 03.2 Faça como eu fiz na aula
