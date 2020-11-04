@@ -98,6 +98,9 @@ public class KafkaService<T> implements Closeable {
         //MAX_POLL_RECORDS_CONFIG max de registros para commitar. menos chance de perder registros.
         properties.setProperty(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "1");
 
+        // OFFSET de mensagens -> A partir de onde devo comecar a receber, do inicio, da ultima?
+        properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
+
         //Problema com deserializacao de String para Gson na hora de deserializar.
         properties.putAll(overrideProperties);
 

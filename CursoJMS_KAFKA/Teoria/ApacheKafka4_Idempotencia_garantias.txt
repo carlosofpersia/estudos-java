@@ -10,6 +10,12 @@ Entenda como obter garantias relativas ao envio ou entrega das mensagens
 
 --------------------------------------------------------------------------------
 
+rm -rf ../data/*
+
+./bin/kafka-topics.sh --alter --zookeeper localhost:2181 --topic ECOMMERCE_NEW_ORDER --partitions 3
+
+
+
 1. Ligar o zookeeper
 	$ cd /home/carloss/Documents/Desenvolvimento/eclipse-workspace/JmsKafka/kafka_2.13-2.6.0
 	$ ./bin/zookeeper-server-start.sh ./config/zookeeper.properties
@@ -147,23 +153,49 @@ Funcoes de loop para olhar depois
 -------------------------------------------------
 03.1 Offset latest e earliest
 
+	* como lidar com latest e earliest (AUTO_OFFSET_RESET_CONFIG: latest e earliest)
+
+
+	common-kafka
+		KafkaService.java
+	        * OFFSET de mensagens
+	        	- A partir de onde devo comecar a receber, do inicio, da ultima?
+	        properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
+	        	- nesse caso AUTO_OFFSET_RESET_CONFIG, caso nao tenha servidor, posso perder mensagens
+
+        	Documentacao - ConsumerConfig:
+        		
+        		* https://kafka.apache.org/23/javadoc/org/apache/kafka/clients/consumer/ConsumerConfig.html
+        		* https://kafka.apache.org/23/javadoc/constant-values.html#org.apache.kafka.clients.consumer.ConsumerConfig.AUTO_OFFSET_RESET_CONFIG
+        		* o kafka por padrao nao armazena eterno.
+        			AUTO_OFFSET_RESET_CONFIG -> esse cara resolve se quer pegar somente os mais atuais, ou os mais antigos.
+        			- latest - pega o ultimo, mais recente;
+        			- earliest - se ainda tem mensagens no kafka que nao foram apagadas eu pego todas (pega as do passado);
+
+	service-email-new-order
+		EmailNewOrderService.java
 
 
 
+    /**
+     * <code>auto.offset.reset</code>
+     */
+    public static final String AUTO_OFFSET_RESET_CONFIG = "auto.offset.reset";
+    public static final String AUTO_OFFSET_RESET_DOC = "What to do when there is no initial offset in Kafka or if the current offset does not exist any more on the server (e.g. because that data has been deleted): <ul><li>earliest: automatically reset the offset to the earliest offset<li>latest: automatically reset the offset to the latest offset</li><li>none: throw exception to the consumer if no previous offset is found for the consumer's group</li><li>anything else: throw exception to the consumer.</li></ul>";
 
 
 
+./bin/kafka-topics.sh --alter --zookeeper localhost:2181 --topic ECOMMERCE_NEW_ORDER --partitions 3
 
--------------------------------------------------
-03.2 Faça como eu fiz na aula
+3. Listar os recursos
+	* listar os topicos para ver o numero de particoes
+	./bin/kafka-topics.sh --describe --bootstrap-server localhost:9092
+
+	* ver todos os topicos por grupos 
+	./bin/kafka-consumer-groups.sh --all-groups --bootstrap-server localhost:9092 --describe
 
 
-
-
-
-
-
-
+http://localhost:8080/new?email=carlosofpersia1@hotmail.com&amount=1
 
 
 
@@ -176,8 +208,15 @@ Funcoes de loop para olhar depois
 04.1 - O problema da mensagem duplicada
 
 
+
+
+
 -------------------------------------------------
 04.2 - Kafka transacional
+
+
+
+
 
 
 
