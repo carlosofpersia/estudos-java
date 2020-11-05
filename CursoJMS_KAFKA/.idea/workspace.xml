@@ -36,9 +36,8 @@
     <list default="true" id="73161455-1d77-4e81-a756-8b81d0dc47e6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Teoria/ApacheKafka4_Idempotencia_garantias.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Teoria/ApacheKafka4_Idempotencia_garantias.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/consumer/ConsumerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/consumer/ConsumerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/consumer/KafkaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/consumer/KafkaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-email-new-order/src/main/java/br/com/alura/ecommerce/EmailNewOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-email-new-order/src/main/java/br/com/alura/ecommerce/EmailNewOrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/dispatcher/KafkaDispatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/dispatcher/KafkaDispatcher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

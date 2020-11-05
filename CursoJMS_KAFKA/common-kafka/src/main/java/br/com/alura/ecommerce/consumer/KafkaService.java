@@ -5,6 +5,8 @@ import br.com.alura.ecommerce.dispatcher.GsonSerializer;
 import br.com.alura.ecommerce.dispatcher.KafkaDispatcher;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.common.config.TopicConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
 import java.io.Closeable;
@@ -95,11 +97,25 @@ public class KafkaService<T> implements Closeable {
         //CLIENT_ID_CONFIG aqui colocar o ip da maquina ou o id do usuario
         properties.setProperty(ConsumerConfig.CLIENT_ID_CONFIG, UUID.randomUUID().toString());
 
+        // Intervalo do Commit
+        // properties.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
+        // properties.setProperty(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, 10);
+
         //MAX_POLL_RECORDS_CONFIG max de registros para commitar. menos chance de perder registros.
-        properties.setProperty(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "1");
+        properties.setProperty(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "100");
 
         // OFFSET de mensagens -> A partir de onde devo comecar a receber, do inicio, da ultima?
+        // AUTO_OFFSET_RESET_CONFIG: (latest|earliest) offset
         properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
+
+/*
+ * https://itnext.io/kafka-transaction-56f022af1b0c
+// transaction properties. commit manual - Aula 04
+props.put(ConsumerConfig.ISOLATION_LEVEL_CONFIG, "read_committed");
+props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
+props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+ */
+
 
         //Problema com deserializacao de String para Gson na hora de deserializar.
         properties.putAll(overrideProperties);

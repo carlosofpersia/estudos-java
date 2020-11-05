@@ -3,6 +3,7 @@ package br.com.alura.ecommerce.dispatcher;
 import br.com.alura.ecommerce.CorrelationId;
 import br.com.alura.ecommerce.Message;
 import org.apache.kafka.clients.producer.*;
+import org.apache.kafka.common.config.TopicConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.io.Closeable;
@@ -56,6 +57,20 @@ public class KafkaDispatcher<T> implements Closeable {
         properties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
         properties.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, GsonSerializer.class.getName());
+
+/*
+ * produzir um unico registro e commitar manual  - Aula 04
+ * https://itnext.io/kafka-transaction-56f022af1b0c
+properties.put(ProducerConfig.TRANSACTIONAL_ID_CONFIG, transactionalId); // producer unique transactional id.
+properties.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, true);
+properties.put(ProducerConfig.ACKS_CONFIG, "all");
+properties.put(ProducerConfig.RETRIES_CONFIG, 3);
+properties.put(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, 1);
+properties.put(ProducerConfig.MAX_BLOCK_MS_CONFIG, 600000);
+*/
+
+        //Qtd minima de replicas de servidores kafkas ativos
+        // properties.setProperty(TopicConfig.MIN_IN_SYNC_REPLICAS_CONFIG, 2);
 
         // somente da ok, quando todas as replicas confirmarem, isso e bom para garantir que se um cair esta no outro.
         properties.setProperty(ProducerConfig.ACKS_CONFIG, "all");
