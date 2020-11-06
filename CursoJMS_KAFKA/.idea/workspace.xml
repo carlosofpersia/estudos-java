@@ -37,12 +37,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Teoria/ApacheKafka4_Idempotencia_garantias.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Teoria/ApacheKafka4_Idempotencia_garantias.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common-database/src/main/java/br.com.alura.ecommerce.database/LocalDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-database/src/main/java/br.com.alura.ecommerce.database/LocalDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-frauddetector/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service-frauddetector/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-frauddetector/service-frauddetector.iml" beforeDir="false" afterPath="$PROJECT_DIR$/service-frauddetector/service-frauddetector.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-frauddetector/src/main/java/br/com/alura/ecommerce/FraudDetectorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-frauddetector/src/main/java/br/com/alura/ecommerce/FraudDetectorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-frauddetector/src/main/java/br/com/alura/ecommerce/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-frauddetector/src/main/java/br/com/alura/ecommerce/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-users/target/classes/br/com/alura/ecommerce/CreateUserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/service-users/target/classes/br/com/alura/ecommerce/CreateUserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/users_database.db" beforeDir="false" afterPath="$PROJECT_DIR$/target/users_database.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-frauddetector/target/frauds_database.db" beforeDir="false" afterPath="$PROJECT_DIR$/service-frauddetector/target/frauds_database.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-http-ecommerce/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service-http-ecommerce/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-http-ecommerce/service-http-ecommerce.iml" beforeDir="false" afterPath="$PROJECT_DIR$/service-http-ecommerce/service-http-ecommerce.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-http-ecommerce/src/main/java/br/com/alura/ecommerce/NewOrderServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-http-ecommerce/src/main/java/br/com/alura/ecommerce/NewOrderServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-http-ecommerce/src/main/java/br/com/alura/ecommerce/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-http-ecommerce/src/main/java/br/com/alura/ecommerce/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-users/target/users_database.db" beforeDir="false" afterPath="$PROJECT_DIR$/service-users/target/users_database.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,6 +121,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="br.com.alura.ecommerce.CreateUserService" />
       <module name="service-users" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="br.com.alura.ecommerce.*" />
@@ -136,6 +137,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="br.com.alura.ecommerce.EmailNewOrderService" />
       <module name="service-email-new-order" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="br.com.alura.ecommerce.*" />
@@ -151,6 +153,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="br.com.alura.ecommerce.EmailService" />
       <module name="service-email" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="br.com.alura.ecommerce.dispatcher.*" />
@@ -197,6 +200,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="br.com.alura.ecommerce.HttpEcommerceService" />
       <module name="service-http-ecommerce" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="br.com.alura.ecommerce.*" />
@@ -257,8 +261,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CreateUserService" />
         <item itemvalue="Application.HttpEcommerceService" />
+        <item itemvalue="Application.CreateUserService" />
         <item itemvalue="Application.EmailNewOrderService" />
         <item itemvalue="Application.EmailService" />
         <item itemvalue="Application.ReadingReportService" />
@@ -301,11 +305,11 @@
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
     <state x="1831" y="401" width="400" height="277" key="#Scopes/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1603290677435" />
-    <state x="1485" y="126" width="1236" height="828" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604421211608">
+    <state x="1485" y="126" width="1236" height="828" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604672581646">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
     <state x="1747" y="197" width="894" height="828" key="#com.intellij.execution.impl.EditConfigurationsDialog/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603122591702" />
-    <state x="1485" y="126" width="1236" height="828" key="#com.intellij.execution.impl.EditConfigurationsDialog/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604421211608" />
+    <state x="1485" y="126" width="1236" height="828" key="#com.intellij.execution.impl.EditConfigurationsDialog/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604672581646" />
     <state x="2335" y="341" width="872" height="396" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1604664786602">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
@@ -315,11 +319,11 @@
     </state>
     <state x="1970" y="307" width="424" height="584" key="#com.intellij.ide.macro.MacrosDialog/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603122571715" />
     <state x="2574" y="307" width="424" height="584" key="#com.intellij.ide.macro.MacrosDialog/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1603290875253" />
-    <state x="2477" y="246" width="565" height="585" key="#com.intellij.ide.util.MemberChooser" timestamp="1604421024392">
+    <state x="2477" y="246" width="565" height="585" key="#com.intellij.ide.util.MemberChooser" timestamp="1604672322855">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
     <state x="1922" y="246" width="565" height="585" key="#com.intellij.ide.util.MemberChooser/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603119163413" />
-    <state x="2477" y="246" width="659" height="585" key="#com.intellij.ide.util.MemberChooser/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604421024392" />
+    <state x="2477" y="246" width="659" height="585" key="#com.intellij.ide.util.MemberChooser/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604672322855" />
     <state x="2397" y="317" width="524" height="444" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1601038139074">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
@@ -357,29 +361,29 @@
     </state>
     <state x="1907" y="296" width="374" height="484" key="FileChooserDialogImpl/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603122582729" />
     <state x="2447" y="296" width="424" height="484" key="FileChooserDialogImpl/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604420477974" />
-    <state width="1211" height="438" key="GridCell.Tab.0.bottom" timestamp="1604670245150">
+    <state width="1211" height="438" key="GridCell.Tab.0.bottom" timestamp="1604672954271">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
     <state width="2467" height="290" key="GridCell.Tab.0.bottom/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603123476704" />
-    <state width="1211" height="438" key="GridCell.Tab.0.bottom/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604670245150" />
+    <state width="1211" height="438" key="GridCell.Tab.0.bottom/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604672954271" />
     <state width="1273" height="181" key="GridCell.Tab.0.bottom/47.27.1319.741/1366.0.2560.1080@47.27.1319.741" timestamp="1600274812849" />
-    <state width="1211" height="438" key="GridCell.Tab.0.center" timestamp="1604670245150">
+    <state width="1211" height="438" key="GridCell.Tab.0.center" timestamp="1604672954271">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
     <state width="2467" height="290" key="GridCell.Tab.0.center/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603123476703" />
-    <state width="1211" height="438" key="GridCell.Tab.0.center/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604670245150" />
+    <state width="1211" height="438" key="GridCell.Tab.0.center/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604672954271" />
     <state width="1273" height="181" key="GridCell.Tab.0.center/47.27.1319.741/1366.0.2560.1080@47.27.1319.741" timestamp="1600274812849" />
-    <state width="1211" height="438" key="GridCell.Tab.0.left" timestamp="1604670245150">
+    <state width="1211" height="438" key="GridCell.Tab.0.left" timestamp="1604672954271">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
     <state width="2467" height="290" key="GridCell.Tab.0.left/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603123476703" />
-    <state width="1211" height="438" key="GridCell.Tab.0.left/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604670245150" />
+    <state width="1211" height="438" key="GridCell.Tab.0.left/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604672954271" />
     <state width="1273" height="181" key="GridCell.Tab.0.left/47.27.1319.741/1366.0.2560.1080@47.27.1319.741" timestamp="1600274812849" />
-    <state width="1211" height="438" key="GridCell.Tab.0.right" timestamp="1604670245150">
+    <state width="1211" height="438" key="GridCell.Tab.0.right" timestamp="1604672954271">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
     <state width="2467" height="290" key="GridCell.Tab.0.right/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603123476703" />
-    <state width="1211" height="438" key="GridCell.Tab.0.right/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604670245150" />
+    <state width="1211" height="438" key="GridCell.Tab.0.right/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604672954271" />
     <state width="1273" height="181" key="GridCell.Tab.0.right/47.27.1319.741/1366.0.2560.1080@47.27.1319.741" timestamp="1600274812849" />
     <state width="1211" height="354" key="GridCell.Tab.1.bottom" timestamp="1603209558974">
       <screen x="1366" y="0" width="2560" height="1080" />

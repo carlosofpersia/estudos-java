@@ -1,5 +1,6 @@
 package br.com.alura.ecommerce.database;
 
+import java.io.IOException;
 import java.sql.*;
 
 public class LocalDatabase {
@@ -43,6 +44,10 @@ public class LocalDatabase {
          // var statement = "select uuid from Users where email = ? limit 1"
          // exists.setString(1, email);
          return  prepare(statement, params).executeQuery();
+     }
+
+     public void close() throws SQLException {
+        connection.close();
      }
 
 }

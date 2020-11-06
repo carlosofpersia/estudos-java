@@ -433,20 +433,37 @@ http://localhost:8080/new?email=carlosofpersia100@hotmail.com&amount=100
 -------------------------------------------------
 5.3 - Idempotência e fast delegate
 
+Nessa situacao eu tinha um ID natural que veio do FAST DELEGATE, o NewOrderServlet da requisicao HTTP, trouxe um uuid criado atravez da classe ORDER e enviou os dados.
 
+Agora ao consumir esses dados com o FraudDetectorService eu ja tenho um ID unico, (idempotencia).
 
+service-frauddetector
+	FraudDetectorService.java
+	--Agora ele pesquisa no banco para saber se a mensagem que veio nao e repetida.
 
 -------------------------------------------------
 5.4 - Idempotência em apis
 
+	service-http-ecommerce
+		NewOrderServlet.java
+			Fast Delegate de ORDER.
+			, new CorrelationId(NewOrderServlet.class.getSimpleName()), order);
+			Devemos ter um uuid vindo da HTTP tb.
+
+	* Todo ponto de comunicacao deve ter um ID unico (uuid). 
 
 
 
+http://localhost:8080/new?email=carlosofpersia1000@hotmail.com&amount=1000&uuid=1234
 
 
+O que aprendemos nessa aula:
 
-
-
+o que é idempotência
+como implementá-la através de IDs naturais no banco
+como extrair um módulo para banco de dados
+idempotência e fast delegate
+como lidar com idempotência em clientes externos
 
 
 
