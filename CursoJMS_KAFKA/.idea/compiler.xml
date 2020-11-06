@@ -12,12 +12,14 @@
         <module name="common-kafka" />
         <module name="service-new-order" />
         <module name="service-reading-report" />
+        <module name="common-database" />
         <module name="service-frauddetector" />
         <module name="service-email" />
         <module name="service-users" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11">
+      <module name="common-database" target="11" />
       <module name="common-kafka" target="11" />
       <module name="Kafka" target="11" />
       <module name="service-email" target="11" />

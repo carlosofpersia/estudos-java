@@ -16,3 +16,7 @@ CursoJMS_KAFKA/service-http-ecommerce/target/
 CursoJMS_KAFKA/service-log/target/
 CursoJMS_KAFKA/service-new-order/target/
 
+CursoJMS_KAFKA/service-users/target/
+
+CursoJMS_KAFKA/common-database/target/
+

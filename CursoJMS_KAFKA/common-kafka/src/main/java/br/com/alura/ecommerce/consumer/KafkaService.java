@@ -106,7 +106,7 @@ public class KafkaService<T> implements Closeable {
 
         // OFFSET de mensagens -> A partir de onde devo comecar a receber, do inicio, da ultima?
         // AUTO_OFFSET_RESET_CONFIG: (latest|earliest) offset
-        properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
+        properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
 /*
  * https://itnext.io/kafka-transaction-56f022af1b0c

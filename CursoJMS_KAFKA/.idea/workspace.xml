@@ -34,10 +34,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="73161455-1d77-4e81-a756-8b81d0dc47e6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Teoria/ApacheKafka4_Idempotencia_garantias.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Teoria/ApacheKafka4_Idempotencia_garantias.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/consumer/ConsumerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/consumer/ConsumerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/consumer/KafkaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/consumer/KafkaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/dispatcher/KafkaDispatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/dispatcher/KafkaDispatcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/consumer/ServiceFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/consumer/ServiceFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/consumer/ServiceProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/consumer/ServiceProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-users/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service-users/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-users/service-users.iml" beforeDir="false" afterPath="$PROJECT_DIR$/service-users/service-users.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-users/src/main/java/br/com/alura/ecommerce/CreateUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-users/src/main/java/br/com/alura/ecommerce/CreateUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-users/target/classes/br/com/alura/ecommerce/CreateUserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/service-users/target/classes/br/com/alura/ecommerce/CreateUserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/users_database.db" beforeDir="false" afterPath="$PROJECT_DIR$/target/users_database.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,9 +88,10 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JAVA" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/service-reading-report/src/main/java/br/com/alura/ecommerce" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/common-database/src/main/java" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -97,11 +108,11 @@
       <recent name="br.com.alura.ecommerce" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/common-database/src/main/java" />
       <recent name="$PROJECT_DIR$/service-reading-report/src/main/java/br/com/alura/ecommerce" />
       <recent name="$PROJECT_DIR$/service-email-new-order/src/main/java" />
       <recent name="$PROJECT_DIR$/service-reading-report/src/main/java" />
       <recent name="$PROJECT_DIR$/service-users/src/main" />
-      <recent name="$PROJECT_DIR$/service-new-order/src/main/java/br/com/alura/ecommerce" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -109,15 +120,15 @@
       <command value="mvn package" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.EmailNewOrderService">
-    <configuration name="BatchSendMessageService" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.CreateUserService">
+    <configuration name="CreateUserService" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="br.com.alura.ecommerce.BatchSendMessageService" />
+      <option name="MAIN_CLASS_NAME" value="br.com.alura.ecommerce.CreateUserService" />
       <module name="service-users" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="br.com.alura.ecommerce.dispatcher.*" />
+          <option name="PATTERN" value="br.com.alura.ecommerce.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -244,18 +255,18 @@
       <item itemvalue="Application.NewOrderMain" />
       <item itemvalue="Application.FraudDetectorService" />
       <item itemvalue="Application.EmailService" />
-      <item itemvalue="Application.BatchSendMessageService" />
       <item itemvalue="Application.ReadingReportService" />
       <item itemvalue="Application.EmailNewOrderService" />
       <item itemvalue="Application.HttpEcommerceService" />
+      <item itemvalue="Application.CreateUserService" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.EmailNewOrderService" />
+        <item itemvalue="Application.CreateUserService" />
         <item itemvalue="Application.HttpEcommerceService" />
+        <item itemvalue="Application.EmailNewOrderService" />
         <item itemvalue="Application.EmailService" />
         <item itemvalue="Application.ReadingReportService" />
-        <item itemvalue="Application.BatchSendMessageService" />
       </list>
     </recent_temporary>
   </component>
@@ -300,10 +311,10 @@
     </state>
     <state x="1747" y="197" width="894" height="828" key="#com.intellij.execution.impl.EditConfigurationsDialog/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603122591702" />
     <state x="1485" y="126" width="1236" height="828" key="#com.intellij.execution.impl.EditConfigurationsDialog/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604421211608" />
-    <state x="2335" y="341" width="659" height="396" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602634056612">
+    <state x="2335" y="341" width="872" height="396" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1604664786602">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
-    <state x="2335" y="341" width="659" height="396" key="#com.intellij.fileTypes.FileTypeChooser/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1602634056612" />
+    <state x="2335" y="341" width="872" height="396" key="#com.intellij.fileTypes.FileTypeChooser/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604664786602" />
     <state x="2574" y="307" width="424" height="584" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1603290875253">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
@@ -351,29 +362,29 @@
     </state>
     <state x="1907" y="296" width="374" height="484" key="FileChooserDialogImpl/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603122582729" />
     <state x="2447" y="296" width="424" height="484" key="FileChooserDialogImpl/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604420477974" />
-    <state width="1181" height="219" key="GridCell.Tab.0.bottom" timestamp="1604510146286">
+    <state width="1211" height="438" key="GridCell.Tab.0.bottom" timestamp="1604665303329">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
     <state width="2467" height="290" key="GridCell.Tab.0.bottom/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603123476704" />
-    <state width="1181" height="219" key="GridCell.Tab.0.bottom/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604510146286" />
+    <state width="1211" height="438" key="GridCell.Tab.0.bottom/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604665303329" />
     <state width="1273" height="181" key="GridCell.Tab.0.bottom/47.27.1319.741/1366.0.2560.1080@47.27.1319.741" timestamp="1600274812849" />
-    <state width="1181" height="219" key="GridCell.Tab.0.center" timestamp="1604510146286">
+    <state width="1211" height="438" key="GridCell.Tab.0.center" timestamp="1604665303328">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
     <state width="2467" height="290" key="GridCell.Tab.0.center/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603123476703" />
-    <state width="1181" height="219" key="GridCell.Tab.0.center/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604510146286" />
+    <state width="1211" height="438" key="GridCell.Tab.0.center/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604665303328" />
     <state width="1273" height="181" key="GridCell.Tab.0.center/47.27.1319.741/1366.0.2560.1080@47.27.1319.741" timestamp="1600274812849" />
-    <state width="1181" height="219" key="GridCell.Tab.0.left" timestamp="1604510146285">
+    <state width="1211" height="438" key="GridCell.Tab.0.left" timestamp="1604665303328">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
     <state width="2467" height="290" key="GridCell.Tab.0.left/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603123476703" />
-    <state width="1181" height="219" key="GridCell.Tab.0.left/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604510146285" />
+    <state width="1211" height="438" key="GridCell.Tab.0.left/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604665303328" />
     <state width="1273" height="181" key="GridCell.Tab.0.left/47.27.1319.741/1366.0.2560.1080@47.27.1319.741" timestamp="1600274812849" />
-    <state width="1181" height="219" key="GridCell.Tab.0.right" timestamp="1604510146286">
+    <state width="1211" height="438" key="GridCell.Tab.0.right" timestamp="1604665303329">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
     <state width="2467" height="290" key="GridCell.Tab.0.right/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603123476703" />
-    <state width="1181" height="219" key="GridCell.Tab.0.right/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604510146286" />
+    <state width="1211" height="438" key="GridCell.Tab.0.right/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604665303329" />
     <state width="1273" height="181" key="GridCell.Tab.0.right/47.27.1319.741/1366.0.2560.1080@47.27.1319.741" timestamp="1600274812849" />
     <state width="1211" height="354" key="GridCell.Tab.1.bottom" timestamp="1603209558974">
       <screen x="1366" y="0" width="2560" height="1080" />
@@ -433,11 +444,11 @@
       <screen x="1366" y="0" width="1280" height="1080" />
     </state>
     <state width="600" height="428" key="javadoc.popup/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603122210429" />
-    <state x="1746" y="198" width="939" height="592" key="new project wizard" timestamp="1603715881602">
+    <state x="1746" y="198" width="939" height="592" key="new project wizard" timestamp="1604664593709">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>
     <state x="1556" y="198" width="939" height="592" key="new project wizard/47.27.1319.741/1366.0.1280.1080@1366.0.1280.1080" timestamp="1603110090095" />
-    <state x="1746" y="198" width="1372" height="592" key="new project wizard/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1603715881602" />
+    <state x="1746" y="198" width="1372" height="592" key="new project wizard/47.27.1319.741/1366.0.2560.1080@1366.0.2560.1080" timestamp="1604664593709" />
     <state x="2333" y="246" width="672" height="677" key="run.anything.popup" timestamp="1601044128564">
       <screen x="1366" y="0" width="2560" height="1080" />
     </state>

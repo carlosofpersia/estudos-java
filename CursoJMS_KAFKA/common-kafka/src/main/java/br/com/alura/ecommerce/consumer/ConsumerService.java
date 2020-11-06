@@ -10,5 +10,8 @@ public interface ConsumerService<T> {
 
     String getConsumerGroup();
     String getTopic();
-    void parse(ConsumerRecord<String, Message<T>> record) throws ExecutionException, InterruptedException, IOException;
+
+    // you may argue that a ConsumerException would be better
+    // and its ok, it can be better
+    void parse(ConsumerRecord<String, Message<T>> record) throws Exception;
 }

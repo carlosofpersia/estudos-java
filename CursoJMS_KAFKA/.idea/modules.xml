@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Kafka.iml" filepath="$PROJECT_DIR$/Kafka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-database/common-database.iml" filepath="$PROJECT_DIR$/common-database/common-database.iml" />
       <module fileurl="file://$PROJECT_DIR$/common-kafka/common-kafka.iml" filepath="$PROJECT_DIR$/common-kafka/common-kafka.iml" />
       <module fileurl="file://$PROJECT_DIR$/service-email/service-email.iml" filepath="$PROJECT_DIR$/service-email/service-email.iml" />
       <module fileurl="file://$PROJECT_DIR$/service-email-new-order/service-email-new-order.iml" filepath="$PROJECT_DIR$/service-email-new-order/service-email-new-order.iml" />

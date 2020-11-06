@@ -44,6 +44,10 @@ $MODULE_WORKING_DIR$
 
 
 
+* Idempotência:
+	Em matemática e ciência da computação, a idempotência é a propriedade que algumas operações têm de poderem ser aplicadas várias vezes sem que o valor do resultado se altere após a aplicação inicial.
+
+
 
 **************************************************
 -------------------------------------------------
@@ -60,7 +64,6 @@ $MODULE_WORKING_DIR$
 
 -------------------------------------------------
 1.3 - Micro serviços de email e fast delegate real
-
 
 
 	Retirei o envio do email das funcoes: NewOrderServlet e NewOrderMain e criei um servico que fica ouvindo
@@ -392,8 +395,40 @@ public class TransactionalConsumerRebalanceListener<K, V> implements ConsumerReb
 -------------------------------------------------
 5.1 - Id natural e idempotência no banco
 
+	idempotência
+		Se eu crio uma vez, ele cria um usuario no banco, se aplico 300 vezes, ele cria somente um usuario, que foi o primeiro.
+		Toda mensagem tem um identificador unico, no kafka usamos o topic, concumerGroup, a particao e o OFFSET. O exemplo 4. do post, o cara usa essas 4 informacoes e salva no banco, ele toma cuidado com o identificador unico, pois pode sair para varios offset (servidores kafkas);
+		Nosso exemplo agora temos o ID do Usuario que e um ID unico que estamos criando, isso e idempotencia. Mas em alguns casos nao conseguimos esse ID unico o que podemos fazer, por outro caminho da abordagem 4.
+
+
+
+	service-users
+		CreateUserService
+
+
+http://localhost:8080/new?email=carlosofpersia100@hotmail.com&amount=100
+
+
+
+./bin/kafka-topics.sh --alter --zookeeper localhost:2181 --topic ECOMMERCE_NEW_ORDER --partitions 3
+
+3. Listar os recursos
+	* listar os topicos para ver o numero de particoes
+	./bin/kafka-topics.sh --describe --bootstrap-server localhost:9092
+
+	* ver todos os topicos por grupos 
+	./bin/kafka-consumer-groups.sh --all-groups --bootstrap-server localhost:9092 --describe
+
 -------------------------------------------------
 5.2 - Extraindo o common database
+
+
+	common-database
+		LocalDatabase.java
+
+	create-users
+		CreateUserService.java
+
 
 -------------------------------------------------
 5.3 - Idempotência e fast delegate
