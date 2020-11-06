@@ -11,12 +11,19 @@
 
     <artifactId>service-frauddetector</artifactId>
     <dependencies>
+
         <dependency>
             <groupId>br.com.alura</groupId>
             <artifactId>common-kafka</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-    </dependencies>
 
+        <dependency>
+            <groupId>br.com.alura</groupId>
+            <artifactId>common-database</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+    </dependencies>
 
 </project>

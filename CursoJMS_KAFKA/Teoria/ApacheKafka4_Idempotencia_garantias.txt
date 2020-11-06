@@ -422,6 +422,7 @@ http://localhost:8080/new?email=carlosofpersia100@hotmail.com&amount=100
 -------------------------------------------------
 5.2 - Extraindo o common database
 
+	Generalizando a forma de criar banco de dados para nossos exemplos.
 
 	common-database
 		LocalDatabase.java
@@ -429,9 +430,11 @@ http://localhost:8080/new?email=carlosofpersia100@hotmail.com&amount=100
 	create-users
 		CreateUserService.java
 
-
 -------------------------------------------------
 5.3 - Idempotência e fast delegate
+
+
+
 
 -------------------------------------------------
 5.4 - Idempotência em apis

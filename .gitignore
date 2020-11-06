@@ -1,22 +1,22 @@
 build/
 /.metadata/
 
-CursoJMS_KAFKA/service-reading-report/target/
-CursoJMS_KAFKA/service-users/target
-CursoJMS_KAFKA/target/
-CursoJMS_KAFKA/common-kafka/target/
+*.class
 
-CursoJMS_KAFKA/service-email/target/
-CursoJMS_KAFKA/service-email-new-order/target/
-CursoJMS_KAFKA/service-frauddetector/target/
+./CursoJMS_KAFKA/service-reading-report/target/
+./CursoJMS_KAFKA/service-users/target/
+./CursoJMS_KAFKA/target/
+./CursoJMS_KAFKA/common-kafka/target/
 
-CursoJMS_KAFKA/service-reading-report/target/
+./CursoJMS_KAFKA/service-email/target/
+./CursoJMS_KAFKA/service-email-new-order/target/
+./CursoJMS_KAFKA/service-frauddetector/target/
 
-CursoJMS_KAFKA/service-http-ecommerce/target/
-CursoJMS_KAFKA/service-log/target/
-CursoJMS_KAFKA/service-new-order/target/
+./CursoJMS_KAFKA/service-reading-report/target/
 
-CursoJMS_KAFKA/service-users/target/
+./CursoJMS_KAFKA/service-http-ecommerce/target/
+./CursoJMS_KAFKA/service-log/target/
+./CursoJMS_KAFKA/service-new-order/target/
 
-CursoJMS_KAFKA/common-database/target/
+./CursoJMS_KAFKA/common-database/target/
 
